@@ -9,14 +9,23 @@ import { VenueTravel } from './components/VenueTravel';
 import { BlessingsWall } from './components/BlessingsWall';
 import { Footer } from './components/Footer';
 import { RSVPModal } from './components/RSVPModal';
+import { StoryTeaser } from './components/StoryTeaser';
 
 export const App: React.FC = () => {
+  const [currentPage, setCurrentPage] = useState<'home' | 'story'>('home');
   const [isRSVPOpen, setIsRSVPOpen] = useState(false);
 
-  const handleScrollToStory = () => {
-    const el = document.getElementById('story');
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
+  const handleNavigate = (page: 'home' | 'story', targetSection?: string) => {
+    setCurrentPage(page);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    if (page === 'home' && targetSection) {
+      setTimeout(() => {
+        const el = document.getElementById(targetSection);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 150);
     }
   };
 
@@ -25,17 +34,27 @@ export const App: React.FC = () => {
       {/* Background Mist & Gold Particle Canvas */}
       <MistCanvas />
 
-      {/* Navigation Header */}
-      <Navbar onOpenRSVP={() => setIsRSVPOpen(true)} />
+      {/* Navigation Header with Page Switcher */}
+      <Navbar
+        currentPage={currentPage}
+        onNavigate={handleNavigate}
+        onOpenRSVP={() => setIsRSVPOpen(true)}
+      />
 
-      {/* Main Single Page Sections */}
+      {/* Conditional Page Rendering */}
       <main>
-        <Hero onEnter={handleScrollToStory} />
-        <OurStory />
-        <RoyalInvitation />
-        <Events />
-        <VenueTravel />
-        <BlessingsWall />
+        {currentPage === 'home' ? (
+          <>
+            <Hero onEnter={() => handleNavigate('home', 'invitation')} />
+            <RoyalInvitation />
+            <StoryTeaser onOpenStory={() => handleNavigate('story')} />
+            <Events />
+            <VenueTravel />
+            <BlessingsWall />
+          </>
+        ) : (
+          <OurStory onBackToHome={() => handleNavigate('home')} />
+        )}
       </main>
 
       {/* Footer */}

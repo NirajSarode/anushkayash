@@ -4,9 +4,11 @@ import { audioSynth } from '../utils/audioSynth';
 
 interface NavbarProps {
   onOpenRSVP: () => void;
+  currentPage: 'home' | 'story';
+  onNavigate: (page: 'home' | 'story', targetSection?: string) => void;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ onOpenRSVP }) => {
+export const Navbar: React.FC<NavbarProps> = ({ onOpenRSVP, currentPage, onNavigate }) => {
   const [scrolled, setScrolled] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
 
@@ -27,14 +29,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenRSVP }) => {
     setIsPlaying(active);
   };
 
-  const navLinks = [
-    { name: 'Our Story', href: '#story' },
-    { name: 'Royal Sanman', href: '#invitation' },
-    { name: 'Festivities', href: '#events' },
-    { name: 'Venue & Travel', href: '#venue' },
-    { name: 'Blessings', href: '#blessings' },
-  ];
-
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
@@ -45,7 +39,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenRSVP }) => {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         {/* Brand Monogram */}
-        <a href="#" className="flex items-center gap-3 group">
+        <button onClick={() => onNavigate('home')} className="flex items-center gap-3 group text-left">
           <div className="w-10 h-10 rounded-full border border-amber-400/50 bg-slate-900/80 flex items-center justify-center text-amber-400 font-royal-custom font-bold text-lg shadow-lg shadow-amber-500/10 group-hover:scale-105 group-hover:border-amber-300 transition-all duration-300">
             A&Y
           </div>
@@ -57,20 +51,50 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenRSVP }) => {
               Mountain Destination Wedding
             </span>
           </div>
-        </a>
+        </button>
 
         {/* Desktop Links */}
         <nav className="hidden md:flex items-center space-x-8">
-          {navLinks.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
-              className="text-xs uppercase tracking-widest font-semibold text-slate-300 hover:text-amber-300 transition-colors duration-200 relative group"
-            >
-              {link.name}
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-amber-400 to-rose-500 group-hover:w-full transition-all duration-300" />
-            </a>
-          ))}
+          <button
+            onClick={() => onNavigate('home')}
+            className={`text-xs uppercase tracking-widest font-semibold transition-colors duration-200 ${
+              currentPage === 'home' ? 'text-amber-300 border-b-2 border-amber-400 pb-0.5' : 'text-slate-300 hover:text-amber-300'
+            }`}
+          >
+            Home
+          </button>
+          <button
+            onClick={() => onNavigate('story')}
+            className={`text-xs uppercase tracking-widest font-semibold transition-colors duration-200 ${
+              currentPage === 'story' ? 'text-amber-300 border-b-2 border-amber-400 pb-0.5' : 'text-slate-300 hover:text-amber-300'
+            }`}
+          >
+            Our Story Page
+          </button>
+          <button
+            onClick={() => onNavigate('home', 'invitation')}
+            className="text-xs uppercase tracking-widest font-semibold text-slate-300 hover:text-amber-300 transition-colors duration-200"
+          >
+            Royal Sanman
+          </button>
+          <button
+            onClick={() => onNavigate('home', 'events')}
+            className="text-xs uppercase tracking-widest font-semibold text-slate-300 hover:text-amber-300 transition-colors duration-200"
+          >
+            Festivities
+          </button>
+          <button
+            onClick={() => onNavigate('home', 'venue')}
+            className="text-xs uppercase tracking-widest font-semibold text-slate-300 hover:text-amber-300 transition-colors duration-200"
+          >
+            Venue & Travel
+          </button>
+          <button
+            onClick={() => onNavigate('home', 'blessings')}
+            className="text-xs uppercase tracking-widest font-semibold text-slate-300 hover:text-amber-300 transition-colors duration-200"
+          >
+            Blessings
+          </button>
         </nav>
 
         {/* Right Actions: Audio Toggle & RSVP Button */}

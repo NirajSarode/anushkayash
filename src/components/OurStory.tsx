@@ -14,7 +14,13 @@ interface Milestone {
   image: string;
 }
 
-export const OurStory: React.FC = () => {
+import { ArrowLeft } from 'lucide-react';
+
+interface OurStoryProps {
+  onBackToHome?: () => void;
+}
+
+export const OurStory: React.FC<OurStoryProps> = ({ onBackToHome }) => {
   const milestones: Milestone[] = [
     {
       id: 1,
@@ -67,7 +73,7 @@ export const OurStory: React.FC = () => {
   ];
 
   return (
-    <section id="story" className="relative py-24 px-4 sm:px-6 lg:px-8 bg-slate-950 overflow-hidden">
+    <section id="story" className="relative pt-32 pb-24 px-4 sm:px-6 lg:px-8 bg-slate-950 min-h-screen overflow-hidden">
       {/* Background Decorative Elements */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-full pointer-events-none opacity-20">
         <div className="absolute top-1/4 left-10 w-72 h-72 rounded-full bg-rose-600/30 blur-3xl" />
@@ -75,6 +81,19 @@ export const OurStory: React.FC = () => {
       </div>
 
       <div className="max-w-6xl mx-auto relative z-10">
+        {/* Back to Home Navigation Button */}
+        {onBackToHome && (
+          <div className="mb-8 text-left">
+            <button
+              onClick={onBackToHome}
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-amber-500/30 bg-slate-900/80 text-amber-300 font-bold text-xs uppercase tracking-wider hover:bg-amber-500 hover:text-slate-950 transition-all shadow-lg"
+            >
+              <ArrowLeft className="w-4 h-4" />
+              <span>Back To Main Celebration</span>
+            </button>
+          </div>
+        )}
+
         {/* Section Header */}
         <div className="text-center space-y-3 mb-20">
           <motion.div

@@ -183,14 +183,14 @@ export const Hero: React.FC<HeroProps> = ({ onEnter }) => {
                   Anush
                 </span>
 
-                {/* 'Ka' — starts in Anushka's pastel lavender theme, then upon merging transforms into Deep Royal Plum */}
+                {/* 'Ka' — starts in Anushka's pastel lavender theme, then upon merging transforms into Dusty Pastel Rose */}
                 <motion.span
                   initial={{
                     color: '#5E3D7A',
                     scale: 1,
                   }}
                   animate={{
-                    color: ['#5E3D7A', '#5E3D7A', '#581C87', '#581C87'],
+                    color: ['#5E3D7A', '#5E3D7A', '#A65D74', '#A65D74'],
                     scale: [1, 1, 1.25, 1],
                   }}
                   transition={{
@@ -201,7 +201,7 @@ export const Hero: React.FC<HeroProps> = ({ onEnter }) => {
                   }}
                   className="font-royal-custom text-4xl sm:text-7xl lg:text-8xl font-black tracking-[0.04em] inline-block"
                   style={{
-                    textShadow: '0 2px 12px rgba(255, 255, 255, 0.65), 0 4px 16px rgba(88, 28, 135, 0.25)',
+                    textShadow: '0 2px 12px rgba(255, 255, 255, 0.65), 0 4px 16px rgba(166, 93, 116, 0.25)',
                   }}
                 >
                   Ka

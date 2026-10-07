@@ -155,7 +155,7 @@ export const Hero: React.FC<HeroProps> = ({ onEnter }) => {
             >
               {/* Soft ambient backlight glow behind the figures */}
               <div className="absolute -inset-8 bg-gradient-to-r from-[#B89FC8]/50 via-[#FDE047]/40 to-[#E8A987]/50 rounded-full blur-3xl opacity-70 animate-pulse" />
-              
+
               <img
                 src="/images/couple_transparent.png"
                 alt="Anushka & Yash"
@@ -310,7 +310,7 @@ export const Hero: React.FC<HeroProps> = ({ onEnter }) => {
         >
           {/* Two-States Dual Colored Glow Halo */}
           <div className="absolute -inset-6 bg-gradient-to-r from-[#B89FC8]/35 via-[#FDE047]/25 to-[#E8A987]/35 rounded-full blur-3xl opacity-70 group-hover:opacity-100 transition duration-1000 animate-pulse pointer-events-none" />
-          
+
           {/* Floating Transparent Cutout */}
           <motion.div
             animate={{ y: [0, -10, 0] }}

@@ -13,127 +13,72 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenRSVP, currentPage, onNavig
   const [isPlaying, setIsPlaying] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
-    };
+    const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handleToggleAudio = () => {
-    const active = audioSynth.toggle();
-    setIsPlaying(active);
-  };
-
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+      className={`fixed top-0 left-0 right-0 z-40 transition-all duration-700 ${
         scrolled
-          ? 'bg-slate-950/85 backdrop-blur-xl border-b border-amber-500/20 py-3 shadow-2xl shadow-amber-950/20'
-          : 'bg-transparent py-6'
+          ? 'bg-[#F0EBE3]/80 backdrop-blur-2xl py-3'
+          : 'bg-transparent py-5'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-        {/* Brand Monogram */}
-        <button onClick={() => onNavigate('home')} className="flex items-center gap-3 group text-left">
-          <div className="w-10 h-10 rounded-full border border-amber-400/50 bg-slate-900/80 flex items-center justify-center text-amber-400 font-royal-custom font-bold text-lg shadow-lg shadow-amber-500/10 group-hover:scale-105 group-hover:border-amber-300 transition-all duration-300">
-            A&Y
-          </div>
-          <div className="hidden sm:block text-left">
-            <span className="block font-royal-custom text-sm font-semibold tracking-widest text-amber-200">
-              ANUSHKA & YASH
-            </span>
-            <span className="block font-serif-custom text-xs text-rose-300/80 tracking-wider">
-              Mountain Destination Wedding
-            </span>
-          </div>
+      <div className="max-w-6xl mx-auto px-5 sm:px-8 flex items-center justify-between">
+        {/* Monogram */}
+        <button onClick={() => onNavigate('home')} className="flex items-center gap-3 group">
+          <span className="font-royal-custom text-sm tracking-[0.2em] text-[#2E2438] group-hover:text-[#6B5280] transition-colors">
+            <span className="text-[#6B5280]">A</span>
+            <span className="text-[#B5ADBF] mx-0.5">&</span>
+            <span className="text-[#8B6045]">Y</span>
+          </span>
         </button>
 
-        {/* Desktop Links */}
-        <nav className="hidden md:flex items-center space-x-8">
-          <button
-            onClick={() => onNavigate('home')}
-            className={`text-xs uppercase tracking-widest font-semibold transition-colors duration-200 ${
-              currentPage === 'home' ? 'text-amber-300 border-b-2 border-amber-400 pb-0.5' : 'text-slate-300 hover:text-amber-300'
-            }`}
-          >
-            Home
-          </button>
-          <button
-            onClick={() => onNavigate('story')}
-            className={`text-xs uppercase tracking-widest font-semibold transition-colors duration-200 ${
-              currentPage === 'story' ? 'text-amber-300 border-b-2 border-amber-400 pb-0.5' : 'text-slate-300 hover:text-amber-300'
-            }`}
-          >
-            Our Story Page
-          </button>
-          <button
-            onClick={() => onNavigate('home', 'invitation')}
-            className="text-xs uppercase tracking-widest font-semibold text-slate-300 hover:text-amber-300 transition-colors duration-200"
-          >
-            Royal Sanman
-          </button>
-          <button
-            onClick={() => onNavigate('home', 'events')}
-            className="text-xs uppercase tracking-widest font-semibold text-slate-300 hover:text-amber-300 transition-colors duration-200"
-          >
-            Festivities
-          </button>
-          <button
-            onClick={() => onNavigate('home', 'venue')}
-            className="text-xs uppercase tracking-widest font-semibold text-slate-300 hover:text-amber-300 transition-colors duration-200"
-          >
-            Venue & Travel
-          </button>
-          <button
-            onClick={() => onNavigate('home', 'blessings')}
-            className="text-xs uppercase tracking-widest font-semibold text-slate-300 hover:text-amber-300 transition-colors duration-200"
-          >
-            Blessings
-          </button>
+        {/* Desktop nav — minimal text links */}
+        <nav className="hidden md:flex items-center gap-8">
+          {[
+            { label: 'Home', action: () => onNavigate('home'), active: currentPage === 'home' },
+            { label: 'Story', action: () => onNavigate('story'), active: currentPage === 'story' },
+            { label: 'Events', action: () => onNavigate('home', 'events') },
+            { label: 'Venue', action: () => onNavigate('home', 'venue') },
+            { label: 'Blessings', action: () => onNavigate('home', 'blessings') },
+          ].map((link) => (
+            <button
+              key={link.label}
+              onClick={link.action}
+              className={`text-[11px] uppercase tracking-[0.2em] transition-colors duration-300 ${
+                link.active
+                  ? 'text-[#2E2438] font-semibold'
+                  : 'text-[#B5ADBF] hover:text-[#4A3F58]'
+              }`}
+            >
+              {link.label}
+            </button>
+          ))}
         </nav>
 
-        {/* Right Actions: Audio Toggle & RSVP Button */}
-        <div className="flex items-center space-x-3 sm:space-x-4">
-          {/* Audio Visualizer Button */}
+        {/* Right — audio + RSVP */}
+        <div className="flex items-center gap-3">
           <button
-            onClick={handleToggleAudio}
-            className={`flex items-center gap-2 px-3 py-1.5 rounded-full border text-xs font-medium transition-all duration-300 ${
+            onClick={() => { const a = audioSynth.toggle(); setIsPlaying(a); }}
+            className={`p-2 rounded-full transition-all duration-300 ${
               isPlaying
-                ? 'border-amber-400/80 bg-amber-950/40 text-amber-200 shadow-md shadow-amber-500/20'
-                : 'border-slate-700 bg-slate-900/60 text-slate-400 hover:border-slate-500 hover:text-slate-200'
+                ? 'text-[#6B5280]'
+                : 'text-[#B5ADBF] hover:text-[#4A3F58]'
             }`}
-            title="Toggle Ambient Shehnai Melody"
+            title="Toggle Music"
           >
-            {isPlaying ? (
-              <>
-                <Volume2 className="w-4 h-4 text-amber-400 animate-pulse" />
-                <span className="hidden sm:inline">Shehnai Sound</span>
-                {/* Audio Wave Bars */}
-                <span className="flex items-end gap-0.5 h-3">
-                  <span className="w-0.5 h-3 bg-amber-400 animate-[bounce_1s_infinite_100ms]" />
-                  <span className="w-0.5 h-2 bg-rose-400 animate-[bounce_1s_infinite_300ms]" />
-                  <span className="w-0.5 h-3.5 bg-amber-300 animate-[bounce_1s_infinite_200ms]" />
-                </span>
-              </>
-            ) : (
-              <>
-                <VolumeX className="w-4 h-4 text-slate-400" />
-                <span className="hidden sm:inline">Music Off</span>
-              </>
-            )}
+            {isPlaying ? <Volume2 className="w-4 h-4" /> : <VolumeX className="w-4 h-4" />}
           </button>
 
-          {/* Quick RSVP Button */}
           <button
             onClick={onOpenRSVP}
-            className="flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-amber-500 via-rose-600 to-amber-600 text-slate-950 font-bold text-xs uppercase tracking-wider shadow-lg shadow-rose-950/50 hover:shadow-amber-500/25 hover:scale-105 active:scale-95 transition-all duration-300"
+            className="flex items-center gap-2 px-5 py-2 rounded-full text-white text-[11px] uppercase tracking-[0.2em] font-semibold shadow-md hover:shadow-lg hover:scale-105 active:scale-95 transition-all duration-300"
+            style={{ background: 'linear-gradient(135deg, #B89FC8, #C9917E, #E8A987)' }}
           >
-            <Heart className="w-3.5 h-3.5 fill-slate-950" />
+            <Heart className="w-3 h-3 fill-white" />
             <span>RSVP</span>
           </button>
         </div>

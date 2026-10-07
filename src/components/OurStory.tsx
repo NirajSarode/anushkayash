@@ -1,10 +1,9 @@
 import React from 'react';
-import { motion } from 'framer-motion';
-import { Heart, Coffee, Mountain, Sparkles } from 'lucide-react';
+import { motion, type Variants } from 'framer-motion';
+import { Heart, Coffee, Mountain, Sparkles, ArrowLeft } from 'lucide-react';
 
 interface Milestone {
   id: number;
-  year: string;
   date: string;
   title: string;
   location: string;
@@ -12,200 +11,127 @@ interface Milestone {
   icon: React.ReactNode;
   tag: string;
   image: string;
+  accent: string;
 }
-
-import { ArrowLeft } from 'lucide-react';
 
 interface OurStoryProps {
   onBackToHome?: () => void;
 }
 
+const fadeUp: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: 'easeOut' as const } },
+};
+
 export const OurStory: React.FC<OurStoryProps> = ({ onBackToHome }) => {
   const milestones: Milestone[] = [
     {
-      id: 1,
-      year: '2022',
-      date: 'October 14, 2022',
-      title: 'First Coffee & Filter Kaapi in Indiranagar',
-      location: 'Bengaluru, Karnataka',
-      narrative:
-        'What started as a quick Sunday coffee in Indiranagar turned into a 5-hour conversation about technology, mountain treks, artisanal coffee, and a shared love for exploring misty hill stations.',
-      icon: <Coffee className="w-5 h-5 text-amber-400" />,
-      tag: 'The Spark',
-      image: '/images/hero_mountain.png',
+      id: 1, date: 'October 2022', title: 'The First Meeting', location: 'Delhi',
+      narrative: 'What started as a casual introduction through mutual friends turned into hours of conversation about travel, food, and mountains. Two different states, same wavelength.',
+      icon: <Coffee className="w-5 h-5" />, tag: 'The Spark', image: '/images/delhi_side.png', accent: '#B89FC8',
     },
     {
-      id: 2,
-      year: '2023',
-      date: 'December 24, 2023',
-      title: 'Weekend Mountain Treks in Western Ghats',
-      location: 'Coorg & Nandi Hills, Karnataka',
-      narrative:
-        'From sunrise views at Nandi Hills to foggy coffee estate treks in Coorg, Yash handed Anushka his windcheater while Anushka shared hot flasks of ginger tea. They knew they had found their lifelong travel partner.',
-      icon: <Mountain className="w-5 h-5 text-emerald-400" />,
-      tag: 'The Adventure',
-      image: '/images/pheras.png',
+      id: 2, date: 'December 2023', title: 'Growing Closer', location: 'Delhi & Maharashtra',
+      narrative: 'From the lanes of Old Delhi to the Western Ghats — every trip brought them closer. Yash showed Anushka his world in the mountains, she brought the energy of her city into his life.',
+      icon: <Mountain className="w-5 h-5" />, tag: 'The Adventure', image: '/images/couple_hero.png', accent: '#C9917E',
     },
     {
-      id: 3,
-      year: '2025',
-      date: 'February 14, 2025',
-      title: 'Sunset Mountain Peak Proposal in Igatpuri',
-      location: 'Bhavali Dam Peak, Igatpuri',
-      narrative:
-        'Overlooking the serene misty waters and green valleys of Igatpuri at golden hour, Yash dropped to one knee with a ring. The mountain breeze echoed Anushka’s emotional "YES!"',
-      icon: <Sparkles className="w-5 h-5 text-rose-400" />,
-      tag: 'The Proposal',
-      image: '/images/sangeet.png',
+      id: 3, date: 'February 2025', title: 'Sunset Proposal', location: 'Igatpuri, Maharashtra',
+      narrative: 'Overlooking the misty valleys of Igatpuri at golden hour, Yash dropped to one knee. The mountain breeze carried Anushka\'s emotional "YES!" — two states became one story.',
+      icon: <Sparkles className="w-5 h-5" />, tag: 'The Proposal', image: '/images/maharashtra_side.png', accent: '#E8A987',
     },
     {
-      id: 4,
-      year: '2026',
-      date: 'November 18, 2026',
-      title: 'Family Engagement & Ring Ceremony',
-      location: 'Bengaluru, Karnataka',
-      narrative:
-        'Surrounded by close family and lifelong friends in Bengaluru, two wonderful families united to celebrate their upcoming mountain destination wedding in Igatpuri.',
-      icon: <Heart className="w-5 h-5 text-amber-300" />,
-      tag: 'The Union',
-      image: '/images/mehendi.png',
+      id: 4, date: 'November 2026', title: 'The Engagement & Forever', location: 'Delhi & Maharashtra',
+      narrative: 'The Vermas from Delhi and the Biyanis from Maharashtra came together to bless this union and plan the mountain destination wedding in Igatpuri.',
+      icon: <Heart className="w-5 h-5" />, tag: 'The Union', image: '/images/couple_animated.png', accent: '#C9917E',
     },
   ];
 
   return (
-    <section id="story" className="relative pt-32 pb-24 px-4 sm:px-6 lg:px-8 bg-slate-950 min-h-screen overflow-hidden">
-      {/* Background Decorative Elements */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-full pointer-events-none opacity-20">
-        <div className="absolute top-1/4 left-10 w-72 h-72 rounded-full bg-rose-600/30 blur-3xl" />
-        <div className="absolute bottom-1/3 right-10 w-96 h-96 rounded-full bg-amber-600/30 blur-3xl" />
+    <section className="pt-32 pb-24 px-4 sm:px-6 lg:px-8 min-h-screen overflow-hidden">
+      {/* Ambient blobs */}
+      <div className="fixed top-0 left-0 w-full h-full pointer-events-none -z-10">
+        <div className="absolute top-1/4 left-10 w-72 h-72 rounded-full bg-[#B89FC8]/[0.05] blur-[120px]" />
+        <div className="absolute bottom-1/3 right-10 w-96 h-96 rounded-full bg-[#E8A987]/[0.05] blur-[120px]" />
       </div>
 
-      <div className="max-w-6xl mx-auto relative z-10">
-        {/* Back to Home Navigation Button */}
+      <div className="max-w-5xl mx-auto relative z-10">
         {onBackToHome && (
-          <div className="mb-8 text-left">
-            <button
-              onClick={onBackToHome}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-amber-500/30 bg-slate-900/80 text-amber-300 font-bold text-xs uppercase tracking-wider hover:bg-amber-500 hover:text-slate-950 transition-all shadow-lg"
-            >
-              <ArrowLeft className="w-4 h-4" />
-              <span>Back To Main Celebration</span>
+          <div className="mb-12">
+            <button onClick={onBackToHome}
+              className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.2em] text-[#B5ADBF] hover:text-[#2E2438] transition-colors">
+              <ArrowLeft className="w-4 h-4" />Back
             </button>
           </div>
         )}
 
-        {/* Section Header */}
-        <div className="text-center space-y-3 mb-20">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-amber-500/30 bg-amber-950/30 text-amber-300 text-xs tracking-widest uppercase font-semibold"
-          >
-            <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-            <span>Our Journey</span>
-          </motion.div>
-
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="font-royal-custom text-3xl sm:text-5xl font-bold tracking-tight gold-gradient-text"
-          >
-            How Two Souls Met in Bengaluru
+        <div className="text-center mb-24">
+          <motion.p initial="hidden" whileInView="show" viewport={{ once: true }} variants={fadeUp}
+            className="font-serif-custom text-[#B5ADBF] text-xs tracking-[0.3em] uppercase mb-4">
+            Our Journey
+          </motion.p>
+          <motion.h2 initial="hidden" whileInView="show" viewport={{ once: true }} variants={fadeUp}
+            className="font-royal-custom text-3xl sm:text-5xl font-bold tracking-[0.05em] gradient-text-blend mb-4">
+            Two States, One Love Story
           </motion.h2>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="font-serif-custom text-slate-300 text-lg sm:text-xl max-w-2xl mx-auto italic"
-          >
-            From the garden city of Bengaluru to the misty mountain peaks of Igatpuri—our love story written in coffee chats and mountain views.
+          <motion.p initial="hidden" whileInView="show" viewport={{ once: true }} variants={fadeUp}
+            className="font-serif-custom text-[#8A7F99] text-lg italic max-w-lg mx-auto">
+            From the heart of Delhi to the hills of Maharashtra.
           </motion.p>
         </div>
 
-        {/* Timeline Container */}
+        {/* Timeline */}
         <div className="relative">
-          {/* Vertical Central Line */}
-          <div className="absolute top-0 bottom-0 left-4 sm:left-1/2 -translate-x-1/2 w-1 bg-gradient-to-b from-amber-500/80 via-rose-500/80 to-emerald-500/80 rounded-full" />
+          {/* Vertical line */}
+          <div className="absolute top-0 bottom-0 left-4 sm:left-1/2 -translate-x-1/2 w-px"
+            style={{ background: 'linear-gradient(to bottom, #B89FC8, #C9917E, #E8A987)' }} />
 
-          {/* Timeline Items */}
-          <div className="space-y-16 sm:space-y-24">
+          <div className="space-y-20 sm:space-y-32">
             {milestones.map((item, index) => {
               const isEven = index % 2 === 0;
               return (
-                <motion.div
-                  key={item.id}
-                  initial={{ opacity: 0, x: isEven ? -60 : 60, y: 20 }}
+                <motion.div key={item.id}
+                  initial={{ opacity: 0, x: isEven ? -40 : 40, y: 20 }}
                   whileInView={{ opacity: 1, x: 0, y: 0 }}
-                  viewport={{ once: true, margin: '-100px' }}
-                  transition={{
-                    type: 'spring',
-                    stiffness: 70,
-                    damping: 18,
-                    delay: 0.1,
-                  }}
-                  className={`relative flex flex-col sm:flex-row items-center ${
-                    isEven ? 'sm:flex-row-reverse' : ''
-                  }`}
-                >
-                  {/* Central Node Badge */}
-                  <div className="absolute left-4 sm:left-1/2 -translate-x-1/2 z-20 flex items-center justify-center">
-                    <motion.div
-                      whileHover={{ scale: 1.2, rotate: 12 }}
-                      className="w-10 h-10 rounded-full bg-slate-900 border-2 border-amber-400 shadow-[0_0_20px_rgba(245,158,11,0.5)] flex items-center justify-center"
-                    >
+                  viewport={{ once: true, margin: '-80px' }}
+                  transition={{ type: 'spring', stiffness: 60, damping: 20, delay: 0.1 }}
+                  className={`relative flex flex-col sm:flex-row items-center ${isEven ? 'sm:flex-row-reverse' : ''}`}>
+
+                  {/* Node */}
+                  <div className="absolute left-4 sm:left-1/2 -translate-x-1/2 z-20">
+                    <div className="w-10 h-10 rounded-full bg-[#F7F3EE] border-2 shadow-md flex items-center justify-center"
+                      style={{ borderColor: item.accent, color: item.accent }}>
                       {item.icon}
-                    </motion.div>
+                    </div>
                   </div>
 
-                  {/* Card Content Block */}
-                  <div className={`w-full sm:w-1/2 pl-12 sm:pl-0 ${isEven ? 'sm:pr-12' : 'sm:pl-12'}`}>
-                    <div className="glass-panel glass-panel-hover rounded-3xl p-6 sm:p-8 border border-amber-400/20 group relative overflow-hidden">
-                      {/* Subtle Top Glow Accent */}
-                      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-amber-400 via-rose-500 to-amber-500 opacity-60" />
+                  {/* Card */}
+                  <div className={`w-full sm:w-1/2 pl-14 sm:pl-0 ${isEven ? 'sm:pr-16' : 'sm:pl-16'}`}>
+                    <div className="bg-[#F7F3EE] rounded-2xl p-6 sm:p-8 group hover:shadow-xl transition-shadow duration-500 relative overflow-hidden">
+                      {/* Top accent */}
+                      <div className="absolute top-0 left-0 right-0 h-[2px] opacity-50" style={{ background: item.accent }} />
 
-                      {/* Header Row */}
-                      <div className="flex items-center justify-between gap-4 mb-4">
-                        <span className="px-3 py-1 rounded-full text-xs font-semibold bg-rose-950/60 border border-rose-500/30 text-rose-300">
-                          {item.tag}
-                        </span>
-                        <span className="text-xs font-mono text-amber-300 font-semibold tracking-wider">
-                          {item.date}
-                        </span>
+                      <div className="flex items-center justify-between mb-4">
+                        <span className="text-[10px] uppercase tracking-[0.2em] font-semibold" style={{ color: item.accent }}>{item.tag}</span>
+                        <span className="text-[10px] font-mono text-[#B5ADBF] tracking-wider">{item.date}</span>
                       </div>
 
-                      {/* Title */}
-                      <h3 className="font-royal-custom text-xl sm:text-2xl font-bold text-slate-100 mb-2 group-hover:text-amber-300 transition-colors">
+                      <h3 className="font-royal-custom text-xl sm:text-2xl font-bold text-[#2E2438] mb-1 group-hover:text-[#6B5280] transition-colors tracking-[0.02em]">
                         {item.title}
                       </h3>
-
-                      {/* Location */}
-                      <div className="text-xs font-semibold text-emerald-400 uppercase tracking-wider mb-4">
-                        📍 {item.location}
-                      </div>
-
-                      {/* Narrative */}
-                      <p className="font-serif-custom text-slate-300 text-base sm:text-lg leading-relaxed">
-                        "{item.narrative}"
+                      <p className="text-[10px] uppercase tracking-[0.2em] text-[#8A7F99] font-semibold mb-4">{item.location}</p>
+                      <p className="font-serif-custom text-[#4A3F58] text-base sm:text-lg leading-relaxed mb-5">
+                        {item.narrative}
                       </p>
 
-                      {/* Thumbnail Photo Card */}
-                      <div className="mt-5 rounded-2xl overflow-hidden h-40 w-full relative">
-                        <img
-                          src={item.image}
-                          alt={item.title}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 brightness-90"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-80" />
+                      {/* Image with film treatment */}
+                      <div className="rounded-xl overflow-hidden h-40 relative">
+                        <img src={item.image} alt={item.title} className="w-full h-full object-cover img-film img-kenburns" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-[#F7F3EE]/50 via-transparent to-transparent" />
                       </div>
                     </div>
                   </div>
 
-                  {/* Empty Spacer Column for Alignment */}
                   <div className="hidden sm:block w-1/2" />
                 </motion.div>
               );

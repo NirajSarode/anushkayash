@@ -6,110 +6,135 @@
     --font-royal: 'Cinzel Decorative', serif;
     --font-script: 'Great Vibes', cursive;
     --font-sans: 'Plus Jakarta Sans', sans-serif;
+
+    /* Richer, high-contrast palette — warm neutral base with deep legible text */
+    --color-bg: #F0EBE3;
+    --color-bg-deep: #E6DED3;
+    --color-card: #F7F3EE;
+    --color-her: #8E68A8;        /* Deeper royal lavender */
+    --color-her-deep: #4A2E64;
+    --color-him: #D47B50;        /* Deeper warm peach */
+    --color-him-deep: #633318;
+    --color-accent: #B05B43;     /* Rich terracotta */
+    --color-heading: #1A1222;    /* Deep regal near-black */
+    --color-body: #2B2136;       /* Deep rich plum-charcoal for crisp text */
+    --color-muted: #4B3E5B;      /* High-contrast medium tone */
+    --color-faint: #6D5F80;      /* Darker legible subtext */
+    --color-border: #C8BEAF;
   }
 
   body {
     font-family: var(--font-sans);
-    background-color: #050811;
-    color: #f1f5f9;
+    background-color: var(--color-bg);
+    color: var(--color-body);
   }
 }
 
-.font-serif-custom {
-  font-family: var(--font-serif);
-}
+/* Fonts */
+.font-serif-custom { font-family: var(--font-serif); }
+.font-royal-custom { font-family: var(--font-royal); }
+.font-script-custom { font-family: var(--font-script); }
+.font-sans-custom { font-family: var(--font-sans); }
 
-.font-royal-custom {
-  font-family: var(--font-royal);
+/* Gradient text */
+.gradient-text-blend {
+  background: linear-gradient(135deg, #B89FC8 0%, #C9917E 50%, #E8A987 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
-
-.font-script-custom {
-  font-family: var(--font-script);
+.gradient-text-her {
+  background: linear-gradient(135deg, #B89FC8 0%, #9478A8 50%, #6B5280 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
-
-.font-sans-custom {
-  font-family: var(--font-sans);
-}
-
-/* Custom Gold Shimmer Gradient */
-.gold-gradient-text {
-  background: linear-gradient(135deg, #fef08a 0%, #f59e0b 50%, #d97706 100%);
+.gradient-text-him {
+  background: linear-gradient(135deg, #E8A987 0%, #D08B68 50%, #8B6045 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-.rani-gradient-text {
-  background: linear-gradient(135deg, #f472b6 0%, #e11d48 50%, #9f1239 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.emerald-gradient-text {
-  background: linear-gradient(135deg, #6ee7b7 0%, #059669 50%, #064e3b 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-/* Glassmorphism Panels */
-.glass-panel {
-  background: rgba(15, 23, 42, 0.65);
+/* Soft card */
+.soft-card {
+  background: rgba(247, 243, 238, 0.85);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(245, 158, 11, 0.25);
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  border: 1px solid var(--color-border);
+  box-shadow: 0 2px 20px rgba(46, 36, 56, 0.04);
 }
 
-.glass-panel-hover {
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-.glass-panel-hover:hover {
-  background: rgba(15, 23, 42, 0.8);
-  border-color: rgba(245, 158, 11, 0.5);
-  box-shadow: 0 12px 40px 0 rgba(245, 158, 11, 0.15);
-}
-
-/* Royal Pattern Background Overlay */
-.royal-pattern {
-  background-image: radial-gradient(rgba(217, 119, 6, 0.15) 1px, transparent 1px);
-  background-size: 24px 24px;
+/* Film grain overlay — subtle analog texture */
+.film-grain {
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  pointer-events: none;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
 }
 
-/* Custom Scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
+/* Scroll progress bar */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  z-index: 9999;
+  background: linear-gradient(to right, var(--color-her), var(--color-accent), var(--color-him));
+  transform-origin: left;
+  will-change: transform;
 }
 
-::-webkit-scrollbar-track {
-  background: #020617;
+/* Image — warm film photography look */
+.img-film {
+  filter: saturate(0.82) contrast(1.08) sepia(0.08) brightness(0.98);
+  transition: transform 8s ease-out, filter 0.6s ease;
+}
+.img-film:hover {
+  filter: saturate(0.9) contrast(1.05) sepia(0.05) brightness(1.02);
 }
 
+/* Ken Burns slow zoom */
+@keyframes kenburns {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.08); }
+}
+.img-kenburns {
+  animation: kenburns 20s ease-out forwards;
+}
+
+/* Breathing glow behind key elements */
+@keyframes breathe {
+  0%, 100% { opacity: 0.25; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.08); }
+}
+.animate-breathe {
+  animation: breathe 4s ease-in-out infinite;
+}
+
+/* Float */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Minimal scrollbar */
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(to bottom, #d97706, #be185d);
-  border-radius: 4px;
+  background: linear-gradient(to bottom, var(--color-her), var(--color-him));
+  border-radius: 2px;
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(to bottom, #f59e0b, #e11d48);
+/* Section spacing */
+.section-spacing {
+  padding-top: 7rem;
+  padding-bottom: 7rem;
 }
-
-/* Gold Shimmer Button Animation */
-@keyframes shimmer {
-  0% {
-    background-position: -200% 0;
-  }
-  100% {
-    background-position: 200% 0;
-  }
+@media (min-width: 640px) {
+  .section-spacing { padding-top: 10rem; padding-bottom: 10rem; }
 }
-
-.animate-shimmer {
-  background: linear-gradient(
-    90deg,
-    rgba(245, 158, 11, 0.8) 0%,
-    rgba(254, 240, 138, 1) 50%,
-    rgba(245, 158, 11, 0.8) 100%
-  );
-  background-size: 200% 100%;
-  animation: shimmer 3s infinite linear;
-}
-

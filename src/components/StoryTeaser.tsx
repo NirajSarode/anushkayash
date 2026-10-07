@@ -1,62 +1,75 @@
 import React from 'react';
-import { motion } from 'framer-motion';
-import { Sparkles, Heart, ArrowRight, Coffee, Mountain } from 'lucide-react';
+import { motion, type Variants } from 'framer-motion';
+import { ArrowRight } from 'lucide-react';
 
 interface StoryTeaserProps {
   onOpenStory: () => void;
 }
 
+const fadeUp: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: 'easeOut' as const } },
+};
+
 export const StoryTeaser: React.FC<StoryTeaserProps> = ({ onOpenStory }) => {
   return (
-    <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-slate-950 overflow-hidden border-y border-amber-500/20">
-      <div className="max-w-5xl mx-auto relative z-10">
+    <section className="section-spacing px-4 sm:px-6 lg:px-8 overflow-hidden">
+      <div className="max-w-3xl mx-auto text-center">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="glass-panel rounded-3xl p-8 sm:p-12 border-2 border-amber-400/40 text-center relative overflow-hidden backdrop-blur-2xl"
+          initial="hidden" whileInView="show" viewport={{ once: true }}
+          variants={fadeUp}
+          className="relative"
         >
-          {/* Subtle Background Glow */}
-          <div className="absolute top-0 right-0 w-80 h-80 bg-rose-600/15 rounded-full blur-3xl pointer-events-none" />
-          <div className="absolute bottom-0 left-0 w-80 h-80 bg-amber-600/15 rounded-full blur-3xl pointer-events-none" />
+          {/* Breathing glow behind */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[300px] rounded-full animate-breathe" style={{ background: 'radial-gradient(circle, rgba(201,145,126,0.08) 0%, transparent 70%)' }} />
 
-          {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-amber-500/30 bg-amber-950/40 text-amber-300 text-xs tracking-widest uppercase font-semibold mb-6">
-            <Heart className="w-3.5 h-3.5 fill-rose-400 text-rose-400" />
-            <span>Dedicated Chapter</span>
-          </div>
-
-          {/* Heading */}
-          <h2 className="font-royal-custom text-3xl sm:text-5xl font-bold gold-gradient-text mb-4">
-            Discover Our Love Story
-          </h2>
-
-          <p className="font-serif-custom text-slate-300 text-lg sm:text-xl italic max-w-2xl mx-auto mb-8">
-            From filter coffee chats in Indiranagar, Bengaluru to high-altitude mountain treks in Coorg and our sunset proposal in Igatpuri.
+          <p className="font-serif-custom text-[#B5ADBF] text-xs tracking-[0.3em] uppercase mb-4 relative">
+            Our Journey
           </p>
 
-          {/* Visual Indicators */}
-          <div className="flex flex-wrap justify-center gap-6 mb-8 text-xs text-amber-200">
-            <div className="flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-900/80 border border-amber-500/20">
-              <Coffee className="w-4 h-4 text-amber-400" />
-              <span>Bengaluru Coffee Spark</span>
-            </div>
-            <div className="flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-900/80 border border-amber-500/20">
-              <Mountain className="w-4 h-4 text-emerald-400" />
-              <span>Western Ghats Treks</span>
-            </div>
-            <div className="flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-900/80 border border-amber-500/20">
-              <Sparkles className="w-4 h-4 text-rose-400" />
-              <span>Igatpuri Proposal</span>
-            </div>
+          <h2 className="font-royal-custom text-3xl sm:text-5xl font-bold gradient-text-blend mb-6 relative tracking-[0.05em]">
+            Two States, One Story
+          </h2>
+
+          {/* Couple Animated Figure */}
+          <div className="relative flex justify-center my-6">
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              whileInView={{ scale: 1, opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1, ease: 'easeOut' }}
+              className="relative group cursor-pointer"
+            >
+              <div className="absolute -inset-2 bg-gradient-to-r from-[#B89FC8] via-[#C9917E] to-[#E8A987] rounded-full blur-md opacity-30 group-hover:opacity-60 transition duration-700 animate-pulse" />
+              <div className="relative w-36 h-36 sm:w-44 sm:h-44 rounded-full p-1.5 bg-gradient-to-tr from-[#B89FC8] via-[#F7F3EE] to-[#E8A987] shadow-xl overflow-hidden">
+                <img
+                  src="/images/couple_animated.png"
+                  alt="Anushka & Yash"
+                  className="w-full h-full object-cover rounded-full transform group-hover:scale-110 transition-transform duration-700"
+                />
+              </div>
+            </motion.div>
           </div>
 
-          {/* CTA Button */}
+          <p className="font-serif-custom text-[#8A7F99] text-lg sm:text-xl italic max-w-xl mx-auto mb-8 relative">
+            From the bustling streets of Delhi to the serene hills of Maharashtra — a love story written across two states.
+          </p>
+
+          {/* Two states indicators */}
+          <div className="flex justify-center items-center gap-6 sm:gap-8 mb-10 relative">
+            <span className="text-xs uppercase tracking-[0.2em] font-semibold text-[#6B5280]">Delhi</span>
+            <span className="text-xs text-[#C9917E]">&hearts;</span>
+            <span className="text-xs uppercase tracking-[0.2em] font-bold text-[#C9917E]">#AnushKaYash</span>
+            <span className="text-xs text-[#C9917E]">&hearts;</span>
+            <span className="text-xs uppercase tracking-[0.2em] font-semibold text-[#8B6045]">Maharashtra</span>
+          </div>
+
           <button
             onClick={onOpenStory}
-            className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-gradient-to-r from-amber-500 via-rose-600 to-amber-600 text-slate-950 font-extrabold text-xs uppercase tracking-widest shadow-xl hover:scale-105 active:scale-98 transition-all"
+            className="relative inline-flex items-center gap-3 px-8 py-3.5 rounded-full text-white text-xs uppercase tracking-[0.2em] font-semibold shadow-md hover:shadow-lg hover:scale-105 active:scale-95 transition-all"
+            style={{ background: 'linear-gradient(135deg, #B89FC8, #C9917E, #E8A987)' }}
           >
-            <span>Read Our Full Story Page</span>
+            <span>Read Our Full Story</span>
             <ArrowRight className="w-4 h-4" />
           </button>
         </motion.div>

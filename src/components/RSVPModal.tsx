@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Heart, CheckCircle2, Sparkles, Utensils, Music } from 'lucide-react';
+import { X, Heart, CheckCircle2, Utensils, Music } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
 interface RSVPModalProps {
@@ -11,218 +11,124 @@ interface RSVPModalProps {
 export const RSVPModal: React.FC<RSVPModalProps> = ({ isOpen, onClose }) => {
   const [submitted, setSubmitted] = useState(false);
   const [formData, setFormData] = useState({
-    guestName: '',
-    email: '',
-    phone: '',
-    attendingCount: '1',
+    guestName: '', email: '', attendingCount: '1',
     dietary: 'Gourmet Pure Vegetarian',
-    events: ['mehendi', 'sangeet', 'pheranight'],
+    events: ['mehendi', 'sangeet', 'pheras'],
     songRequest: '',
   });
 
-  const handleEventToggle = (eventId: string) => {
-    setFormData((prev) => {
-      const exists = prev.events.includes(eventId);
-      return {
-        ...prev,
-        events: exists
-          ? prev.events.filter((e) => e !== eventId)
-          : [...prev.events, eventId],
-      };
-    });
+  const handleEventToggle = (id: string) => {
+    setFormData((p) => ({
+      ...p,
+      events: p.events.includes(id) ? p.events.filter((e) => e !== id) : [...p.events, id],
+    }));
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitted(true);
-
-    // Trigger celebratory confetti burst
-    confetti({
-      particleCount: 120,
-      spread: 80,
-      origin: { y: 0.6 },
-      colors: ['#f59e0b', '#e11d48', '#059669', '#fef08a'],
-    });
+    confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 }, colors: ['#B89FC8', '#E8A987', '#C9917E'] });
   };
 
-  const resetAndClose = () => {
-    setSubmitted(false);
-    onClose();
-  };
+  const resetAndClose = () => { setSubmitted(false); onClose(); };
 
   if (!isOpen) return null;
 
+  const inputClass = "w-full px-4 py-2.5 rounded-xl bg-[#F0EBE3] border border-[#D6CCBF] text-[#2E2438] text-sm focus:outline-none focus:border-[#B89FC8] transition-colors";
+
   return (
     <AnimatePresence>
-      <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/85 backdrop-blur-2xl">
+      <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#2E2438]/20 backdrop-blur-xl">
         <motion.div
-          initial={{ opacity: 0, scale: 0.9, y: 20 }}
+          initial={{ opacity: 0, scale: 0.95, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.9, y: 20 }}
-          className="bg-slate-900 border-2 border-amber-400/60 rounded-3xl max-w-xl w-full p-6 sm:p-8 relative shadow-[0_0_60px_rgba(245,158,11,0.3)] overflow-y-auto max-h-[90vh] text-slate-100"
+          exit={{ opacity: 0, scale: 0.95, y: 20 }}
+          className="bg-[#F7F3EE] rounded-2xl max-w-xl w-full p-6 sm:p-8 relative shadow-2xl overflow-y-auto max-h-[90vh] text-[#2E2438]"
         >
-          {/* Close Button */}
-          <button
-            onClick={resetAndClose}
-            className="absolute top-4 right-4 p-2 rounded-full bg-slate-800 text-slate-400 hover:text-amber-300 transition-colors"
-          >
+          <button onClick={resetAndClose} className="absolute top-4 right-4 p-2 rounded-full text-[#B5ADBF] hover:text-[#2E2438] transition-colors">
             <X className="w-5 h-5" />
           </button>
 
           {!submitted ? (
             <form onSubmit={handleSubmit} className="space-y-6">
-              {/* Form Title */}
-              <div className="text-center space-y-2">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-950/50 border border-amber-500/30 text-amber-300 text-xs font-semibold uppercase tracking-wider">
-                  <Heart className="w-3.5 h-3.5 fill-amber-400" />
-                  <span>RSVP Response</span>
-                </div>
-                <h3 className="font-royal-custom text-2xl sm:text-3xl font-bold gold-gradient-text">
-                  Will You Join Our Celebration?
-                </h3>
-                <p className="font-serif-custom text-slate-300 text-sm italic">
-                  Please confirm your presence by January 10, 2027.
-                </p>
+              <div className="text-center">
+                <h3 className="font-royal-custom text-2xl sm:text-3xl font-bold gradient-text-blend mb-1">Will You Join Us?</h3>
+                <p className="font-serif-custom text-[#8A7F99] text-sm italic">Please confirm by January 10, 2027.</p>
               </div>
 
-              {/* Guest Information */}
               <div className="space-y-4 text-left">
                 <div>
-                  <label className="block text-xs uppercase font-bold text-amber-300 mb-1">
-                    Your Full Name *
-                  </label>
-                  <input
-                    type="text"
-                    required
-                    placeholder="e.g. Priyesh & Family"
-                    value={formData.guestName}
-                    onChange={(e) => setFormData({ ...formData, guestName: e.target.value })}
-                    className="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-amber-500/30 text-slate-100 text-sm focus:outline-none focus:border-amber-400 transition-colors"
-                  />
+                  <label className="block text-[10px] uppercase font-bold text-[#6B5280] mb-1 tracking-[0.15em]">Full Name *</label>
+                  <input type="text" required placeholder="e.g. Priyesh & Family" value={formData.guestName}
+                    onChange={(e) => setFormData({ ...formData, guestName: e.target.value })} className={inputClass} />
                 </div>
-
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs uppercase font-bold text-amber-300 mb-1">
-                      Email Address *
-                    </label>
-                    <input
-                      type="email"
-                      required
-                      placeholder="priyesh@example.com"
-                      value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-amber-500/30 text-slate-100 text-sm focus:outline-none focus:border-amber-400 transition-colors"
-                    />
+                    <label className="block text-[10px] uppercase font-bold text-[#6B5280] mb-1 tracking-[0.15em]">Email *</label>
+                    <input type="email" required placeholder="email@example.com" value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })} className={inputClass} />
                   </div>
                   <div>
-                    <label className="block text-xs uppercase font-bold text-amber-300 mb-1">
-                      Attending Guests *
-                    </label>
-                    <select
-                      value={formData.attendingCount}
-                      onChange={(e) => setFormData({ ...formData, attendingCount: e.target.value })}
-                      className="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-amber-500/30 text-slate-100 text-sm focus:outline-none focus:border-amber-400 transition-colors"
-                    >
-                      <option value="1">1 Person</option>
-                      <option value="2">2 Persons</option>
-                      <option value="3">3 Persons</option>
-                      <option value="4+">4+ Persons (Family)</option>
+                    <label className="block text-[10px] uppercase font-bold text-[#6B5280] mb-1 tracking-[0.15em]">Guests</label>
+                    <select value={formData.attendingCount} onChange={(e) => setFormData({ ...formData, attendingCount: e.target.value })} className={inputClass}>
+                      <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4+">4+</option>
                     </select>
                   </div>
                 </div>
-
-                {/* Dietary Preference Selection */}
                 <div>
-                  <label className="block text-xs uppercase font-bold text-amber-300 mb-1 flex items-center gap-1.5">
-                    <Utensils className="w-3.5 h-3.5 text-amber-400" />
-                    <span>Dietary Preference</span>
+                  <label className="block text-[10px] uppercase font-bold text-[#6B5280] mb-1 tracking-[0.15em] flex items-center gap-1.5">
+                    <Utensils className="w-3 h-3 text-[#C9917E]" />Dietary
                   </label>
-                  <select
-                    value={formData.dietary}
-                    onChange={(e) => setFormData({ ...formData, dietary: e.target.value })}
-                    className="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-amber-500/30 text-slate-100 text-sm focus:outline-none focus:border-amber-400 transition-colors"
-                  >
-                    <option value="Gourmet Pure Vegetarian">Gourmet Pure Vegetarian</option>
-                    <option value="Jain Pure Veg (No onion/garlic)">Jain Pure Veg (No onion/garlic)</option>
-                    <option value="Multi-Cuisine Grand Banquet">Multi-Cuisine Grand Banquet</option>
-                    <option value="Vegan / Gluten Free">Vegan / Gluten Free Options</option>
+                  <select value={formData.dietary} onChange={(e) => setFormData({ ...formData, dietary: e.target.value })} className={inputClass}>
+                    <option>Gourmet Pure Vegetarian</option><option>Jain (No onion/garlic)</option><option>Multi-Cuisine</option><option>Vegan / Gluten Free</option>
                   </select>
                 </div>
-
-                {/* Event Attendance Checkboxes */}
                 <div>
-                  <label className="block text-xs uppercase font-bold text-amber-300 mb-2">
-                    Events You Will Attend
-                  </label>
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                  <label className="block text-[10px] uppercase font-bold text-[#6B5280] mb-2 tracking-[0.15em]">Events</label>
+                  <div className="grid grid-cols-3 gap-2">
                     {[
-                      { id: 'mehendi', label: 'Mehendi & Haldi' },
-                      { id: 'sangeet', label: 'Sangeet Night' },
-                      { id: 'pheranight', label: 'Sunset Pheras' },
-                    ].map((item) => (
-                      <button
-                        key={item.id}
-                        type="button"
-                        onClick={() => handleEventToggle(item.id)}
-                        className={`px-3 py-2 rounded-xl text-xs font-semibold border transition-all text-center ${
-                          formData.events.includes(item.id)
-                            ? 'bg-amber-500/20 border-amber-400 text-amber-200'
-                            : 'bg-slate-950/60 border-slate-800 text-slate-400'
+                      { id: 'mehendi', label: 'Mehendi', color: '#E8A987' },
+                      { id: 'sangeet', label: 'Sangeet', color: '#B89FC8' },
+                      { id: 'pheras', label: 'Pheras', color: '#C9917E' },
+                    ].map((ev) => (
+                      <button key={ev.id} type="button" onClick={() => handleEventToggle(ev.id)}
+                        className={`px-3 py-2 rounded-xl text-xs font-semibold text-center transition-all ${
+                          formData.events.includes(ev.id) ? 'bg-white shadow-sm' : 'bg-[#F0EBE3] text-[#B5ADBF]'
                         }`}
-                      >
-                        {formData.events.includes(item.id) ? '✓ ' : ''}
-                        {item.label}
+                        style={formData.events.includes(ev.id) ? { border: `1.5px solid ${ev.color}`, color: ev.color } : { border: '1px solid #D6CCBF' }}>
+                        {ev.label}
                       </button>
                     ))}
                   </div>
                 </div>
-
-                {/* Sangeet Song Request */}
                 <div>
-                  <label className="block text-xs uppercase font-bold text-amber-300 mb-1 flex items-center gap-1.5">
-                    <Music className="w-3.5 h-3.5 text-rose-400" />
-                    <span>Sangeet Song Request (Optional)</span>
+                  <label className="block text-[10px] uppercase font-bold text-[#6B5280] mb-1 tracking-[0.15em] flex items-center gap-1.5">
+                    <Music className="w-3 h-3 text-[#B89FC8]" />Song Request
                   </label>
-                  <input
-                    type="text"
-                    placeholder="Your favorite party or dance track"
-                    value={formData.songRequest}
-                    onChange={(e) => setFormData({ ...formData, songRequest: e.target.value })}
-                    className="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-amber-500/30 text-slate-100 text-sm focus:outline-none focus:border-amber-400 transition-colors"
-                  />
+                  <input type="text" placeholder="Your favorite dance track" value={formData.songRequest}
+                    onChange={(e) => setFormData({ ...formData, songRequest: e.target.value })} className={inputClass} />
                 </div>
               </div>
 
-              {/* Submit Button */}
-              <button
-                type="submit"
-                className="w-full py-3.5 rounded-xl bg-gradient-to-r from-amber-500 via-rose-600 to-amber-600 text-slate-950 font-bold text-xs uppercase tracking-widest shadow-xl hover:brightness-110 active:scale-98 transition-all flex items-center justify-center gap-2"
-              >
-                <Sparkles className="w-4 h-4" />
-                <span>Confirm Royal RSVP</span>
+              <button type="submit"
+                className="w-full py-3.5 rounded-xl text-white text-xs uppercase tracking-[0.2em] font-semibold shadow-lg flex items-center justify-center gap-2"
+                style={{ background: 'linear-gradient(135deg, #B89FC8, #C9917E, #E8A987)' }}>
+                <Heart className="w-4 h-4 fill-white" />Confirm RSVP
               </button>
             </form>
           ) : (
-            /* Success State */
-            <div className="py-8 text-center space-y-4">
-              <div className="w-16 h-16 rounded-full bg-emerald-500/20 border-2 border-emerald-400 flex items-center justify-center mx-auto text-emerald-400">
-                <CheckCircle2 className="w-8 h-8 animate-bounce" />
+            <div className="py-10 text-center space-y-4">
+              <div className="w-14 h-14 rounded-full bg-[#A7D7C5]/20 border-2 border-[#A7D7C5] flex items-center justify-center mx-auto text-[#4A8B73]">
+                <CheckCircle2 className="w-7 h-7" />
               </div>
-
-              <h3 className="font-royal-custom text-2xl sm:text-3xl font-bold text-amber-200">
-                RSVP Received With Honor!
-              </h3>
-
-              <p className="font-serif-custom text-slate-300 text-base leading-relaxed max-w-md mx-auto">
-                Thank you, <strong>{formData.guestName}</strong>! We cannot wait to welcome you to the misty mountains of Igatpuri for Anushka & Yash's wedding.
+              <h3 className="font-royal-custom text-2xl font-bold gradient-text-blend">RSVP Received!</h3>
+              <p className="font-serif-custom text-[#4A3F58] max-w-sm mx-auto">
+                Thank you, <strong>{formData.guestName}</strong>! We can't wait to welcome you to Igatpuri.
               </p>
-
-              <button
-                onClick={resetAndClose}
-                className="px-8 py-3 rounded-full bg-amber-500 text-slate-950 font-bold text-xs uppercase tracking-widest hover:bg-amber-400 transition-all shadow-lg"
-              >
-                Close & Return To Site
+              <button onClick={resetAndClose}
+                className="px-8 py-3 rounded-full text-white text-xs uppercase tracking-[0.2em] font-semibold shadow-md"
+                style={{ background: 'linear-gradient(135deg, #B89FC8, #C9917E, #E8A987)' }}>
+                Close
               </button>
             </div>
           )}

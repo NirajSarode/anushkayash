@@ -6,7 +6,7 @@ interface HeroProps {
 }
 
 export const Hero: React.FC<HeroProps> = ({ onEnter }) => {
-  const [curtainRevealed, setCurtainRevealed] = useState(false);
+  const [curtainRevealed] = useState(false);
 
   const targetDate = new Date('2027-02-02T16:00:00+05:30').getTime();
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
@@ -250,15 +250,14 @@ export const Hero: React.FC<HeroProps> = ({ onEnter }) => {
               </p>
             </motion.div>
 
-            {/* Unveil Button with Royal Gold & Glass Shimmer */}
+            {/* Unveil Button with Royal Gold & Glass Shimmer (Unlinked for now) */}
             <motion.button
               initial={{ opacity: 0, y: 25 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 3.4, duration: 0.9 }}
-              whileHover={{ scale: 1.05, y: -2 }}
-              whileTap={{ scale: 0.96 }}
-              onClick={() => setCurtainRevealed(true)}
-              className="group relative px-8 sm:px-14 py-3.5 sm:py-4 rounded-full overflow-hidden shadow-2xl transition-all cursor-pointer border border-white/50"
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.98 }}
+              className="group relative px-8 sm:px-14 py-3.5 sm:py-4 rounded-full overflow-hidden shadow-2xl transition-all cursor-default border border-white/50"
               style={{
                 background: 'linear-gradient(135deg, #FFFFFF 0%, #FFFBEB 40%, #FEF3C7 100%)',
                 boxShadow: '0 10px 35px rgba(0, 0, 0, 0.25), 0 0 20px rgba(255, 255, 255, 0.4)',

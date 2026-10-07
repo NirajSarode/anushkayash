@@ -43,8 +43,10 @@ export const StoryTeaser: React.FC<StoryTeaserProps> = ({ onOpenStory }) => {
               <div className="absolute -inset-2 bg-gradient-to-r from-[#B89FC8] via-[#C9917E] to-[#E8A987] rounded-full blur-md opacity-30 group-hover:opacity-60 transition duration-700 animate-pulse" />
               <div className="relative w-36 h-36 sm:w-44 sm:h-44 rounded-full p-1.5 bg-gradient-to-tr from-[#B89FC8] via-[#F7F3EE] to-[#E8A987] shadow-xl overflow-hidden">
                 <img
-                  src="/images/couple_animated.png"
+                  src="/images/couple_animated.webp"
                   alt="Anushka & Yash"
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover rounded-full transform group-hover:scale-110 transition-transform duration-700"
                 />
               </div>

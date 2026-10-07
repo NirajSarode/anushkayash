@@ -28,22 +28,22 @@ export const OurStory: React.FC<OurStoryProps> = ({ onBackToHome }) => {
     {
       id: 1, date: 'October 2022', title: 'The First Meeting', location: 'Delhi',
       narrative: 'What started as a casual introduction through mutual friends turned into hours of conversation about travel, food, and mountains. Two different states, same wavelength.',
-      icon: <Coffee className="w-5 h-5" />, tag: 'The Spark', image: '/images/delhi_side.png', accent: '#B89FC8',
+      icon: <Coffee className="w-5 h-5" />, tag: 'The Spark', image: '/images/delhi_side.webp', accent: '#B89FC8',
     },
     {
       id: 2, date: 'December 2023', title: 'Growing Closer', location: 'Delhi & Maharashtra',
       narrative: 'From the lanes of Old Delhi to the Western Ghats — every trip brought them closer. Yash showed Anushka his world in the mountains, she brought the energy of her city into his life.',
-      icon: <Mountain className="w-5 h-5" />, tag: 'The Adventure', image: '/images/couple_hero.png', accent: '#C9917E',
+      icon: <Mountain className="w-5 h-5" />, tag: 'The Adventure', image: '/images/couple_hero.webp', accent: '#C9917E',
     },
     {
       id: 3, date: 'February 2025', title: 'Sunset Proposal', location: 'Igatpuri, Maharashtra',
       narrative: 'Overlooking the misty valleys of Igatpuri at golden hour, Yash dropped to one knee. The mountain breeze carried Anushka\'s emotional "YES!" — two states became one story.',
-      icon: <Sparkles className="w-5 h-5" />, tag: 'The Proposal', image: '/images/maharashtra_side.png', accent: '#E8A987',
+      icon: <Sparkles className="w-5 h-5" />, tag: 'The Proposal', image: '/images/maharashtra_side.webp', accent: '#E8A987',
     },
     {
       id: 4, date: 'November 2026', title: 'The Engagement & Forever', location: 'Delhi & Maharashtra',
       narrative: 'The Vermas from Delhi and the Biyanis from Maharashtra came together to bless this union and plan the mountain destination wedding in Igatpuri.',
-      icon: <Heart className="w-5 h-5" />, tag: 'The Union', image: '/images/couple_animated.png', accent: '#C9917E',
+      icon: <Heart className="w-5 h-5" />, tag: 'The Union', image: '/images/couple_animated.webp', accent: '#C9917E',
     },
   ];
 

@@ -50,8 +50,9 @@ export const Hero: React.FC<HeroProps> = ({ onEnter }) => {
         <div className="relative p-2.5 rounded-3xl bg-[#F7F3EE]/80 backdrop-blur-md border border-[#B89FC8]/35 shadow-xl overflow-hidden">
           <div className="rounded-2xl overflow-hidden relative">
             <img
-              src="/images/delhi_side.png"
+              src="/images/delhi_side.webp"
               alt="Delhi"
+              decoding="async"
               className="w-full h-auto object-cover rounded-2xl filter saturate-[0.95]"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#2E2438]/70 via-transparent to-transparent flex items-end justify-center p-3">
@@ -71,8 +72,9 @@ export const Hero: React.FC<HeroProps> = ({ onEnter }) => {
         <div className="relative p-2.5 rounded-3xl bg-[#F7F3EE]/80 backdrop-blur-md border border-[#E8A987]/35 shadow-xl overflow-hidden">
           <div className="rounded-2xl overflow-hidden relative">
             <img
-              src="/images/maharashtra_side.png"
+              src="/images/maharashtra_side.webp"
               alt="Maharashtra"
+              decoding="async"
               className="w-full h-auto object-cover rounded-2xl filter saturate-[0.95]"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#2E2438]/70 via-transparent to-transparent flex items-end justify-center p-3">
@@ -99,8 +101,9 @@ export const Hero: React.FC<HeroProps> = ({ onEnter }) => {
           >
             <div className="absolute inset-0 opacity-20 pointer-events-none mix-blend-overlay">
               <img
-                src="/images/delhi_side.png"
+                src="/images/delhi_side.webp"
                 alt=""
+                decoding="async"
                 className="w-full h-full object-cover filter blur-[1px]"
               />
             </div>
@@ -123,8 +126,9 @@ export const Hero: React.FC<HeroProps> = ({ onEnter }) => {
           >
             <div className="absolute inset-0 opacity-20 pointer-events-none mix-blend-overlay">
               <img
-                src="/images/maharashtra_side.png"
+                src="/images/maharashtra_side.webp"
                 alt=""
+                decoding="async"
                 className="w-full h-full object-cover filter blur-[1px]"
               />
             </div>
@@ -158,8 +162,9 @@ export const Hero: React.FC<HeroProps> = ({ onEnter }) => {
               <div className="absolute -inset-6 sm:-inset-8 bg-gradient-to-r from-[#B89FC8]/50 via-[#FDE047]/40 to-[#E8A987]/50 rounded-full blur-2xl sm:blur-3xl opacity-70 animate-pulse" />
 
               <img
-                src="/images/couple_transparent.png"
+                src="/images/couple_transparent.webp"
                 alt="Anushka & Yash"
+                decoding="async"
                 className="relative z-10 w-36 h-40 sm:w-60 sm:h-64 md:w-72 md:h-76 object-contain filter drop-shadow-[0_12px_24px_rgba(0,0,0,0.35)]"
               />
             </motion.div>
@@ -317,8 +322,9 @@ export const Hero: React.FC<HeroProps> = ({ onEnter }) => {
             className="relative cursor-pointer"
           >
             <img
-              src="/images/couple_transparent.png"
+              src="/images/couple_transparent.webp"
               alt="Anushka & Yash"
+              decoding="async"
               className="w-64 h-72 sm:w-80 sm:h-92 md:w-96 md:h-[420px] object-contain filter drop-shadow-[0_18px_30px_rgba(46,36,56,0.18)] transform group-hover:scale-105 transition-transform duration-700"
             />
           </motion.div>

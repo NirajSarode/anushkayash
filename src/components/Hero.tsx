@@ -183,14 +183,14 @@ export const Hero: React.FC<HeroProps> = ({ onEnter }) => {
                   Anush
                 </span>
 
-                {/* 'Ka' — starts in Anushka's pastel lavender theme, then upon merging transforms into shimmering Rose Gold */}
+                {/* 'Ka' — starts in Anushka's pastel lavender theme, then upon merging transforms into vibrant radiant gold */}
                 <motion.span
                   initial={{
                     color: '#5E3D7A',
                     scale: 1,
                   }}
                   animate={{
-                    color: ['#5E3D7A', '#5E3D7A', '#C58F64', '#C58F64'],
+                    color: ['#5E3D7A', '#5E3D7A', '#D97706', '#D97706'],
                     scale: [1, 1, 1.25, 1],
                   }}
                   transition={{
@@ -201,7 +201,7 @@ export const Hero: React.FC<HeroProps> = ({ onEnter }) => {
                   }}
                   className="font-royal-custom text-4xl sm:text-7xl lg:text-8xl font-black tracking-[0.04em] inline-block"
                   style={{
-                    textShadow: '0 0 16px rgba(254, 240, 138, 0.85), 0 2px 10px rgba(217, 119, 6, 0.35), 0 4px 16px rgba(197, 143, 100, 0.25)',
+                    textShadow: '0 2px 12px rgba(254, 240, 138, 0.65), 0 4px 16px rgba(217, 119, 6, 0.2)',
                   }}
                 >
                   Ka

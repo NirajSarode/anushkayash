@@ -177,8 +177,7 @@ export const Hero: React.FC<HeroProps> = ({ onEnter }) => {
                   className="font-royal-custom text-4xl sm:text-7xl lg:text-8xl font-black tracking-[0.04em]"
                   style={{
                     color: '#5E3D7A',
-                    textShadow: '0 0 20px rgba(255, 255, 255, 0.95), 0 2px 8px rgba(255, 255, 255, 0.9), 0 4px 15px rgba(0, 0, 0, 0.25)',
-                    WebkitTextStroke: '1px rgba(255, 255, 255, 0.6)',
+                    textShadow: '0 2px 10px rgba(255, 255, 255, 0.6), 0 4px 16px rgba(94, 61, 122, 0.15)',
                   }}
                 >
                   Anush
@@ -202,8 +201,7 @@ export const Hero: React.FC<HeroProps> = ({ onEnter }) => {
                   }}
                   className="font-royal-custom text-4xl sm:text-7xl lg:text-8xl font-black tracking-[0.04em] inline-block"
                   style={{
-                    textShadow: '0 0 28px rgba(254, 240, 138, 1), 0 2px 8px rgba(255, 255, 255, 0.95), 0 4px 15px rgba(217, 119, 6, 0.4)',
-                    WebkitTextStroke: '1px rgba(255, 255, 255, 0.6)',
+                    textShadow: '0 2px 12px rgba(254, 240, 138, 0.65), 0 4px 16px rgba(217, 119, 6, 0.2)',
                   }}
                 >
                   Ka
@@ -221,8 +219,7 @@ export const Hero: React.FC<HeroProps> = ({ onEnter }) => {
                   className="font-royal-custom text-4xl sm:text-7xl lg:text-8xl font-black tracking-[0.04em]"
                   style={{
                     color: '#B0542C',
-                    textShadow: '0 0 20px rgba(255, 255, 255, 0.95), 0 2px 8px rgba(255, 255, 255, 0.9), 0 4px 15px rgba(0, 0, 0, 0.25)',
-                    WebkitTextStroke: '1px rgba(255, 255, 255, 0.6)',
+                    textShadow: '0 2px 10px rgba(255, 255, 255, 0.6), 0 4px 16px rgba(176, 84, 44, 0.15)',
                   }}
                 >
                   Yash
@@ -240,7 +237,7 @@ export const Hero: React.FC<HeroProps> = ({ onEnter }) => {
               <p
                 className="font-serif-custom text-xs sm:text-sm tracking-[0.35em] uppercase font-bold text-[#5E3D7A]"
                 style={{
-                  textShadow: '0 1px 10px rgba(255, 255, 255, 0.95), 0 2px 8px rgba(0, 0, 0, 0.2)',
+                  textShadow: '0 1px 6px rgba(255, 255, 255, 0.6)',
                 }}
               >
                 Two States &middot; One Love

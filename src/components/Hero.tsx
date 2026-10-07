@@ -6,7 +6,7 @@ interface HeroProps {
 }
 
 export const Hero: React.FC<HeroProps> = ({ onEnter }) => {
-  const [curtainRevealed] = useState(false);
+  const [curtainRevealed, setCurtainRevealed] = useState(false);
 
   const targetDate = new Date('2027-02-02T16:00:00+05:30').getTime();
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
@@ -86,14 +86,15 @@ export const Hero: React.FC<HeroProps> = ({ onEnter }) => {
       {!curtainRevealed && (
         <motion.div
           initial={{ opacity: 1 }}
-          className="fixed inset-0 z-50 flex pointer-events-auto overflow-hidden"
+          exit={{ opacity: 0 }}
+          className="fixed inset-0 z-50 flex pointer-events-auto overflow-y-auto overflow-x-hidden min-h-[100dvh]"
         >
           {/* Left — Delhi / Lavender side */}
           <motion.div
             initial={{ x: 0 }}
             animate={curtainRevealed ? { x: '-100%' } : { x: 0 }}
             transition={{ duration: 1.8, ease: 'easeInOut' }}
-            className="w-1/2 h-full relative overflow-hidden flex flex-col justify-between p-6 sm:p-10"
+            className="w-1/2 h-full min-h-[100dvh] relative overflow-hidden flex flex-col justify-between p-4 sm:p-10"
             style={{ background: 'linear-gradient(135deg, #7C6090 0%, #9478A8 40%, #B89FC8 100%)' }}
           >
             <div className="absolute inset-0 opacity-20 pointer-events-none mix-blend-overlay">
@@ -117,7 +118,7 @@ export const Hero: React.FC<HeroProps> = ({ onEnter }) => {
             initial={{ x: 0 }}
             animate={curtainRevealed ? { x: '100%' } : { x: 0 }}
             transition={{ duration: 1.8, ease: 'easeInOut' }}
-            className="w-1/2 h-full relative overflow-hidden flex flex-col justify-between items-end p-6 sm:p-10"
+            className="w-1/2 h-full min-h-[100dvh] relative overflow-hidden flex flex-col justify-between items-end p-4 sm:p-10"
             style={{ background: 'linear-gradient(225deg, #B56241 0%, #D08B68 40%, #E8A987 100%)' }}
           >
             <div className="absolute inset-0 opacity-20 pointer-events-none mix-blend-overlay">
@@ -137,10 +138,10 @@ export const Hero: React.FC<HeroProps> = ({ onEnter }) => {
           </motion.div>
 
           {/* Center — merging names, couple figures, and unveiling button */}
-          <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-auto z-20 px-4">
+          <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-auto z-20 px-3 py-6 my-auto">
             {/* Ambient radiant glow behind the union */}
             <div
-              className="absolute w-[340px] h-[340px] sm:w-[580px] sm:h-[580px] rounded-full animate-breathe"
+              className="absolute w-[280px] h-[280px] sm:w-[580px] sm:h-[580px] rounded-full animate-breathe pointer-events-none"
               style={{
                 background: 'radial-gradient(circle, rgba(255, 235, 215, 0.35) 0%, rgba(184, 159, 200, 0.2) 45%, transparent 70%)',
               }}
@@ -151,30 +152,30 @@ export const Hero: React.FC<HeroProps> = ({ onEnter }) => {
               initial={{ scale: 0, opacity: 0, y: -20 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
               transition={{ duration: 1.2, delay: 0.1, ease: 'easeOut' }}
-              className="relative mb-3 flex flex-col items-center justify-center pointer-events-none"
+              className="relative mb-2 sm:mb-3 flex flex-col items-center justify-center pointer-events-none"
             >
               {/* Soft ambient backlight glow behind the figures */}
-              <div className="absolute -inset-8 bg-gradient-to-r from-[#B89FC8]/50 via-[#FDE047]/40 to-[#E8A987]/50 rounded-full blur-3xl opacity-70 animate-pulse" />
+              <div className="absolute -inset-6 sm:-inset-8 bg-gradient-to-r from-[#B89FC8]/50 via-[#FDE047]/40 to-[#E8A987]/50 rounded-full blur-2xl sm:blur-3xl opacity-70 animate-pulse" />
 
               <img
                 src="/images/couple_transparent.png"
                 alt="Anushka & Yash"
-                className="relative z-10 w-48 h-52 sm:w-60 sm:h-64 md:w-72 md:h-76 object-contain filter drop-shadow-[0_12px_24px_rgba(0,0,0,0.35)]"
+                className="relative z-10 w-36 h-40 sm:w-60 sm:h-64 md:w-72 md:h-76 object-contain filter drop-shadow-[0_12px_24px_rgba(0,0,0,0.35)]"
               />
             </motion.div>
 
             {/* Names Animation: Anushka enters together from left, Yash from right, then 'Ka' transforms after merge */}
-            <div className="relative mb-4 flex items-center justify-center flex-nowrap sm:flex-wrap">
+            <div className="relative mb-3 sm:mb-4 flex items-center justify-center flex-nowrap max-w-full overflow-visible">
               {/* Anushka (Moves in together as a complete unit from Delhi side) */}
               <motion.div
-                initial={{ x: '-38vw', opacity: 0 }}
+                initial={{ x: -120, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
                 transition={{ duration: 1.8, ease: 'easeOut', delay: 0.2 }}
                 className="inline-flex items-baseline"
               >
                 {/* Anush (Deep Pastel Lavender) */}
                 <span
-                  className="font-royal-custom text-4xl sm:text-7xl lg:text-8xl font-black tracking-[0.04em]"
+                  className="font-royal-custom text-3xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-[0.02em] sm:tracking-[0.04em]"
                   style={{
                     color: '#5E3D7A',
                     textShadow: '0 2px 10px rgba(255, 255, 255, 0.6), 0 4px 16px rgba(94, 61, 122, 0.15)',
@@ -183,14 +184,14 @@ export const Hero: React.FC<HeroProps> = ({ onEnter }) => {
                   Anush
                 </span>
 
-                {/* 'Ka' — starts in Anushka's pastel lavender theme, then upon merging transforms into vibrant radiant gold */}
+                {/* 'Ka' — starts in Anushka's pastel lavender theme, then upon merging transforms into shimmering Rose Gold */}
                 <motion.span
                   initial={{
                     color: '#5E3D7A',
                     scale: 1,
                   }}
                   animate={{
-                    color: ['#5E3D7A', '#5E3D7A', '#D97706', '#D97706'],
+                    color: ['#5E3D7A', '#5E3D7A', '#C58F64', '#C58F64'],
                     scale: [1, 1, 1.25, 1],
                   }}
                   transition={{
@@ -199,9 +200,9 @@ export const Hero: React.FC<HeroProps> = ({ onEnter }) => {
                     delay: 0.2,
                     ease: 'easeInOut',
                   }}
-                  className="font-royal-custom text-4xl sm:text-7xl lg:text-8xl font-black tracking-[0.04em] inline-block"
+                  className="font-royal-custom text-3xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-[0.02em] sm:tracking-[0.04em] inline-block"
                   style={{
-                    textShadow: '0 2px 12px rgba(254, 240, 138, 0.65), 0 4px 16px rgba(217, 119, 6, 0.2)',
+                    textShadow: '0 0 16px rgba(254, 240, 138, 0.85), 0 2px 10px rgba(217, 119, 6, 0.35), 0 4px 16px rgba(197, 143, 100, 0.25)',
                   }}
                 >
                   Ka
@@ -210,13 +211,13 @@ export const Hero: React.FC<HeroProps> = ({ onEnter }) => {
 
               {/* Yash (Deep Pastel Peach / Terracotta) */}
               <motion.div
-                initial={{ x: '38vw', opacity: 0 }}
+                initial={{ x: 120, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
                 transition={{ duration: 1.8, ease: 'easeOut', delay: 0.2 }}
                 className="inline-flex items-baseline"
               >
                 <span
-                  className="font-royal-custom text-4xl sm:text-7xl lg:text-8xl font-black tracking-[0.04em]"
+                  className="font-royal-custom text-3xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-[0.02em] sm:tracking-[0.04em]"
                   style={{
                     color: '#B0542C',
                     textShadow: '0 2px 10px rgba(255, 255, 255, 0.6), 0 4px 16px rgba(176, 84, 44, 0.15)',
@@ -232,10 +233,10 @@ export const Hero: React.FC<HeroProps> = ({ onEnter }) => {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 2.8, duration: 1.2 }}
-              className="flex items-center justify-center mb-8"
+              className="flex items-center justify-center mb-6 sm:mb-8"
             >
               <p
-                className="font-serif-custom text-xs sm:text-sm tracking-[0.35em] uppercase font-bold text-[#5E3D7A]"
+                className="font-serif-custom text-[11px] sm:text-sm tracking-[0.3em] uppercase font-bold text-[#5E3D7A]"
                 style={{
                   textShadow: '0 1px 6px rgba(255, 255, 255, 0.6)',
                 }}
@@ -244,14 +245,15 @@ export const Hero: React.FC<HeroProps> = ({ onEnter }) => {
               </p>
             </motion.div>
 
-            {/* Unveil Button with Royal Gold & Glass Shimmer (Unlinked for now) */}
+            {/* Unveil Button with Royal Gold & Glass Shimmer */}
             <motion.button
               initial={{ opacity: 0, y: 25 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 3.4, duration: 0.9 }}
-              whileHover={{ scale: 1.04 }}
-              whileTap={{ scale: 0.98 }}
-              className="group relative px-10 sm:px-14 py-4 rounded-full overflow-hidden shadow-2xl transition-all cursor-default border border-white/50"
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.96 }}
+              onClick={() => setCurtainRevealed(true)}
+              className="group relative px-8 sm:px-14 py-3.5 sm:py-4 rounded-full overflow-hidden shadow-2xl transition-all cursor-pointer border border-white/50"
               style={{
                 background: 'linear-gradient(135deg, #FFFFFF 0%, #FFFBEB 40%, #FEF3C7 100%)',
                 boxShadow: '0 10px 35px rgba(0, 0, 0, 0.25), 0 0 20px rgba(255, 255, 255, 0.4)',

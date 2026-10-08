@@ -7,9 +7,17 @@ interface HeroProps {
 
 export const Hero: React.FC<HeroProps> = ({ onEnter }) => {
   const [curtainRevealed] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   const targetDate = new Date('2027-02-02T16:00:00+05:30').getTime();
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   useEffect(() => {
     const calc = () => {
@@ -83,44 +91,78 @@ export const Hero: React.FC<HeroProps> = ({ onEnter }) => {
         <motion.div
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-50 flex pointer-events-auto overflow-y-auto overflow-x-hidden min-h-[100dvh]"
+          className="fixed inset-0 z-50 flex flex-col md:flex-row pointer-events-auto overflow-y-auto overflow-x-hidden min-h-[100dvh]"
         >
-          {/* Left — Delhi / Lavender side */}
+          {/* Top (Mobile) / Left (Desktop) — Delhi / Lavender side */}
           <motion.div
-            initial={{ x: 0 }}
-            animate={curtainRevealed ? { x: '-100%' } : { x: 0 }}
+            initial={{ x: 0, y: 0 }}
+            animate={
+              curtainRevealed
+                ? isMobile
+                  ? { y: '-100%' }
+                  : { x: '-100%' }
+                : { x: 0, y: 0 }
+            }
             transition={{ duration: 1.8, ease: 'easeInOut' }}
-            className="w-1/2 h-full min-h-[100dvh] relative overflow-hidden flex flex-col justify-between p-4 sm:p-10"
-            style={{ background: 'linear-gradient(135deg, #7C6090 0%, #9478A8 40%, #B89FC8 100%)' }}
+            className="w-full h-1/2 md:w-1/2 md:h-full md:min-h-[100dvh] relative overflow-hidden flex flex-col justify-between p-4 sm:p-10"
+            style={{
+              background: isMobile
+                ? 'linear-gradient(180deg, #7C6090 0%, #9478A8 45%, #B89FC8 100%)'
+                : 'linear-gradient(135deg, #7C6090 0%, #9478A8 40%, #B89FC8 100%)',
+            }}
           >
-            <div className="absolute inset-0 opacity-20 pointer-events-none mix-blend-overlay">
+            <div className="absolute inset-0 opacity-25 pointer-events-none mix-blend-overlay">
               <img
                 src="/images/delhi_side.webp"
                 alt=""
                 decoding="async"
-                className="w-full h-full object-cover filter blur-[1px]"
+                className="w-full h-full object-cover filter blur-[0.5px]"
               />
             </div>
-            <div className="absolute inset-0" style={{ background: 'radial-gradient(circle at 70% 50%, rgba(255,255,255,0.18) 0%, transparent 60%)' }} />
+            <div
+              className="absolute inset-0"
+              style={{
+                background: isMobile
+                  ? 'radial-gradient(circle at 50% 65%, rgba(255,255,255,0.2) 0%, transparent 65%)'
+                  : 'radial-gradient(circle at 70% 50%, rgba(255,255,255,0.18) 0%, transparent 60%)',
+              }}
+            />
           </motion.div>
 
-          {/* Right — Maharashtra / Peach side */}
+          {/* Bottom (Mobile) / Right (Desktop) — Maharashtra / Peach side */}
           <motion.div
-            initial={{ x: 0 }}
-            animate={curtainRevealed ? { x: '100%' } : { x: 0 }}
+            initial={{ x: 0, y: 0 }}
+            animate={
+              curtainRevealed
+                ? isMobile
+                  ? { y: '100%' }
+                  : { x: '100%' }
+                : { x: 0, y: 0 }
+            }
             transition={{ duration: 1.8, ease: 'easeInOut' }}
-            className="w-1/2 h-full min-h-[100dvh] relative overflow-hidden flex flex-col justify-between items-end p-4 sm:p-10"
-            style={{ background: 'linear-gradient(225deg, #B56241 0%, #D08B68 40%, #E8A987 100%)' }}
+            className="w-full h-1/2 md:w-1/2 md:h-full md:min-h-[100dvh] relative overflow-hidden flex flex-col justify-between items-end p-4 sm:p-10"
+            style={{
+              background: isMobile
+                ? 'linear-gradient(180deg, #E8A987 0%, #D08B68 55%, #B56241 100%)'
+                : 'linear-gradient(225deg, #B56241 0%, #D08B68 40%, #E8A987 100%)',
+            }}
           >
-            <div className="absolute inset-0 opacity-20 pointer-events-none mix-blend-overlay">
+            <div className="absolute inset-0 opacity-25 pointer-events-none mix-blend-overlay">
               <img
                 src="/images/maharashtra_side.webp"
                 alt=""
                 decoding="async"
-                className="w-full h-full object-cover filter blur-[1px]"
+                className="w-full h-full object-cover filter blur-[0.5px]"
               />
             </div>
-            <div className="absolute inset-0" style={{ background: 'radial-gradient(circle at 30% 50%, rgba(255,255,255,0.18) 0%, transparent 60%)' }} />
+            <div
+              className="absolute inset-0"
+              style={{
+                background: isMobile
+                  ? 'radial-gradient(circle at 50% 35%, rgba(255,255,255,0.2) 0%, transparent 65%)'
+                  : 'radial-gradient(circle at 30% 50%, rgba(255,255,255,0.18) 0%, transparent 60%)',
+              }}
+            />
           </motion.div>
 
           {/* Center — merging names, couple figures, and unveiling button */}

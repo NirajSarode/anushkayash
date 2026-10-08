@@ -232,23 +232,6 @@ export const Hero: React.FC<HeroProps> = ({ onEnter }) => {
               </p>
             </motion.div>
 
-            {/* On Mobile: Small, graceful animated scroll-down cue */}
-            <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 3.2, duration: 1 }}
-              className="flex sm:hidden flex-col items-center gap-1.5 cursor-default mt-1"
-            >
-              <span className="font-serif-custom text-[10px] uppercase tracking-[0.25em] font-bold text-[#5E3D7A]">
-                Scroll Down &darr;
-              </span>
-              <motion.div
-                animate={{ y: [0, 5, 0] }}
-                transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}
-                className="w-[1.5px] h-6 rounded-full bg-gradient-to-b from-[#8E68A8] via-[#D47B50] to-transparent"
-              />
-            </motion.div>
-
             {/* On Desktop / Tablet: Refined Glass Button (Unlinked for now) */}
             <motion.button
               initial={{ opacity: 0, y: 25 }}
@@ -270,6 +253,37 @@ export const Hero: React.FC<HeroProps> = ({ onEnter }) => {
               </span>
             </motion.button>
           </div>
+
+          {/* On Mobile: Elegant animated scroll-down cue pinned at bottom */}
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 3.0, duration: 1 }}
+            className="flex sm:hidden flex-col items-center gap-1.5 absolute bottom-5 left-1/2 -translate-x-1/2 z-30 pointer-events-auto"
+          >
+            <span
+              className="font-serif-custom text-[10px] uppercase tracking-[0.3em] font-bold text-[#5E3D7A]"
+              style={{ textShadow: '0 1px 4px rgba(255, 255, 255, 0.8)' }}
+            >
+              Scroll Down
+            </span>
+
+            {/* Smooth animated downward moving indicator */}
+            <div className="w-5 h-8 rounded-full border border-[#5E3D7A]/40 flex justify-center p-1 bg-white/30 backdrop-blur-sm shadow-sm">
+              <motion.div
+                animate={{
+                  y: [0, 10, 0],
+                  opacity: [1, 0.3, 1],
+                }}
+                transition={{
+                  duration: 1.8,
+                  repeat: Infinity,
+                  ease: 'easeInOut',
+                }}
+                className="w-1 h-2 rounded-full bg-gradient-to-b from-[#5E3D7A] to-[#D47B50]"
+              />
+            </div>
+          </motion.div>
         </motion.div>
       )}
 

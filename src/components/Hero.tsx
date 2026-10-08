@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence, type Variants } from 'framer-motion';
 
 interface HeroProps {
-  onEnter: () => void;
+  onEnter?: () => void;
 }
 
-export const Hero: React.FC<HeroProps> = ({ onEnter }) => {
+export const Hero: React.FC<HeroProps> = () => {
   const [curtainRevealed, setCurtainRevealed] = useState(false);
   const [showCurtain, setShowCurtain] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
@@ -57,43 +57,7 @@ export const Hero: React.FC<HeroProps> = ({ onEnter }) => {
   return (
     <section className="relative min-h-screen w-full flex flex-col justify-center items-center text-center overflow-hidden pt-20 pb-20">
 
-      {/* ── Left Side (Delhi Heritage Artwork) - Desktop Floating Frame ── */}
-      <motion.div
-        initial={{ opacity: 0, x: -50 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 1.2, delay: 0.5, ease: 'easeOut' }}
-        className="hidden lg:flex flex-col items-center absolute left-6 xl:left-14 top-1/2 -translate-y-1/2 z-10 w-[220px] xl:w-[260px] pointer-events-none select-none"
-      >
-        <div className="relative p-2.5 rounded-3xl bg-[#F7F3EE]/80 backdrop-blur-md border border-[#B89FC8]/35 shadow-xl overflow-hidden">
-          <div className="rounded-2xl overflow-hidden relative">
-            <img
-              src="/images/delhi_side.webp"
-              alt="Delhi Heritage"
-              decoding="async"
-              className="w-full h-auto object-cover rounded-2xl filter saturate-[0.95]"
-            />
-          </div>
-        </div>
-      </motion.div>
 
-      {/* ── Right Side (Maharashtra Heritage Artwork) - Desktop Floating Frame ── */}
-      <motion.div
-        initial={{ opacity: 0, x: 50 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 1.2, delay: 0.5, ease: 'easeOut' }}
-        className="hidden lg:flex flex-col items-center absolute right-6 xl:right-14 top-1/2 -translate-y-1/2 z-10 w-[220px] xl:w-[260px] pointer-events-none select-none"
-      >
-        <div className="relative p-2.5 rounded-3xl bg-[#F7F3EE]/80 backdrop-blur-md border border-[#E8A987]/35 shadow-xl overflow-hidden">
-          <div className="rounded-2xl overflow-hidden relative">
-            <img
-              src="/images/maharashtra_side.webp"
-              alt="Maharashtra Heritage"
-              decoding="async"
-              className="w-full h-auto object-cover rounded-2xl filter saturate-[0.95]"
-            />
-          </div>
-        </div>
-      </motion.div>
 
       {/* ── Curtain Reveal Overlay ── */}
       <AnimatePresence>
@@ -324,13 +288,7 @@ export const Hero: React.FC<HeroProps> = ({ onEnter }) => {
         animate="show"
         className="relative z-10 max-w-3xl mx-auto px-6 flex flex-col items-center"
       >
-        {/* Hindi Tagline */}
-        <motion.p
-          variants={fadeUp}
-          className="font-serif-custom text-[#7A6D8E] text-xs sm:text-sm tracking-[0.35em] uppercase mb-6 font-semibold"
-        >
-          दो राज्य &middot; एक प्यार &middot; एक मंज़िल
-        </motion.p>
+
 
         {/* Names — massive, editorial poster typography */}
         <motion.div variants={fadeUp} className="mb-2">
@@ -343,11 +301,19 @@ export const Hero: React.FC<HeroProps> = ({ onEnter }) => {
           <span className="font-script-custom text-5xl sm:text-6xl text-[#A06B55]">&</span>
         </motion.div>
 
-        <motion.div variants={fadeUp} className="mb-4">
+        <motion.div variants={fadeUp} className="mb-2">
           <h1 className="font-royal-custom text-6xl sm:text-7xl lg:text-8xl tracking-[0.18em] text-[#2E2438] font-bold leading-none">
             YASH
           </h1>
         </motion.div>
+
+        {/* Marathi Auspicious Inscription */}
+        <motion.p
+          variants={fadeUp}
+          className="font-serif-custom text-[#5E3D7A] text-sm sm:text-base tracking-[0.3em] uppercase my-3 sm:my-4 font-bold"
+        >
+          ॥ शुभमंगल सावधान ॥
+        </motion.p>
 
         {/* ── Animated Couple Centerpiece Figure (Transparent Floating Cutout) ── */}
         <motion.div
@@ -419,18 +385,7 @@ export const Hero: React.FC<HeroProps> = ({ onEnter }) => {
           ))}
         </motion.div>
 
-        {/* CTA Button */}
-        <motion.button
-          variants={fadeUp}
-          whileHover={{ scale: 1.04, y: -2 }}
-          whileTap={{ scale: 0.96 }}
-          onClick={onEnter}
-          className="inline-flex items-center justify-center gap-2.5 px-8 sm:px-10 py-3.5 rounded-full text-white font-bold text-xs uppercase tracking-[0.25em] shadow-lg hover:shadow-xl transition-all mb-10 cursor-pointer"
-          style={{ background: 'linear-gradient(135deg, #6B4984, #B05B43, #A85630)' }}
-        >
-          <span>Enter the Celebration</span>
-          <span className="text-sm font-light">&rarr;</span>
-        </motion.button>
+
 
         {/* Family names */}
         <motion.div

@@ -27,12 +27,16 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenRSVP, currentPage, onNavig
       }`}
     >
       <div className="max-w-6xl mx-auto px-5 sm:px-8 flex items-center justify-between">
-        {/* Monogram */}
-        <button onClick={() => onNavigate('home')} className="flex items-center gap-3 group cursor-pointer">
-          <span className="font-royal-custom text-base tracking-[0.2em] font-bold transition-transform group-hover:scale-105 duration-300">
-            <span className="text-[#5E3D7A]">A</span>
-            <span className="text-[#C58F64] mx-1">&</span>
-            <span className="text-[#B0542C]">Y</span>
+        {/* Brand Name on Top-Left */}
+        <button
+          onClick={() => onNavigate('home')}
+          className="flex items-center group cursor-pointer focus:outline-none"
+          title="Anushka & Yash"
+        >
+          <span className="font-royal-custom text-lg sm:text-2xl tracking-[0.1em] font-bold transition-transform group-hover:scale-105 duration-300">
+            <span className="text-[#5E3D7A]">Anush</span>
+            <span className="text-[#C58F64]">Ka</span>
+            <span className="text-[#B0542C]">Yash</span>
           </span>
         </button>
 

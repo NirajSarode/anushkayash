@@ -51,7 +51,14 @@ export const RSVPModal: React.FC<RSVPModalProps> = ({ isOpen, onClose }) => {
 
           {!submitted ? (
             <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="text-center">
+              <div className="text-center flex flex-col items-center">
+                <div className="mb-4 p-1.5 rounded-full bg-white/95 border border-[#C58F64]/40 shadow-lg">
+                  <img
+                    src="/images/wedding_crest.png"
+                    alt="Royal Wedding Crest"
+                    className="w-24 h-24 sm:w-28 sm:h-28 rounded-full object-cover"
+                  />
+                </div>
                 <h3 className="font-royal-custom text-2xl sm:text-3xl font-bold gradient-text-blend mb-1">Will You Join Us?</h3>
                 <p className="font-serif-custom text-[#5E3D7A] text-sm italic font-semibold">Please confirm by January 10, 2027.</p>
               </div>

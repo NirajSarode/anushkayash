@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { MistCanvas } from './components/MistCanvas';
+import { FloatingDecor } from './components/FloatingDecor';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { OurStory } from './components/OurStory';
@@ -59,6 +60,7 @@ export const App: React.FC = () => {
 
       {/* Soft ambient background */}
       <MistCanvas />
+      <FloatingDecor />
 
       {/* Navigation */}
       <Navbar

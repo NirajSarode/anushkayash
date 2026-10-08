@@ -47,12 +47,13 @@ export const RoyalInvitation: React.FC = () => {
               onClick={() => setIsOpen(true)}
               className="max-w-lg w-full soft-card rounded-3xl p-10 sm:p-14 flex flex-col items-center gap-6 group cursor-pointer hover:shadow-2xl transition-all duration-500 border border-[#C8BEAF]"
             >
-              {/* Monogram */}
-              <div
-                className="w-16 h-16 rounded-full flex items-center justify-center text-white font-royal-custom font-bold text-lg shadow-md group-hover:rotate-6 transition-transform duration-500"
-                style={{ background: 'linear-gradient(135deg, #7C6090 0%, #B0542C 100%)' }}
-              >
-                A&Y
+              {/* Royal Wedding Crest Seal */}
+              <div className="relative p-1.5 sm:p-2 rounded-full bg-white/90 border border-[#C58F64]/50 shadow-2xl group-hover:scale-105 transition-transform duration-500">
+                <img
+                  src="/images/wedding_crest.png"
+                  alt="Anushka & Yash Wedding Crest"
+                  className="w-32 h-32 sm:w-40 sm:h-40 rounded-full object-cover"
+                />
               </div>
 
               <h3 className="font-royal-custom text-xl font-bold text-[#1A1222] tracking-[0.1em]">
@@ -80,6 +81,17 @@ export const RoyalInvitation: React.FC = () => {
               >
                 {/* Top gradient accent */}
                 <div className="absolute top-0 left-0 right-0 h-[3px]" style={{ background: 'linear-gradient(to right, #7C6090, #C58F64, #B0542C)' }} />
+
+                {/* Crown Royal Crest */}
+                <div className="flex justify-center mb-5">
+                  <div className="p-1.5 rounded-full bg-white/90 border border-[#C58F64]/40 shadow-lg">
+                    <img
+                      src="/images/wedding_crest.png"
+                      alt="Royal Wedding Crest"
+                      className="w-24 h-24 sm:w-32 sm:h-32 rounded-full object-cover"
+                    />
+                  </div>
+                </div>
 
                 <p className="font-serif-custom text-sm tracking-[0.25em] text-[#B0542C] uppercase font-bold mb-6">
                   || Shree Ganeshaya Namah ||

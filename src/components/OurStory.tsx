@@ -66,6 +66,19 @@ export const OurStory: React.FC<OurStoryProps> = ({ onBackToHome }) => {
         )}
 
         <div className="text-center mb-24">
+          <motion.div
+            initial="hidden" whileInView="show" viewport={{ once: true }} variants={fadeUp}
+            className="flex justify-center mb-6"
+          >
+            <div className="p-1.5 sm:p-2 rounded-full bg-white/95 border border-[#C58F64]/40 shadow-2xl hover:scale-105 transition-transform duration-500">
+              <img
+                src="/images/wedding_crest.png"
+                alt="Two States Royal Crest"
+                className="w-32 h-32 sm:w-40 sm:h-40 rounded-full object-cover"
+              />
+            </div>
+          </motion.div>
+
           <motion.p initial="hidden" whileInView="show" viewport={{ once: true }} variants={fadeUp}
             className="font-serif-custom text-[#5E3D7A] text-xs tracking-[0.35em] uppercase mb-4 font-bold">
             Our Journey

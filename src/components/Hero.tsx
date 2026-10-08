@@ -262,10 +262,10 @@ export const Hero: React.FC<HeroProps> = ({ onEnter }) => {
             className="flex sm:hidden flex-col items-center gap-1.5 absolute bottom-5 left-1/2 -translate-x-1/2 z-30 pointer-events-auto"
           >
             <span
-              className="font-serif-custom text-[10px] uppercase tracking-[0.3em] font-bold text-[#5E3D7A]"
+              className="font-serif-custom text-[10px] uppercase tracking-[0.25em] font-bold text-[#5E3D7A] text-center whitespace-nowrap"
               style={{ textShadow: '0 1px 4px rgba(255, 255, 255, 0.8)' }}
             >
-              Scroll Down
+              Unveil the Celebration
             </span>
 
             {/* Smooth animated downward moving indicator */}

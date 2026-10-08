@@ -51,13 +51,10 @@ export const Hero: React.FC<HeroProps> = ({ onEnter }) => {
           <div className="rounded-2xl overflow-hidden relative">
             <img
               src="/images/delhi_side.webp"
-              alt="Delhi"
+              alt="Delhi Heritage"
               decoding="async"
               className="w-full h-auto object-cover rounded-2xl filter saturate-[0.95]"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#2E2438]/70 via-transparent to-transparent flex items-end justify-center p-3">
-              <span className="font-royal-custom text-white text-xs tracking-[0.25em] uppercase font-bold">DELHI</span>
-            </div>
           </div>
         </div>
       </motion.div>
@@ -73,13 +70,10 @@ export const Hero: React.FC<HeroProps> = ({ onEnter }) => {
           <div className="rounded-2xl overflow-hidden relative">
             <img
               src="/images/maharashtra_side.webp"
-              alt="Maharashtra"
+              alt="Maharashtra Heritage"
               decoding="async"
               className="w-full h-auto object-cover rounded-2xl filter saturate-[0.95]"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#2E2438]/70 via-transparent to-transparent flex items-end justify-center p-3">
-              <span className="font-royal-custom text-white text-xs tracking-[0.25em] uppercase font-bold">MAHARASHTRA</span>
-            </div>
           </div>
         </div>
       </motion.div>
@@ -108,12 +102,6 @@ export const Hero: React.FC<HeroProps> = ({ onEnter }) => {
               />
             </div>
             <div className="absolute inset-0" style={{ background: 'radial-gradient(circle at 70% 50%, rgba(255,255,255,0.18) 0%, transparent 60%)' }} />
-
-            <div className="relative z-10 text-left">
-              <span className="inline-block px-3 py-1 rounded-full bg-white/30 backdrop-blur-md border border-white/40 text-[10px] sm:text-xs text-white tracking-[0.25em] uppercase font-semibold" style={{ textShadow: '0 1px 4px rgba(0,0,0,0.3)' }}>
-                Delhi
-              </span>
-            </div>
           </motion.div>
 
           {/* Right — Maharashtra / Peach side */}
@@ -133,12 +121,6 @@ export const Hero: React.FC<HeroProps> = ({ onEnter }) => {
               />
             </div>
             <div className="absolute inset-0" style={{ background: 'radial-gradient(circle at 30% 50%, rgba(255,255,255,0.18) 0%, transparent 60%)' }} />
-
-            <div className="relative z-10 text-right">
-              <span className="inline-block px-3 py-1 rounded-full bg-white/30 backdrop-blur-md border border-white/40 text-[10px] sm:text-xs text-white tracking-[0.25em] uppercase font-semibold" style={{ textShadow: '0 1px 4px rgba(0,0,0,0.3)' }}>
-                Maharashtra
-              </span>
-            </div>
           </motion.div>
 
           {/* Center — merging names, couple figures, and unveiling button */}
@@ -406,9 +388,9 @@ export const Hero: React.FC<HeroProps> = ({ onEnter }) => {
           variants={fadeUp}
           className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-6 text-xs tracking-[0.2em] uppercase text-[#3D2C50] font-semibold"
         >
-          <span>Verma Family <span className="text-[#4A2E64]">&middot;</span> <span className="text-[#1A1222]">Delhi</span></span>
+          <span>Verma Family</span>
           <span className="hidden sm:inline text-[#B05B43]">&mdash;</span>
-          <span>Biyani Family <span className="text-[#633318]">&middot;</span> <span className="text-[#1A1222]">Maharashtra</span></span>
+          <span>Biyani Family</span>
         </motion.div>
       </motion.div>
     </section>

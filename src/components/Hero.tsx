@@ -232,23 +232,40 @@ export const Hero: React.FC<HeroProps> = ({ onEnter }) => {
               </p>
             </motion.div>
 
-            {/* Unveil Button with Royal Gold & Glass Shimmer (Unlinked for now) */}
+            {/* On Mobile: Small, graceful animated scroll-down cue */}
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 3.2, duration: 1 }}
+              className="flex sm:hidden flex-col items-center gap-1.5 cursor-default mt-1"
+            >
+              <span className="font-serif-custom text-[10px] uppercase tracking-[0.25em] font-bold text-[#5E3D7A]">
+                Scroll Down &darr;
+              </span>
+              <motion.div
+                animate={{ y: [0, 5, 0] }}
+                transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}
+                className="w-[1.5px] h-6 rounded-full bg-gradient-to-b from-[#8E68A8] via-[#D47B50] to-transparent"
+              />
+            </motion.div>
+
+            {/* On Desktop / Tablet: Refined Glass Button (Unlinked for now) */}
             <motion.button
               initial={{ opacity: 0, y: 25 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 3.4, duration: 0.9 }}
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.98 }}
-              className="group relative px-8 sm:px-14 py-3.5 sm:py-4 rounded-full overflow-hidden shadow-2xl transition-all cursor-default border border-white/50"
+              className="hidden sm:inline-flex group relative px-10 py-3.5 rounded-full overflow-hidden shadow-xl transition-all cursor-default border border-white/50 mt-1"
               style={{
                 background: 'linear-gradient(135deg, #FFFFFF 0%, #FFFBEB 40%, #FEF3C7 100%)',
-                boxShadow: '0 10px 35px rgba(0, 0, 0, 0.25), 0 0 20px rgba(255, 255, 255, 0.4)',
+                boxShadow: '0 10px 30px rgba(0, 0, 0, 0.2), 0 0 15px rgba(255, 255, 255, 0.4)',
               }}
             >
               {/* Golden shimmer highlight */}
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
 
-              <span className="relative font-serif-custom text-xs sm:text-sm tracking-[0.25em] uppercase font-bold text-[#2E2438] group-hover:text-[#6B5280] transition-colors">
+              <span className="relative font-serif-custom text-xs tracking-[0.25em] uppercase font-bold text-[#2E2438] group-hover:text-[#6B5280] transition-colors">
                 Unveil the Celebration &rarr;
               </span>
             </motion.button>

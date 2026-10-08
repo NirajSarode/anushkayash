@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { motion, type Variants } from 'framer-motion';
+import { motion, AnimatePresence, type Variants } from 'framer-motion';
 
 interface HeroProps {
   onEnter: () => void;
 }
 
 export const Hero: React.FC<HeroProps> = ({ onEnter }) => {
-  const [curtainRevealed] = useState(false);
+  const [curtainRevealed, setCurtainRevealed] = useState(false);
+  const [showCurtain, setShowCurtain] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
 
   const targetDate = new Date('2027-02-02T16:00:00+05:30').getTime();
@@ -18,6 +19,15 @@ export const Hero: React.FC<HeroProps> = ({ onEnter }) => {
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
+
+  const handleUnveil = () => {
+    if (curtainRevealed) return;
+    setCurtainRevealed(true);
+    setTimeout(() => {
+      setShowCurtain(false);
+      onEnter();
+    }, 1500);
+  };
 
   useEffect(() => {
     const calc = () => {
@@ -87,247 +97,257 @@ export const Hero: React.FC<HeroProps> = ({ onEnter }) => {
       </motion.div>
 
       {/* ── Curtain Reveal Overlay ── */}
-      {!curtainRevealed && (
-        <motion.div
-          initial={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          className="fixed inset-0 z-50 flex flex-col md:flex-row pointer-events-auto overflow-y-auto overflow-x-hidden min-h-[100dvh]"
-        >
-          {/* Top (Mobile) / Left (Desktop) — Delhi / Lavender side */}
+      <AnimatePresence>
+        {showCurtain && (
           <motion.div
-            initial={{ x: 0, y: 0 }}
-            animate={
-              curtainRevealed
-                ? isMobile
-                  ? { y: '-100%' }
-                  : { x: '-100%' }
-                : { x: 0, y: 0 }
-            }
-            transition={{ duration: 1.8, ease: 'easeInOut' }}
-            className="w-full h-1/2 md:w-1/2 md:h-full md:min-h-[100dvh] relative overflow-hidden flex flex-col justify-between p-4 sm:p-10"
-            style={{
-              background: isMobile
-                ? 'linear-gradient(180deg, #7C6090 0%, #9478A8 45%, #B89FC8 100%)'
-                : 'linear-gradient(135deg, #7C6090 0%, #9478A8 40%, #B89FC8 100%)',
-            }}
+            initial={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.6 }}
+            className="fixed inset-0 z-50 flex flex-col md:flex-row pointer-events-auto overflow-y-auto overflow-x-hidden min-h-[100dvh]"
           >
-            <div className="absolute inset-0 opacity-25 pointer-events-none mix-blend-overlay">
-              <img
-                src="/images/delhi_side.webp"
-                alt=""
-                decoding="async"
-                className="w-full h-full object-cover filter blur-[0.5px]"
-              />
-            </div>
-            <div
-              className="absolute inset-0"
-              style={{
-                background: isMobile
-                  ? 'radial-gradient(circle at 50% 65%, rgba(255,255,255,0.2) 0%, transparent 65%)'
-                  : 'radial-gradient(circle at 70% 50%, rgba(255,255,255,0.18) 0%, transparent 60%)',
-              }}
-            />
-          </motion.div>
-
-          {/* Bottom (Mobile) / Right (Desktop) — Maharashtra / Peach side */}
-          <motion.div
-            initial={{ x: 0, y: 0 }}
-            animate={
-              curtainRevealed
-                ? isMobile
-                  ? { y: '100%' }
-                  : { x: '100%' }
-                : { x: 0, y: 0 }
-            }
-            transition={{ duration: 1.8, ease: 'easeInOut' }}
-            className="w-full h-1/2 md:w-1/2 md:h-full md:min-h-[100dvh] relative overflow-hidden flex flex-col justify-between items-end p-4 sm:p-10"
-            style={{
-              background: isMobile
-                ? 'linear-gradient(180deg, #E8A987 0%, #D08B68 55%, #B56241 100%)'
-                : 'linear-gradient(225deg, #B56241 0%, #D08B68 40%, #E8A987 100%)',
-            }}
-          >
-            <div className="absolute inset-0 opacity-25 pointer-events-none mix-blend-overlay">
-              <img
-                src="/images/maharashtra_side.webp"
-                alt=""
-                decoding="async"
-                className="w-full h-full object-cover filter blur-[0.5px]"
-              />
-            </div>
-            <div
-              className="absolute inset-0"
-              style={{
-                background: isMobile
-                  ? 'radial-gradient(circle at 50% 35%, rgba(255,255,255,0.2) 0%, transparent 65%)'
-                  : 'radial-gradient(circle at 30% 50%, rgba(255,255,255,0.18) 0%, transparent 60%)',
-              }}
-            />
-          </motion.div>
-
-          {/* Center — merging names, couple figures, and unveiling button */}
-          <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-auto z-20 px-3 py-6 my-auto">
-            {/* Ambient radiant glow behind the union */}
-            <div
-              className="absolute w-[280px] h-[280px] sm:w-[580px] sm:h-[580px] rounded-full animate-breathe pointer-events-none"
-              style={{
-                background: 'radial-gradient(circle, rgba(255, 235, 215, 0.35) 0%, rgba(184, 159, 200, 0.2) 45%, transparent 70%)',
-              }}
-            />
-
-            {/* ── Animated Couple Figure on Animation Banner (Transparent Cutout) ── */}
+            {/* Top (Mobile) / Left (Desktop) — Delhi / Lavender side */}
             <motion.div
-              initial={{ scale: 0, opacity: 0, y: -20 }}
-              animate={{ scale: 1, opacity: 1, y: 0 }}
-              transition={{ duration: 1.2, delay: 0.1, ease: 'easeOut' }}
-              className="relative mb-2 sm:mb-3 flex flex-col items-center justify-center pointer-events-none"
+              initial={{ x: 0, y: 0 }}
+              animate={
+                curtainRevealed
+                  ? isMobile
+                    ? { y: '-105%' }
+                    : { x: '-105%' }
+                  : { x: 0, y: 0 }
+              }
+              transition={{ duration: 1.5, ease: [0.77, 0, 0.175, 1] }}
+              className="w-full h-1/2 md:w-1/2 md:h-full md:min-h-[100dvh] relative overflow-hidden flex flex-col justify-between p-4 sm:p-10"
+              style={{
+                background: isMobile
+                  ? 'linear-gradient(180deg, #7C6090 0%, #9478A8 45%, #B89FC8 100%)'
+                  : 'linear-gradient(135deg, #7C6090 0%, #9478A8 40%, #B89FC8 100%)',
+              }}
             >
-              {/* Soft ambient backlight glow behind the figures */}
-              <div className="absolute -inset-6 sm:-inset-8 bg-gradient-to-r from-[#B89FC8]/50 via-[#FDE047]/40 to-[#E8A987]/50 rounded-full blur-2xl sm:blur-3xl opacity-70 animate-pulse" />
-
-              <img
-                src="/images/couple_transparent.webp"
-                alt="Anushka & Yash"
-                decoding="async"
-                className="relative z-10 w-36 h-40 sm:w-60 sm:h-64 md:w-72 md:h-76 object-contain filter drop-shadow-[0_12px_24px_rgba(0,0,0,0.35)]"
+              <div className="absolute inset-0 opacity-25 pointer-events-none mix-blend-overlay">
+                <img
+                  src="/images/delhi_side.webp"
+                  alt=""
+                  decoding="async"
+                  className="w-full h-full object-cover filter blur-[0.5px]"
+                />
+              </div>
+              <div
+                className="absolute inset-0"
+                style={{
+                  background: isMobile
+                    ? 'radial-gradient(circle at 50% 65%, rgba(255,255,255,0.2) 0%, transparent 65%)'
+                    : 'radial-gradient(circle at 70% 50%, rgba(255,255,255,0.18) 0%, transparent 60%)',
+                }}
               />
             </motion.div>
 
-            {/* Names Animation: Anushka enters together from left, Yash from right, then 'Ka' transforms after merge */}
-            <div className="relative mb-3 sm:mb-4 flex items-center justify-center flex-nowrap max-w-full overflow-visible">
-              {/* Anushka (Moves in together as a complete unit from Delhi side) */}
-              <motion.div
-                initial={{ x: -120, opacity: 0 }}
-                animate={{ x: 0, opacity: 1 }}
-                transition={{ duration: 1.8, ease: 'easeOut', delay: 0.2 }}
-                className="inline-flex items-baseline"
-              >
-                {/* Anush (Deep Pastel Lavender) */}
-                <span
-                  className="font-royal-custom text-3xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-[0.02em] sm:tracking-[0.04em]"
-                  style={{
-                    color: '#5E3D7A',
-                    textShadow: '0 2px 10px rgba(255, 255, 255, 0.6), 0 4px 16px rgba(94, 61, 122, 0.15)',
-                  }}
-                >
-                  Anush
-                </span>
-
-                {/* 'Ka' — starts in Anushka's pastel lavender theme, then upon merging transforms into shimmering Rose Gold */}
-                <motion.span
-                  initial={{
-                    color: '#5E3D7A',
-                    scale: 1,
-                  }}
-                  animate={{
-                    color: ['#5E3D7A', '#5E3D7A', '#C58F64', '#C58F64'],
-                    scale: [1, 1, 1.25, 1],
-                  }}
-                  transition={{
-                    duration: 3.0,
-                    times: [0, 0.65, 0.82, 1],
-                    delay: 0.2,
-                    ease: 'easeInOut',
-                  }}
-                  className="font-royal-custom text-3xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-[0.02em] sm:tracking-[0.04em] inline-block"
-                  style={{
-                    textShadow: '0 0 16px rgba(254, 240, 138, 0.85), 0 2px 10px rgba(217, 119, 6, 0.35), 0 4px 16px rgba(197, 143, 100, 0.25)',
-                  }}
-                >
-                  Ka
-                </motion.span>
-              </motion.div>
-
-              {/* Yash (Deep Pastel Peach / Terracotta) */}
-              <motion.div
-                initial={{ x: 120, opacity: 0 }}
-                animate={{ x: 0, opacity: 1 }}
-                transition={{ duration: 1.8, ease: 'easeOut', delay: 0.2 }}
-                className="inline-flex items-baseline"
-              >
-                <span
-                  className="font-royal-custom text-3xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-[0.02em] sm:tracking-[0.04em]"
-                  style={{
-                    color: '#B0542C',
-                    textShadow: '0 2px 10px rgba(255, 255, 255, 0.6), 0 4px 16px rgba(176, 84, 44, 0.15)',
-                  }}
-                >
-                  Yash
-                </span>
-              </motion.div>
-            </div>
-
-            {/* Tagline directly rendered without background box */}
+            {/* Bottom (Mobile) / Right (Desktop) — Maharashtra / Peach side */}
             <motion.div
+              initial={{ x: 0, y: 0 }}
+              animate={
+                curtainRevealed
+                  ? isMobile
+                    ? { y: '105%' }
+                    : { x: '105%' }
+                  : { x: 0, y: 0 }
+              }
+              transition={{ duration: 1.5, ease: [0.77, 0, 0.175, 1] }}
+              className="w-full h-1/2 md:w-1/2 md:h-full md:min-h-[100dvh] relative overflow-hidden flex flex-col justify-between items-end p-4 sm:p-10"
+              style={{
+                background: isMobile
+                  ? 'linear-gradient(180deg, #E8A987 0%, #D08B68 55%, #B56241 100%)'
+                  : 'linear-gradient(225deg, #B56241 0%, #D08B68 40%, #E8A987 100%)',
+              }}
+            >
+              <div className="absolute inset-0 opacity-25 pointer-events-none mix-blend-overlay">
+                <img
+                  src="/images/maharashtra_side.webp"
+                  alt=""
+                  decoding="async"
+                  className="w-full h-full object-cover filter blur-[0.5px]"
+                />
+              </div>
+              <div
+                className="absolute inset-0"
+                style={{
+                  background: isMobile
+                    ? 'radial-gradient(circle at 50% 35%, rgba(255,255,255,0.2) 0%, transparent 65%)'
+                    : 'radial-gradient(circle at 30% 50%, rgba(255,255,255,0.18) 0%, transparent 60%)',
+                }}
+              />
+            </motion.div>
+
+            {/* Center — merging names, couple figures, and unveiling button */}
+            <motion.div
+              animate={curtainRevealed ? { opacity: 0, scale: 0.9 } : { opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, ease: 'easeInOut' }}
+              className="absolute inset-0 flex flex-col items-center justify-center pointer-events-auto z-20 px-3 py-6 my-auto"
+            >
+              {/* Ambient radiant glow behind the union */}
+              <div
+                className="absolute w-[280px] h-[280px] sm:w-[580px] sm:h-[580px] rounded-full animate-breathe pointer-events-none"
+                style={{
+                  background: 'radial-gradient(circle, rgba(255, 235, 215, 0.35) 0%, rgba(184, 159, 200, 0.2) 45%, transparent 70%)',
+                }}
+              />
+
+              {/* ── Animated Couple Figure on Animation Banner (Transparent Cutout) ── */}
+              <motion.div
+                initial={{ scale: 0, opacity: 0, y: -20 }}
+                animate={{ scale: 1, opacity: 1, y: 0 }}
+                transition={{ duration: 1.2, delay: 0.1, ease: 'easeOut' }}
+                className="relative mb-2 sm:mb-3 flex flex-col items-center justify-center pointer-events-none"
+              >
+                {/* Soft ambient backlight glow behind the figures */}
+                <div className="absolute -inset-6 sm:-inset-8 bg-gradient-to-r from-[#B89FC8]/50 via-[#FDE047]/40 to-[#E8A987]/50 rounded-full blur-2xl sm:blur-3xl opacity-70 animate-pulse" />
+
+                <img
+                  src="/images/couple_transparent.webp"
+                  alt="Anushka & Yash"
+                  decoding="async"
+                  className="relative z-10 w-36 h-40 sm:w-60 sm:h-64 md:w-72 md:h-76 object-contain filter drop-shadow-[0_12px_24px_rgba(0,0,0,0.35)]"
+                />
+              </motion.div>
+
+              {/* Names Animation: Anushka enters together from left, Yash from right, then 'Ka' transforms after merge */}
+              <div className="relative mb-3 sm:mb-4 flex items-center justify-center flex-nowrap max-w-full overflow-visible">
+                {/* Anushka (Moves in together as a complete unit from Delhi side) */}
+                <motion.div
+                  initial={{ x: -120, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  transition={{ duration: 1.8, ease: 'easeOut', delay: 0.2 }}
+                  className="inline-flex items-baseline"
+                >
+                  {/* Anush (Deep Pastel Lavender) */}
+                  <span
+                    className="font-royal-custom text-3xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-[0.02em] sm:tracking-[0.04em]"
+                    style={{
+                      color: '#5E3D7A',
+                      textShadow: '0 2px 10px rgba(255, 255, 255, 0.6), 0 4px 16px rgba(94, 61, 122, 0.15)',
+                    }}
+                  >
+                    Anush
+                  </span>
+
+                  {/* 'Ka' — starts in Anushka's pastel lavender theme, then upon merging transforms into shimmering Rose Gold */}
+                  <motion.span
+                    initial={{
+                      color: '#5E3D7A',
+                      scale: 1,
+                    }}
+                    animate={{
+                      color: ['#5E3D7A', '#5E3D7A', '#C58F64', '#C58F64'],
+                      scale: [1, 1, 1.25, 1],
+                    }}
+                    transition={{
+                      duration: 3.0,
+                      times: [0, 0.65, 0.82, 1],
+                      delay: 0.2,
+                      ease: 'easeInOut',
+                    }}
+                    className="font-royal-custom text-3xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-[0.02em] sm:tracking-[0.04em] inline-block"
+                    style={{
+                      textShadow: '0 0 16px rgba(254, 240, 138, 0.85), 0 2px 10px rgba(217, 119, 6, 0.35), 0 4px 16px rgba(197, 143, 100, 0.25)',
+                    }}
+                  >
+                    Ka
+                  </motion.span>
+                </motion.div>
+
+                {/* Yash (Deep Pastel Peach / Terracotta) */}
+                <motion.div
+                  initial={{ x: 120, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  transition={{ duration: 1.8, ease: 'easeOut', delay: 0.2 }}
+                  className="inline-flex items-baseline"
+                >
+                  <span
+                    className="font-royal-custom text-3xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-[0.02em] sm:tracking-[0.04em]"
+                    style={{
+                      color: '#B0542C',
+                      textShadow: '0 2px 10px rgba(255, 255, 255, 0.6), 0 4px 16px rgba(176, 84, 44, 0.15)',
+                    }}
+                  >
+                    Yash
+                  </span>
+                </motion.div>
+              </div>
+
+              {/* Tagline directly rendered without background box */}
+              <motion.div
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 2.8, duration: 1.2 }}
+                className="flex items-center justify-center mb-6 sm:mb-8"
+              >
+                <p
+                  className="font-serif-custom text-[11px] sm:text-sm tracking-[0.3em] uppercase font-bold text-[#5E3D7A]"
+                  style={{
+                    textShadow: '0 1px 6px rgba(255, 255, 255, 0.6)',
+                  }}
+                >
+                  Two States &middot; One Love
+                </p>
+              </motion.div>
+
+              {/* On Desktop / Tablet: Refined Glass Button */}
+              <motion.button
+                initial={{ opacity: 0, y: 25 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 3.4, duration: 0.9 }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.96 }}
+                onClick={handleUnveil}
+                className="hidden sm:inline-flex group relative px-10 py-3.5 rounded-full overflow-hidden shadow-xl transition-all cursor-pointer border border-white/50 mt-1 active:shadow-md"
+                style={{
+                  background: 'linear-gradient(135deg, #FFFFFF 0%, #FFFBEB 40%, #FEF3C7 100%)',
+                  boxShadow: '0 10px 30px rgba(0, 0, 0, 0.2), 0 0 15px rgba(255, 255, 255, 0.4)',
+                }}
+              >
+                {/* Golden shimmer highlight */}
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+
+                <span className="relative font-serif-custom text-xs tracking-[0.25em] uppercase font-bold text-[#2E2438] group-hover:text-[#6B5280] transition-colors">
+                  Unveil the Celebration &rarr;
+                </span>
+              </motion.button>
+            </motion.div>
+
+            {/* On Mobile: Elegant animated scroll-down / unveil cue pinned at bottom */}
+            <motion.button
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 2.8, duration: 1.2 }}
-              className="flex items-center justify-center mb-6 sm:mb-8"
+              transition={{ delay: 3.0, duration: 1 }}
+              whileTap={{ scale: 0.92 }}
+              onClick={handleUnveil}
+              className="flex sm:hidden flex-col items-center gap-1.5 absolute bottom-5 left-1/2 -translate-x-1/2 z-30 pointer-events-auto cursor-pointer p-2 rounded-2xl active:bg-white/10"
             >
-              <p
-                className="font-serif-custom text-[11px] sm:text-sm tracking-[0.3em] uppercase font-bold text-[#5E3D7A]"
-                style={{
-                  textShadow: '0 1px 6px rgba(255, 255, 255, 0.6)',
-                }}
+              <span
+                className="font-serif-custom text-[10px] uppercase tracking-[0.25em] font-bold text-[#5E3D7A] text-center whitespace-nowrap"
+                style={{ textShadow: '0 1px 4px rgba(255, 255, 255, 0.8)' }}
               >
-                Two States &middot; One Love
-              </p>
-            </motion.div>
-
-            {/* On Desktop / Tablet: Refined Glass Button (Unlinked for now) */}
-            <motion.button
-              initial={{ opacity: 0, y: 25 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 3.4, duration: 0.9 }}
-              whileHover={{ scale: 1.04 }}
-              whileTap={{ scale: 0.98 }}
-              className="hidden sm:inline-flex group relative px-10 py-3.5 rounded-full overflow-hidden shadow-xl transition-all cursor-default border border-white/50 mt-1"
-              style={{
-                background: 'linear-gradient(135deg, #FFFFFF 0%, #FFFBEB 40%, #FEF3C7 100%)',
-                boxShadow: '0 10px 30px rgba(0, 0, 0, 0.2), 0 0 15px rgba(255, 255, 255, 0.4)',
-              }}
-            >
-              {/* Golden shimmer highlight */}
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
-
-              <span className="relative font-serif-custom text-xs tracking-[0.25em] uppercase font-bold text-[#2E2438] group-hover:text-[#6B5280] transition-colors">
-                Unveil the Celebration &rarr;
+                Unveil the Celebration
               </span>
+
+              {/* Smooth animated downward moving indicator */}
+              <div className="w-5 h-8 rounded-full border border-[#5E3D7A]/40 flex justify-center p-1 bg-white/30 backdrop-blur-sm shadow-sm">
+                <motion.div
+                  animate={{
+                    y: [0, 10, 0],
+                    opacity: [1, 0.3, 1],
+                  }}
+                  transition={{
+                    duration: 1.8,
+                    repeat: Infinity,
+                    ease: 'easeInOut',
+                  }}
+                  className="w-1 h-2 rounded-full bg-gradient-to-b from-[#5E3D7A] to-[#D47B50]"
+                />
+              </div>
             </motion.button>
-          </div>
-
-          {/* On Mobile: Elegant animated scroll-down cue pinned at bottom */}
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 3.0, duration: 1 }}
-            className="flex sm:hidden flex-col items-center gap-1.5 absolute bottom-5 left-1/2 -translate-x-1/2 z-30 pointer-events-auto"
-          >
-            <span
-              className="font-serif-custom text-[10px] uppercase tracking-[0.25em] font-bold text-[#5E3D7A] text-center whitespace-nowrap"
-              style={{ textShadow: '0 1px 4px rgba(255, 255, 255, 0.8)' }}
-            >
-              Unveil the Celebration
-            </span>
-
-            {/* Smooth animated downward moving indicator */}
-            <div className="w-5 h-8 rounded-full border border-[#5E3D7A]/40 flex justify-center p-1 bg-white/30 backdrop-blur-sm shadow-sm">
-              <motion.div
-                animate={{
-                  y: [0, 10, 0],
-                  opacity: [1, 0.3, 1],
-                }}
-                transition={{
-                  duration: 1.8,
-                  repeat: Infinity,
-                  ease: 'easeInOut',
-                }}
-                className="w-1 h-2 rounded-full bg-gradient-to-b from-[#5E3D7A] to-[#D47B50]"
-              />
-            </div>
           </motion.div>
-        </motion.div>
-      )}
+        )}
+      </AnimatePresence>
 
       {/* ── The Regal Shadi Poster Content ── */}
       <motion.div

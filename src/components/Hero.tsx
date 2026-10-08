@@ -25,54 +25,8 @@ export const Hero: React.FC<HeroProps> = ({ onEnter }) => {
     setCurtainRevealed(true);
     setTimeout(() => {
       setShowCurtain(false);
-      onEnter();
     }, 1500);
   };
-
-  // Trigger unveil on any scroll, wheel, or touch swipe
-  useEffect(() => {
-    if (!showCurtain || curtainRevealed) return;
-
-    const handleWheel = (e: WheelEvent) => {
-      if (Math.abs(e.deltaY) > 8) {
-        handleUnveil();
-      }
-    };
-
-    let touchStartY = 0;
-    const handleTouchStart = (e: TouchEvent) => {
-      if (e.touches && e.touches.length > 0) {
-        touchStartY = e.touches[0].clientY;
-      }
-    };
-
-    const handleTouchMove = (e: TouchEvent) => {
-      if (e.touches && e.touches.length > 0) {
-        const currentY = e.touches[0].clientY;
-        if (Math.abs(touchStartY - currentY) > 10) {
-          handleUnveil();
-        }
-      }
-    };
-
-    const handleScroll = () => {
-      if (window.scrollY > 5) {
-        handleUnveil();
-      }
-    };
-
-    window.addEventListener('wheel', handleWheel, { passive: true });
-    window.addEventListener('touchstart', handleTouchStart, { passive: true });
-    window.addEventListener('touchmove', handleTouchMove, { passive: true });
-    window.addEventListener('scroll', handleScroll, { passive: true });
-
-    return () => {
-      window.removeEventListener('wheel', handleWheel);
-      window.removeEventListener('touchstart', handleTouchStart);
-      window.removeEventListener('touchmove', handleTouchMove);
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, [showCurtain, curtainRevealed]);
 
   useEffect(() => {
     const calc = () => {
@@ -148,10 +102,7 @@ export const Hero: React.FC<HeroProps> = ({ onEnter }) => {
             initial={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.6 }}
-            onWheel={(e) => { if (Math.abs(e.deltaY) > 8) handleUnveil(); }}
-            onScroll={(e) => { if (e.currentTarget.scrollTop > 5) handleUnveil(); }}
-            onTouchMove={() => handleUnveil()}
-            className="fixed inset-0 z-50 flex flex-col md:flex-row pointer-events-auto overflow-y-auto overflow-x-hidden min-h-[100dvh]"
+            className="fixed inset-0 z-50 flex flex-col md:flex-row pointer-events-auto overflow-hidden min-h-[100dvh]"
           >
             {/* Top (Mobile) / Left (Desktop) — Delhi / Lavender side */}
             <motion.div
@@ -326,7 +277,7 @@ export const Hero: React.FC<HeroProps> = ({ onEnter }) => {
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 2.8, duration: 1.2 }}
-                className="flex items-center justify-center mb-6 sm:mb-8"
+                className="flex items-center justify-center"
               >
                 <p
                   className="font-serif-custom text-xs sm:text-sm tracking-[0.3em] uppercase font-bold text-[#5E3D7A]"
@@ -337,62 +288,31 @@ export const Hero: React.FC<HeroProps> = ({ onEnter }) => {
                   Two States &middot; One Love
                 </p>
               </motion.div>
-
-              {/* On Desktop / Tablet: Refined Glass Button */}
-              <motion.button
-                initial={{ opacity: 0, y: 25 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 3.4, duration: 0.9 }}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.96 }}
-                onClick={handleUnveil}
-                className="hidden sm:inline-flex group relative px-10 py-3.5 rounded-full overflow-hidden shadow-xl transition-all cursor-pointer border border-white/50 mt-1 active:shadow-md"
-                style={{
-                  background: 'linear-gradient(135deg, #FFFFFF 0%, #FFFBEB 40%, #FEF3C7 100%)',
-                  boxShadow: '0 10px 30px rgba(0, 0, 0, 0.2), 0 0 15px rgba(255, 255, 255, 0.4)',
-                }}
-              >
-                {/* Golden shimmer highlight */}
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
-
-                <span className="relative font-serif-custom text-xs tracking-[0.25em] uppercase font-bold text-[#2E2438] group-hover:text-[#6B5280] transition-colors">
-                  Unveil the Celebration &rarr;
-                </span>
-              </motion.button>
             </motion.div>
 
-            {/* On Mobile: Elegant animated scroll-down / unveil cue pinned at bottom */}
-            <motion.button
+            {/* ── Minimalist Unveil Button pinned at bottom, subtly blended with theme ── */}
+            <motion.div
               initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 3.0, duration: 1 }}
-              whileTap={{ scale: 0.92 }}
-              onClick={handleUnveil}
-              className="flex sm:hidden flex-col items-center gap-1.5 absolute bottom-5 left-1/2 -translate-x-1/2 z-30 pointer-events-auto cursor-pointer p-2 rounded-2xl active:bg-white/10"
+              animate={curtainRevealed ? { opacity: 0, scale: 0.95 } : { opacity: 1, y: 0 }}
+              transition={{ delay: 2.8, duration: 0.8 }}
+              className="absolute bottom-5 sm:bottom-8 left-1/2 -translate-x-1/2 z-30 pointer-events-auto flex items-center justify-center w-full px-4"
             >
-              <span
-                className="font-serif-custom text-xs uppercase tracking-[0.25em] font-bold text-[#5E3D7A] text-center whitespace-nowrap"
-                style={{ textShadow: '0 1px 4px rgba(255, 255, 255, 0.8)' }}
+              <motion.button
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.96 }}
+                onClick={handleUnveil}
+                className="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-2.5 sm:py-3 rounded-full border border-white/40 hover:border-white/60 text-[#2B2136] shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer"
+                style={{
+                  background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 248, 240, 0.25) 100%)',
+                  backdropFilter: 'blur(8px)',
+                }}
               >
-                Unveil the Celebration
-              </span>
-
-              {/* Smooth animated downward moving indicator */}
-              <div className="w-5 h-8 rounded-full border border-[#5E3D7A]/40 flex justify-center p-1 bg-white/30 backdrop-blur-sm shadow-sm">
-                <motion.div
-                  animate={{
-                    y: [0, 10, 0],
-                    opacity: [1, 0.3, 1],
-                  }}
-                  transition={{
-                    duration: 1.8,
-                    repeat: Infinity,
-                    ease: 'easeInOut',
-                  }}
-                  className="w-1 h-2 rounded-full bg-gradient-to-b from-[#5E3D7A] to-[#D47B50]"
-                />
-              </div>
-            </motion.button>
+                <span className="font-serif-custom text-[11px] sm:text-xs tracking-[0.25em] uppercase font-semibold text-[#30223E]">
+                  Unveil the Celebration
+                </span>
+                <span className="text-xs text-[#5E3D7A] font-light">&rarr;</span>
+              </motion.button>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
@@ -505,24 +425,12 @@ export const Hero: React.FC<HeroProps> = ({ onEnter }) => {
           whileHover={{ scale: 1.04, y: -2 }}
           whileTap={{ scale: 0.96 }}
           onClick={onEnter}
-          className="px-10 py-4 rounded-full text-white font-bold text-xs uppercase tracking-[0.25em] shadow-xl hover:shadow-2xl transition-all mb-12 cursor-pointer"
+          className="inline-flex items-center justify-center gap-2.5 px-8 sm:px-10 py-3.5 rounded-full text-white font-bold text-xs uppercase tracking-[0.25em] shadow-lg hover:shadow-xl transition-all mb-10 cursor-pointer"
           style={{ background: 'linear-gradient(135deg, #6B4984, #B05B43, #A85630)' }}
         >
-          Enter the Celebration
+          <span>Enter the Celebration</span>
+          <span className="text-sm font-light">&rarr;</span>
         </motion.button>
-
-        {/* Scroll cue */}
-        <motion.div
-          animate={{ y: [0, 6, 0] }}
-          transition={{ duration: 2.5, repeat: Infinity }}
-          className="flex flex-col items-center gap-3 cursor-pointer opacity-70 hover:opacity-100 transition-opacity mb-10"
-          onClick={onEnter}
-        >
-          <span className="text-[10px] uppercase tracking-[0.3em] text-[#3D2C50] font-bold">
-            Scroll
-          </span>
-          <div className="w-[1.5px] h-8 bg-gradient-to-b from-[#8E68A8] via-[#B05B43] to-transparent" />
-        </motion.div>
 
         {/* Family names */}
         <motion.div

@@ -28,11 +28,11 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenRSVP, currentPage, onNavig
     >
       <div className="max-w-6xl mx-auto px-5 sm:px-8 flex items-center justify-between">
         {/* Monogram */}
-        <button onClick={() => onNavigate('home')} className="flex items-center gap-3 group">
-          <span className="font-royal-custom text-sm tracking-[0.2em] text-[#2E2438] group-hover:text-[#6B5280] transition-colors">
-            <span className="text-[#6B5280]">A</span>
-            <span className="text-[#B5ADBF] mx-0.5">&</span>
-            <span className="text-[#8B6045]">Y</span>
+        <button onClick={() => onNavigate('home')} className="flex items-center gap-3 group cursor-pointer">
+          <span className="font-royal-custom text-base tracking-[0.2em] font-bold transition-transform group-hover:scale-105 duration-300">
+            <span className="text-[#5E3D7A]">A</span>
+            <span className="text-[#C58F64] mx-1">&</span>
+            <span className="text-[#B0542C]">Y</span>
           </span>
         </button>
 
@@ -48,10 +48,10 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenRSVP, currentPage, onNavig
             <button
               key={link.label}
               onClick={link.action}
-              className={`text-[11px] uppercase tracking-[0.2em] transition-colors duration-300 ${
+              className={`text-[11px] uppercase tracking-[0.2em] transition-colors duration-300 cursor-pointer ${
                 link.active
-                  ? 'text-[#2E2438] font-semibold'
-                  : 'text-[#B5ADBF] hover:text-[#4A3F58]'
+                  ? 'text-[#1A1222] font-bold border-b-2 border-[#5E3D7A] pb-0.5'
+                  : 'text-[#4B3E5B] hover:text-[#1A1222] font-medium'
               }`}
             >
               {link.label}
@@ -63,10 +63,10 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenRSVP, currentPage, onNavig
         <div className="flex items-center gap-3">
           <button
             onClick={() => { const a = audioSynth.toggle(); setIsPlaying(a); }}
-            className={`p-2 rounded-full transition-all duration-300 ${
+            className={`p-2.5 rounded-full transition-all duration-300 cursor-pointer ${
               isPlaying
-                ? 'text-[#6B5280]'
-                : 'text-[#B5ADBF] hover:text-[#4A3F58]'
+                ? 'text-[#5E3D7A] bg-[#5E3D7A]/10 shadow-sm'
+                : 'text-[#4B3E5B] hover:text-[#1A1222] hover:bg-black/5'
             }`}
             title="Toggle Music"
           >
@@ -75,8 +75,8 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenRSVP, currentPage, onNavig
 
           <button
             onClick={onOpenRSVP}
-            className="flex items-center gap-2 px-5 py-2 rounded-full text-white text-[11px] uppercase tracking-[0.2em] font-semibold shadow-md hover:shadow-lg hover:scale-105 active:scale-95 transition-all duration-300"
-            style={{ background: 'linear-gradient(135deg, #B89FC8, #C9917E, #E8A987)' }}
+            className="flex items-center gap-2 px-5 py-2 rounded-full text-white text-[11px] uppercase tracking-[0.2em] font-semibold shadow-md hover:shadow-lg hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer"
+            style={{ background: 'linear-gradient(135deg, #6B4984, #B05B43, #A85630)' }}
           >
             <Heart className="w-3 h-3 fill-white" />
             <span>RSVP</span>

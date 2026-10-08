@@ -29,6 +29,51 @@ export const Hero: React.FC<HeroProps> = ({ onEnter }) => {
     }, 1500);
   };
 
+  // Trigger unveil on any scroll, wheel, or touch swipe
+  useEffect(() => {
+    if (!showCurtain || curtainRevealed) return;
+
+    const handleWheel = (e: WheelEvent) => {
+      if (Math.abs(e.deltaY) > 8) {
+        handleUnveil();
+      }
+    };
+
+    let touchStartY = 0;
+    const handleTouchStart = (e: TouchEvent) => {
+      if (e.touches && e.touches.length > 0) {
+        touchStartY = e.touches[0].clientY;
+      }
+    };
+
+    const handleTouchMove = (e: TouchEvent) => {
+      if (e.touches && e.touches.length > 0) {
+        const currentY = e.touches[0].clientY;
+        if (Math.abs(touchStartY - currentY) > 10) {
+          handleUnveil();
+        }
+      }
+    };
+
+    const handleScroll = () => {
+      if (window.scrollY > 5) {
+        handleUnveil();
+      }
+    };
+
+    window.addEventListener('wheel', handleWheel, { passive: true });
+    window.addEventListener('touchstart', handleTouchStart, { passive: true });
+    window.addEventListener('touchmove', handleTouchMove, { passive: true });
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener('wheel', handleWheel);
+      window.removeEventListener('touchstart', handleTouchStart);
+      window.removeEventListener('touchmove', handleTouchMove);
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [showCurtain, curtainRevealed]);
+
   useEffect(() => {
     const calc = () => {
       const diff = targetDate - Date.now();
@@ -103,6 +148,9 @@ export const Hero: React.FC<HeroProps> = ({ onEnter }) => {
             initial={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.6 }}
+            onWheel={(e) => { if (Math.abs(e.deltaY) > 8) handleUnveil(); }}
+            onScroll={(e) => { if (e.currentTarget.scrollTop > 5) handleUnveil(); }}
+            onTouchMove={() => handleUnveil()}
             className="fixed inset-0 z-50 flex flex-col md:flex-row pointer-events-auto overflow-y-auto overflow-x-hidden min-h-[100dvh]"
           >
             {/* Top (Mobile) / Left (Desktop) — Delhi / Lavender side */}
@@ -196,7 +244,7 @@ export const Hero: React.FC<HeroProps> = ({ onEnter }) => {
                 initial={{ scale: 0, opacity: 0, y: -20 }}
                 animate={{ scale: 1, opacity: 1, y: 0 }}
                 transition={{ duration: 1.2, delay: 0.1, ease: 'easeOut' }}
-                className="relative mb-2 sm:mb-3 flex flex-col items-center justify-center pointer-events-none"
+                className="relative mb-3 sm:mb-4 flex flex-col items-center justify-center pointer-events-none"
               >
                 {/* Soft ambient backlight glow behind the figures */}
                 <div className="absolute -inset-6 sm:-inset-8 bg-gradient-to-r from-[#B89FC8]/50 via-[#FDE047]/40 to-[#E8A987]/50 rounded-full blur-2xl sm:blur-3xl opacity-70 animate-pulse" />
@@ -205,7 +253,7 @@ export const Hero: React.FC<HeroProps> = ({ onEnter }) => {
                   src="/images/couple_transparent.webp"
                   alt="Anushka & Yash"
                   decoding="async"
-                  className="relative z-10 w-36 h-40 sm:w-60 sm:h-64 md:w-72 md:h-76 object-contain filter drop-shadow-[0_12px_24px_rgba(0,0,0,0.35)]"
+                  className="relative z-10 w-44 h-52 sm:w-60 sm:h-64 md:w-72 md:h-76 object-contain filter drop-shadow-[0_14px_28px_rgba(0,0,0,0.35)]"
                 />
               </motion.div>
 
@@ -220,7 +268,7 @@ export const Hero: React.FC<HeroProps> = ({ onEnter }) => {
                 >
                   {/* Anush (Deep Pastel Lavender) */}
                   <span
-                    className="font-royal-custom text-3xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-[0.02em] sm:tracking-[0.04em]"
+                    className="font-royal-custom text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-[0.02em] sm:tracking-[0.04em]"
                     style={{
                       color: '#5E3D7A',
                       textShadow: '0 2px 10px rgba(255, 255, 255, 0.6), 0 4px 16px rgba(94, 61, 122, 0.15)',
@@ -245,7 +293,7 @@ export const Hero: React.FC<HeroProps> = ({ onEnter }) => {
                       delay: 0.2,
                       ease: 'easeInOut',
                     }}
-                    className="font-royal-custom text-3xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-[0.02em] sm:tracking-[0.04em] inline-block"
+                    className="font-royal-custom text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-[0.02em] sm:tracking-[0.04em] inline-block"
                     style={{
                       textShadow: '0 0 16px rgba(254, 240, 138, 0.85), 0 2px 10px rgba(217, 119, 6, 0.35), 0 4px 16px rgba(197, 143, 100, 0.25)',
                     }}
@@ -262,7 +310,7 @@ export const Hero: React.FC<HeroProps> = ({ onEnter }) => {
                   className="inline-flex items-baseline"
                 >
                   <span
-                    className="font-royal-custom text-3xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-[0.02em] sm:tracking-[0.04em]"
+                    className="font-royal-custom text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-[0.02em] sm:tracking-[0.04em]"
                     style={{
                       color: '#B0542C',
                       textShadow: '0 2px 10px rgba(255, 255, 255, 0.6), 0 4px 16px rgba(176, 84, 44, 0.15)',
@@ -281,7 +329,7 @@ export const Hero: React.FC<HeroProps> = ({ onEnter }) => {
                 className="flex items-center justify-center mb-6 sm:mb-8"
               >
                 <p
-                  className="font-serif-custom text-[11px] sm:text-sm tracking-[0.3em] uppercase font-bold text-[#5E3D7A]"
+                  className="font-serif-custom text-xs sm:text-sm tracking-[0.3em] uppercase font-bold text-[#5E3D7A]"
                   style={{
                     textShadow: '0 1px 6px rgba(255, 255, 255, 0.6)',
                   }}
@@ -323,7 +371,7 @@ export const Hero: React.FC<HeroProps> = ({ onEnter }) => {
               className="flex sm:hidden flex-col items-center gap-1.5 absolute bottom-5 left-1/2 -translate-x-1/2 z-30 pointer-events-auto cursor-pointer p-2 rounded-2xl active:bg-white/10"
             >
               <span
-                className="font-serif-custom text-[10px] uppercase tracking-[0.25em] font-bold text-[#5E3D7A] text-center whitespace-nowrap"
+                className="font-serif-custom text-xs uppercase tracking-[0.25em] font-bold text-[#5E3D7A] text-center whitespace-nowrap"
                 style={{ textShadow: '0 1px 4px rgba(255, 255, 255, 0.8)' }}
               >
                 Unveil the Celebration
@@ -359,24 +407,24 @@ export const Hero: React.FC<HeroProps> = ({ onEnter }) => {
         {/* Hindi Tagline */}
         <motion.p
           variants={fadeUp}
-          className="font-serif-custom text-[#7A6D8E] text-xs sm:text-sm tracking-[0.35em] uppercase mb-6"
+          className="font-serif-custom text-[#7A6D8E] text-xs sm:text-sm tracking-[0.35em] uppercase mb-6 font-semibold"
         >
           दो राज्य &middot; एक प्यार &middot; एक मंज़िल
         </motion.p>
 
         {/* Names — massive, editorial poster typography */}
         <motion.div variants={fadeUp} className="mb-2">
-          <h1 className="font-royal-custom text-5xl sm:text-7xl lg:text-8xl tracking-[0.18em] text-[#2E2438] font-bold leading-none">
+          <h1 className="font-royal-custom text-6xl sm:text-7xl lg:text-8xl tracking-[0.18em] text-[#2E2438] font-bold leading-none">
             ANUSHKA
           </h1>
         </motion.div>
 
         <motion.div variants={fadeUp} className="my-1">
-          <span className="font-script-custom text-4xl sm:text-6xl text-[#A06B55]">&</span>
+          <span className="font-script-custom text-5xl sm:text-6xl text-[#A06B55]">&</span>
         </motion.div>
 
         <motion.div variants={fadeUp} className="mb-4">
-          <h1 className="font-royal-custom text-5xl sm:text-7xl lg:text-8xl tracking-[0.18em] text-[#2E2438] font-bold leading-none">
+          <h1 className="font-royal-custom text-6xl sm:text-7xl lg:text-8xl tracking-[0.18em] text-[#2E2438] font-bold leading-none">
             YASH
           </h1>
         </motion.div>
@@ -384,7 +432,7 @@ export const Hero: React.FC<HeroProps> = ({ onEnter }) => {
         {/* ── Animated Couple Centerpiece Figure (Transparent Floating Cutout) ── */}
         <motion.div
           variants={fadeUp}
-          className="relative my-2 flex flex-col items-center justify-center group"
+          className="relative my-3 flex flex-col items-center justify-center group"
         >
           {/* Two-States Dual Colored Glow Halo */}
           <div className="absolute -inset-6 bg-gradient-to-r from-[#B89FC8]/35 via-[#FDE047]/25 to-[#E8A987]/35 rounded-full blur-3xl opacity-70 group-hover:opacity-100 transition duration-1000 animate-pulse pointer-events-none" />
@@ -399,7 +447,7 @@ export const Hero: React.FC<HeroProps> = ({ onEnter }) => {
               src="/images/couple_transparent.webp"
               alt="Anushka & Yash"
               decoding="async"
-              className="w-64 h-72 sm:w-80 sm:h-92 md:w-96 md:h-[420px] object-contain filter drop-shadow-[0_18px_30px_rgba(46,36,56,0.18)] transform group-hover:scale-105 transition-transform duration-700"
+              className="w-72 h-80 sm:w-80 sm:h-92 md:w-96 md:h-[420px] object-contain filter drop-shadow-[0_18px_30px_rgba(46,36,56,0.18)] transform group-hover:scale-105 transition-transform duration-700"
             />
           </motion.div>
         </motion.div>

@@ -38,17 +38,17 @@
 
 /* Gradient text */
 .gradient-text-blend {
-  background: linear-gradient(135deg, #B89FC8 0%, #C9917E 50%, #E8A987 100%);
+  background: linear-gradient(135deg, #5E3D7A 0%, #B0542C 50%, #C58F64 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 .gradient-text-her {
-  background: linear-gradient(135deg, #B89FC8 0%, #9478A8 50%, #6B5280 100%);
+  background: linear-gradient(135deg, #7C6090 0%, #5E3D7A 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 .gradient-text-him {
-  background: linear-gradient(135deg, #E8A987 0%, #D08B68 50%, #8B6045 100%);
+  background: linear-gradient(135deg, #D47B50 0%, #B0542C 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }

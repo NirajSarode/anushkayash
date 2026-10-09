@@ -8,6 +8,7 @@ import { RoyalInvitation } from './components/RoyalInvitation';
 import { Events } from './components/Events';
 import { VenueTravel } from './components/VenueTravel';
 import { BlessingsWall } from './components/BlessingsWall';
+import { SaveTheDateBanner } from './components/SaveTheDateBanner';
 import { Footer } from './components/Footer';
 import { RSVPModal } from './components/RSVPModal';
 import { StoryTeaser } from './components/StoryTeaser';
@@ -80,6 +81,10 @@ export const App: React.FC = () => {
             <Events />
             <VenueTravel />
             <BlessingsWall />
+            <SaveTheDateBanner
+              onOpenRSVP={() => setIsRSVPOpen(true)}
+              onNavigateToVenue={() => handleNavigate('home', 'venue')}
+            />
           </>
         ) : (
           <OurStory onBackToHome={() => handleNavigate('home')} />

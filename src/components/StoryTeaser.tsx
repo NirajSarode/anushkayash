@@ -38,7 +38,9 @@ export const StoryTeaser: React.FC<StoryTeaserProps> = ({ onOpenStory }) => {
               whileInView={{ scale: 1, opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 1, ease: 'easeOut' }}
+              animate={{ y: [0, -8, 0] }}
               className="relative group cursor-pointer"
+              style={{ transition: 'transform 0.3s ease' }}
             >
               <div className="absolute -inset-4 bg-gradient-to-r from-[#B89FC8]/40 via-[#FDE047]/30 to-[#E8A987]/40 rounded-full blur-2xl opacity-60 group-hover:opacity-90 transition duration-700 animate-pulse pointer-events-none" />
               <div className="relative w-44 h-48 sm:w-56 sm:h-60 flex items-center justify-center">
@@ -68,11 +70,11 @@ export const StoryTeaser: React.FC<StoryTeaserProps> = ({ onOpenStory }) => {
 
           <button
             onClick={onOpenStory}
-            className="relative inline-flex items-center gap-3 px-8 py-3.5 rounded-full text-white text-xs uppercase tracking-[0.2em] font-semibold shadow-md hover:shadow-xl hover:scale-105 active:scale-95 transition-all cursor-pointer"
+            className="btn-sheen relative inline-flex items-center gap-3 px-8 py-3.5 rounded-full text-white text-xs uppercase tracking-[0.2em] font-semibold shadow-md hover:shadow-xl hover:scale-105 active:scale-95 transition-all cursor-pointer"
             style={{ background: 'linear-gradient(135deg, #6B4984, #B05B43, #A85630)' }}
           >
             <span>Read Our Full Story</span>
-            <ArrowRight className="w-4 h-4" />
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </button>
         </motion.div>
       </div>

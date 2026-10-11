@@ -355,7 +355,7 @@ export const Hero: React.FC<HeroProps> = () => {
           </svg>
 
           {/* Elegant Filigree Framed Plaque */}
-          <div className="relative px-5 py-2.5 sm:px-8 sm:py-3 rounded-xl border border-[#C58F64]/40 bg-[#FDFBF7]/85 backdrop-blur-md shadow-[0_4px_20px_rgba(197,143,100,0.12)]">
+          <div className="relative px-5 py-2.5 sm:px-8 sm:py-3 rounded-xl border border-[#C58F64]/45 bg-[#FDFBF7]/85 backdrop-blur-md shadow-[0_4px_25px_rgba(197,143,100,0.18)] hover:shadow-[0_8px_32px_rgba(197,143,100,0.28)] transition-all duration-500">
             {/* Fine Inner Accent Border */}
             <div className="absolute inset-1 rounded-lg border border-[#C58F64]/20 pointer-events-none" />
 
@@ -395,7 +395,7 @@ export const Hero: React.FC<HeroProps> = () => {
               <span className="font-royal-custom text-xl sm:text-2xl md:text-3xl font-bold text-[#C58F64] -mt-3.5">:</span>
 
               <div className="flex flex-col items-center min-w-[34px] sm:min-w-[48px]">
-                <span className="font-royal-custom text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight">
+                <span className="font-royal-custom text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-[#8E4A28]">
                   {String(timeLeft.seconds).padStart(2, '0')}
                 </span>
                 <span className="text-[9px] sm:text-[10px] font-sans-custom uppercase tracking-[0.22em] text-[#6D5F80] font-bold mt-0.5">
@@ -428,16 +428,20 @@ export const Hero: React.FC<HeroProps> = () => {
         {/* ── Wide Grand Wedding Family Illustration Gathering (Transparent Cutout) ── */}
         <motion.div
           variants={fadeUp}
-          className="relative w-full max-w-4xl lg:max-w-5xl mt-2 sm:mt-4 flex flex-col items-center"
+          className="relative w-full max-w-4xl lg:max-w-5xl mt-2 sm:mt-4 flex flex-col items-center group cursor-pointer"
         >
-          <div className="relative w-full flex justify-center">
+          <motion.div
+            animate={{ y: [0, -8, 0] }}
+            transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
+            className="relative w-full flex justify-center"
+          >
             <img
               src="/images/family_illustration_transparent.webp"
               alt="Anushka and Yash with Verma and Biyani families under the auspicious wedding mandap"
               decoding="async"
-              className="w-full h-auto object-contain filter drop-shadow-[0_14px_30px_rgba(46,36,56,0.12)]"
+              className="w-full h-auto object-contain filter drop-shadow-[0_14px_30px_rgba(46,36,56,0.12)] group-hover:scale-[1.015] transition-transform duration-700"
             />
-          </div>
+          </motion.div>
         </motion.div>
 
         {/* Family Names Banner */}

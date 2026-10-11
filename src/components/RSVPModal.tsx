@@ -32,22 +32,28 @@ export const RSVPModal: React.FC<RSVPModalProps> = ({ isOpen, onClose }) => {
 
   const resetAndClose = () => { setSubmitted(false); onClose(); };
 
-  if (!isOpen) return null;
-
   const inputClass = "w-full px-4 py-2.5 rounded-xl bg-[#F0EBE3] border border-[#C8BEAF] text-[#1A1222] text-sm focus:outline-none focus:border-[#5E3D7A] focus:ring-1 focus:ring-[#5E3D7A] transition-colors";
 
   return (
     <AnimatePresence>
-      <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#1A1222]/35 backdrop-blur-xl">
+      {isOpen && (
         <motion.div
-          initial={{ opacity: 0, scale: 0.95, y: 20 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.95, y: 20 }}
-          className="bg-[#F7F3EE] rounded-3xl max-w-xl w-full p-6 sm:p-8 relative shadow-2xl overflow-y-auto max-h-[90vh] text-[#1A1222] border border-[#C8BEAF]"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.25 }}
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#1A1222]/40 backdrop-blur-xl"
         >
-          <button onClick={resetAndClose} className="absolute top-4 right-4 p-2 rounded-full text-[#5E3D7A] hover:text-[#1A1222] hover:bg-black/5 transition-colors cursor-pointer">
-            <X className="w-5 h-5" />
-          </button>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.92, y: 24 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.92, y: 24 }}
+            transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+            className="card-sheen bg-[#F7F3EE] rounded-3xl max-w-xl w-full p-6 sm:p-8 relative shadow-2xl overflow-y-auto max-h-[90vh] text-[#1A1222] border border-[#C8BEAF]"
+          >
+            <button onClick={resetAndClose} className="absolute top-4 right-4 p-2 rounded-full text-[#5E3D7A] hover:text-[#1A1222] hover:bg-black/5 transition-colors cursor-pointer">
+              <X className="w-5 h-5" />
+            </button>
 
           {!submitted ? (
             <form onSubmit={handleSubmit} className="space-y-6">
@@ -139,8 +145,9 @@ export const RSVPModal: React.FC<RSVPModalProps> = ({ isOpen, onClose }) => {
               </button>
             </div>
           )}
+          </motion.div>
         </motion.div>
-      </div>
+      )}
     </AnimatePresence>
   );
 };

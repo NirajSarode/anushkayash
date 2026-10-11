@@ -138,3 +138,92 @@
 @media (min-width: 640px) {
   .section-spacing { padding-top: 10rem; padding-bottom: 10rem; }
 }
+
+/* ── Modern Transition & Animation Utilities ── */
+
+/* Card Shimmer Beam */
+.card-sheen {
+  position: relative;
+  overflow: hidden;
+}
+.card-sheen::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -70%;
+  width: 50%;
+  height: 200%;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.28) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: rotate(25deg);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.card-sheen:hover::after {
+  opacity: 1;
+  animation: sheen 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes sheen {
+  0% { transform: translateX(0) rotate(25deg); }
+  100% { transform: translateX(360%) rotate(25deg); }
+}
+
+/* Royal Button Sweep */
+.btn-sheen {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.btn-sheen::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.25) 50%,
+    transparent 100%
+  );
+  transition: left 0.7s ease;
+}
+.btn-sheen:hover::before {
+  left: 100%;
+}
+
+/* Audio Equalizer Bars */
+@keyframes bar1 { 0%, 100% { height: 4px; } 50% { height: 14px; } }
+@keyframes bar2 { 0%, 100% { height: 12px; } 50% { height: 6px; } }
+@keyframes bar3 { 0%, 100% { height: 8px; } 50% { height: 16px; } }
+.equalizer-bar-1 { animation: bar1 0.8s ease-in-out infinite; }
+.equalizer-bar-2 { animation: bar2 0.7s ease-in-out infinite 0.15s; }
+.equalizer-bar-3 { animation: bar3 0.9s ease-in-out infinite 0.3s; }
+
+/* Royal Golden Text Shimmer */
+@keyframes textShimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+.text-shimmer {
+  background: linear-gradient(
+    90deg,
+    #5E3D7A 0%,
+    #C58F64 25%,
+    #B0542C 50%,
+    #C58F64 75%,
+    #5E3D7A 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textShimmer 8s linear infinite;
+}
+

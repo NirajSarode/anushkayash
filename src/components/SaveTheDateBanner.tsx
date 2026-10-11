@@ -67,7 +67,7 @@ export const SaveTheDateBanner: React.FC<SaveTheDateBannerProps> = ({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-60px' }}
           transition={{ duration: 1.0, ease: 'easeOut' }}
-          className="relative rounded-3xl sm:rounded-[36px] overflow-hidden border-2 border-[#C58F64]/45 bg-[#F7F3EE] shadow-[0_20px_60px_rgba(46,36,56,0.18)]"
+          className="card-sheen relative rounded-3xl sm:rounded-[36px] overflow-hidden border-2 border-[#C58F64]/45 bg-[#F7F3EE] shadow-[0_20px_60px_rgba(46,36,56,0.18)]"
         >
           {/* Inner Accent Hairline Border */}
           <div className="absolute inset-2 sm:inset-3 rounded-2xl sm:rounded-[28px] border border-[#C58F64]/30 pointer-events-none z-20" />
@@ -244,7 +244,7 @@ export const SaveTheDateBanner: React.FC<SaveTheDateBannerProps> = ({
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.96 }}
                     onClick={onOpenRSVP}
-                    className="px-7 sm:px-9 py-3 sm:py-3.5 rounded-full text-white text-xs sm:text-sm font-serif-custom tracking-[0.22em] uppercase font-bold shadow-[0_8px_24px_rgba(142,74,40,0.35)] hover:shadow-[0_12px_32px_rgba(142,74,40,0.45)] transition-all duration-300 cursor-pointer"
+                    className="btn-sheen px-7 sm:px-9 py-3 sm:py-3.5 rounded-full text-white text-xs sm:text-sm font-serif-custom tracking-[0.22em] uppercase font-bold shadow-[0_8px_24px_rgba(142,74,40,0.35)] hover:shadow-[0_12px_32px_rgba(142,74,40,0.45)] transition-all duration-300 cursor-pointer"
                     style={{
                       background: 'linear-gradient(135deg, #8E4A28 0%, #B0542C 50%, #5E3D7A 100%)',
                     }}

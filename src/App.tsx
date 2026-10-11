@@ -13,6 +13,7 @@ import { Footer } from './components/Footer';
 import { RSVPModal } from './components/RSVPModal';
 import { StoryTeaser } from './components/StoryTeaser';
 import { ThemePreview } from './components/ThemePreview';
+import { AmbientCursorAura } from './components/AmbientCursorAura';
 
 export const App: React.FC = () => {
   const [currentPage, setCurrentPage] = useState<'home' | 'story' | 'themes'>('home');
@@ -62,6 +63,7 @@ export const App: React.FC = () => {
       {/* Soft ambient background */}
       <MistCanvas />
       <FloatingDecor />
+      <AmbientCursorAura />
 
       {/* Navigation */}
       <Navbar

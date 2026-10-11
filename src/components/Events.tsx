@@ -118,18 +118,23 @@ export const Events: React.FC = () => {
           {eventsList.map((ev, index) => (
             <motion.div
               key={ev.id}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 35 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.12, duration: 0.8, ease: 'easeOut' }}
-              whileHover={{ y: -8 }}
-              className="rounded-3xl overflow-hidden cursor-pointer group bg-[#F7F3EE] border border-[#C8BEAF]/60 hover:shadow-2xl transition-all duration-500"
+              viewport={{ once: true, margin: '-40px' }}
+              transition={{ delay: index * 0.14, duration: 0.8, ease: 'easeOut' }}
+              whileHover={{ y: -10, scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="card-sheen rounded-3xl overflow-hidden cursor-pointer group bg-[#F7F3EE] border border-[#C8BEAF]/60 hover:shadow-2xl transition-all duration-500 hover:border-[#C58F64]/70"
               onClick={() => setSelectedEvent(ev)}
             >
               {/* Image with Ken Burns + film treatment */}
               <div className="h-56 w-full relative overflow-hidden">
-                <img src={ev.image} alt={ev.title} className="w-full h-full object-cover img-film img-kenburns" />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#F7F3EE] via-transparent to-transparent" />
+                <img
+                  src={ev.image}
+                  alt={ev.title}
+                  className="w-full h-full object-cover img-film transition-transform duration-700 group-hover:scale-108"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#F7F3EE] via-transparent to-transparent opacity-90" />
               </div>
 
               <div className="p-6 sm:p-7">
@@ -158,10 +163,10 @@ export const Events: React.FC = () => {
 
               <div className="px-6 pb-6">
                 <div
-                  className="w-full py-2.5 rounded-xl text-center text-xs uppercase tracking-[0.15em] font-bold transition-all duration-300 group-hover:shadow-md"
+                  className="btn-sheen w-full py-2.5 rounded-xl text-center text-xs uppercase tracking-[0.15em] font-bold transition-all duration-300 group-hover:shadow-md"
                   style={{
                     color: ev.accentColor,
-                    backgroundColor: `${ev.accentColor}12`,
+                    backgroundColor: `${ev.accentColor}14`,
                     border: `1px solid ${ev.accentColor}50`,
                   }}
                 >
@@ -173,14 +178,15 @@ export const Events: React.FC = () => {
         </div>
       </div>
 
-      {/* Detail Modal */}
+      {/* Detail Modal with Smooth Spring Transition */}
       <AnimatePresence>
         {selectedEvent && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#1A1222]/35 backdrop-blur-xl">
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#1A1222]/40 backdrop-blur-xl">
             <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              initial={{ opacity: 0, scale: 0.9, y: 25 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              exit={{ opacity: 0, scale: 0.9, y: 25 }}
+              transition={{ type: 'spring', damping: 26, stiffness: 300 }}
               className="bg-[#F7F3EE] rounded-3xl max-w-2xl w-full p-6 sm:p-8 relative shadow-2xl overflow-y-auto max-h-[90vh] text-[#1A1222] border border-[#C8BEAF]"
             >
               <button onClick={() => setSelectedEvent(null)}

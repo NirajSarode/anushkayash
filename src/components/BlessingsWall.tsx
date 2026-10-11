@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence, type Variants } from 'framer-motion';
 import { Send, Heart } from 'lucide-react';
+import confetti from 'canvas-confetti';
 
 interface Blessing {
   id: string;
@@ -38,6 +39,13 @@ export const BlessingsWall: React.FC = () => {
     if (!newName.trim() || !newMessage.trim()) return;
     setBlessings([{ id: Date.now().toString(), name: newName.trim(), relation: newRelation.trim() || 'Well Wisher', message: newMessage.trim(), date: 'Just now', side: 'mutual' }, ...blessings]);
     setNewName(''); setNewRelation(''); setNewMessage('');
+    confetti({
+      particleCount: 45,
+      spread: 60,
+      origin: { y: 0.7 },
+      colors: ['#5E3D7A', '#B0542C', '#C58F64'],
+      disableForReducedMotion: true,
+    });
   };
 
   return (
@@ -84,7 +92,7 @@ export const BlessingsWall: React.FC = () => {
                   className="w-full px-4 py-2.5 rounded-xl bg-[#F0EBE3] border border-[#C8BEAF] text-[#1A1222] text-sm focus:outline-none focus:border-[#5E3D7A] focus:ring-1 focus:ring-[#5E3D7A] resize-none transition-colors" />
               </div>
               <button type="submit"
-                className="w-full py-3.5 rounded-full text-white text-xs uppercase tracking-[0.15em] font-bold flex items-center justify-center gap-2 shadow-lg hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer"
+                className="btn-sheen w-full py-3.5 rounded-full text-white text-xs uppercase tracking-[0.15em] font-bold flex items-center justify-center gap-2 shadow-lg hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer"
                 style={{ background: 'linear-gradient(135deg, #6B4984, #B05B43, #A85630)' }}>
                 <Send className="w-4 h-4" />Post Blessing &rarr;
               </button>
@@ -96,8 +104,9 @@ export const BlessingsWall: React.FC = () => {
             <AnimatePresence>
               {blessings.map((b) => (
                 <motion.div key={b.id}
-                  initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}
-                  className="bg-[#F7F3EE] rounded-2xl p-6 text-left flex flex-col justify-between hover:shadow-xl transition-all duration-500 border border-[#C8BEAF]/50"
+                  initial={{ opacity: 0, scale: 0.95, y: 15 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: 0.95 }}
+                  whileHover={{ y: -4 }}
+                  className="card-sheen bg-[#F7F3EE] rounded-2xl p-6 text-left flex flex-col justify-between hover:shadow-xl transition-all duration-500 border border-[#C8BEAF]/50"
                   style={{ borderLeft: `4px solid ${sideColors[b.side]}` }}>
                   <p className="font-serif-custom text-[#2B2136] text-base sm:text-lg italic leading-relaxed font-normal">
                     "{b.message}"

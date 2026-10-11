@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence, type Variants } from 'framer-motion';
 import { MapPin } from 'lucide-react';
+import confetti from 'canvas-confetti';
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 20 },
@@ -9,6 +10,17 @@ const fadeUp: Variants = {
 
 export const RoyalInvitation: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
+
+  const handleOpen = () => {
+    setIsOpen(true);
+    confetti({
+      particleCount: 50,
+      spread: 80,
+      origin: { y: 0.65 },
+      colors: ['#5E3D7A', '#B0542C', '#C58F64', '#FACC15', '#EA580C'],
+      disableForReducedMotion: true,
+    });
+  };
 
   return (
     <section id="invitation" className="section-spacing px-4 sm:px-6 lg:px-8 overflow-hidden">
@@ -42,13 +54,13 @@ export const RoyalInvitation: React.FC = () => {
             <motion.button
               initial="hidden" whileInView="show" viewport={{ once: true }}
               variants={fadeUp}
-              whileHover={{ scale: 1.02, y: -4 }}
-              whileTap={{ scale: 0.98 }}
-              onClick={() => setIsOpen(true)}
-              className="max-w-lg w-full soft-card rounded-3xl p-10 sm:p-14 flex flex-col items-center gap-6 group cursor-pointer hover:shadow-2xl transition-all duration-500 border border-[#C8BEAF]"
+              whileHover={{ scale: 1.03, y: -6 }}
+              whileTap={{ scale: 0.97 }}
+              onClick={handleOpen}
+              className="card-sheen max-w-lg w-full soft-card rounded-3xl p-10 sm:p-14 flex flex-col items-center gap-6 group cursor-pointer hover:shadow-2xl transition-all duration-500 border border-[#C8BEAF]"
             >
-              {/* Royal Wedding Crest Seal */}
-              <div className="relative p-1.5 sm:p-2 rounded-full bg-white/90 border border-[#C58F64]/50 shadow-2xl group-hover:scale-105 transition-transform duration-500">
+              {/* Royal Wedding Crest Seal with smooth breathing pulse */}
+              <div className="relative p-1.5 sm:p-2 rounded-full bg-white/90 border border-[#C58F64]/50 shadow-2xl group-hover:scale-108 transition-transform duration-500">
                 <img
                   src="/images/wedding_crest.png"
                   alt="Anushka & Yash Wedding Crest"
@@ -60,11 +72,11 @@ export const RoyalInvitation: React.FC = () => {
                 SHREE GANESHAYA NAMAH
               </h3>
               <p className="font-serif-custom text-[#4B3E5B] text-base italic max-w-sm">
-                With the blessings of our elders & almighty, we request the pleasure of your company.
+                With the blessings of our elders &amp; almighty, we request the pleasure of your company.
               </p>
 
               <span
-                className="px-8 py-3.5 rounded-full text-white text-xs uppercase tracking-[0.2em] font-semibold shadow-md group-hover:shadow-lg transition-all"
+                className="btn-sheen px-8 py-3.5 rounded-full text-white text-xs uppercase tracking-[0.2em] font-semibold shadow-md group-hover:shadow-lg transition-all"
                 style={{ background: 'linear-gradient(135deg, #6B4984, #B05B43, #A85630)' }}
               >
                 Tap to Unfurl &rarr;
@@ -73,11 +85,11 @@ export const RoyalInvitation: React.FC = () => {
           ) : (
             <AnimatePresence>
               <motion.div
-                initial={{ opacity: 0, scale: 0.9, y: 30 }}
+                initial={{ opacity: 0, scale: 0.92, y: 35 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.9, y: 30 }}
-                transition={{ duration: 0.8, ease: 'easeOut' }}
-                className="max-w-2xl w-full bg-[#F7F3EE] rounded-3xl p-8 sm:p-12 shadow-2xl relative overflow-hidden text-[#2E2438] border border-[#C8BEAF]"
+                exit={{ opacity: 0, scale: 0.92, y: 35 }}
+                transition={{ type: 'spring', damping: 25, stiffness: 240 }}
+                className="card-sheen max-w-2xl w-full bg-[#F7F3EE] rounded-3xl p-8 sm:p-12 shadow-2xl relative overflow-hidden text-[#2E2438] border border-[#C8BEAF]"
               >
                 {/* Top gradient accent */}
                 <div className="absolute top-0 left-0 right-0 h-[3px]" style={{ background: 'linear-gradient(to right, #7C6090, #C58F64, #B0542C)' }} />

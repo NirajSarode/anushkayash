@@ -119,6 +119,7 @@ export const App: React.FC = () => {
         currentPage={currentPage}
         onNavigate={handleNavigate}
         onOpenRSVP={() => setIsRSVPOpen(true)}
+        hasUnveiled={hasUnveiledCurtain}
       />
 
       <main>

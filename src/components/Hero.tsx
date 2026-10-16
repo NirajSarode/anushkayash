@@ -30,9 +30,9 @@ export const Hero: React.FC<HeroProps> = ({ onEnter: _onEnter, hasUnveiled = fal
     if (curtainRevealed || isRevealing.current) return;
     isRevealing.current = true;
     setCurtainRevealed(true);
-    if (onUnveil) onUnveil();
     setTimeout(() => {
       setShowCurtain(false);
+      if (onUnveil) onUnveil();
     }, 1400);
   };
 
@@ -131,7 +131,7 @@ export const Hero: React.FC<HeroProps> = ({ onEnter: _onEnter, hasUnveiled = fal
             role="button"
             tabIndex={0}
             aria-label="Click or tap anywhere to unveil the wedding celebration"
-            className="fixed inset-0 z-50 flex flex-col md:flex-row pointer-events-auto overflow-hidden h-[100dvh] w-full touch-none select-none cursor-pointer"
+            className="fixed inset-0 z-[100] flex flex-col md:flex-row pointer-events-auto overflow-hidden h-[100dvh] w-full touch-none select-none cursor-pointer"
           >
             {/* Top (Mobile) / Left (Desktop) — Delhi / Lavender side */}
             <motion.div

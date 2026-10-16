@@ -323,12 +323,12 @@ export const Hero: React.FC<HeroProps> = ({ onEnter: _onEnter, hasUnveiled = fal
               </motion.div>
             </motion.div>
 
-            {/* ── Minimalist Unveil Button pinned at bottom with Tap Anywhere cue ── */}
+            {/* ── Minimalist Unveil Button pinned at bottom ── */}
             <motion.div
               initial={{ opacity: 0, y: 15 }}
               animate={curtainRevealed ? { opacity: 0, scale: 0.95 } : { opacity: 1, y: 0 }}
               transition={{ delay: 2.8, duration: 0.8 }}
-              className="absolute bottom-4 sm:bottom-8 left-1/2 -translate-x-1/2 z-30 pointer-events-auto flex flex-col items-center justify-center w-full px-4"
+              className="absolute bottom-5 sm:bottom-8 left-1/2 -translate-x-1/2 z-30 pointer-events-auto flex flex-col items-center justify-center w-full px-4"
             >
               <motion.button
                 whileHover={{ scale: 1.03 }}
@@ -351,35 +351,6 @@ export const Hero: React.FC<HeroProps> = ({ onEnter: _onEnter, hasUnveiled = fal
                 </span>
                 <span className="text-xs text-[#5E3D7A] font-light">&rarr;</span>
               </motion.button>
-
-              {/* Tap anywhere cue */}
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={curtainRevealed ? { opacity: 0 } : { opacity: 0.95 }}
-                transition={{ delay: 3.0, duration: 0.8 }}
-                className="flex items-center justify-center gap-1.5 mt-2.5 text-[#5E3D7A] pointer-events-none select-none"
-              >
-                <motion.span
-                  animate={{ scale: [1, 1.25, 1], opacity: [0.6, 1, 0.6] }}
-                  transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}
-                  className="text-xs text-[#B0542C]"
-                >
-                  ✦
-                </motion.span>
-                <span
-                  className="text-[10px] sm:text-[11px] tracking-[0.22em] uppercase font-semibold"
-                  style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}
-                >
-                  Tap anywhere to open
-                </span>
-                <motion.span
-                  animate={{ scale: [1, 1.25, 1], opacity: [0.6, 1, 0.6] }}
-                  transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut', delay: 0.9 }}
-                  className="text-xs text-[#5E3D7A]"
-                >
-                  ✦
-                </motion.span>
-              </motion.div>
             </motion.div>
           </motion.div>
         )}

@@ -30,19 +30,14 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenRSVP, currentPage, onNavig
     { id: 'blessings', label: 'Blessings', action: () => { onNavigate('home', 'blessings'); setMobileMenuOpen(false); }, active: currentPage === 'blessings' },
   ];
 
-  // Do not show navigation while landing curtain is closed
+  // Do not show navigation on the landing page
   if (currentPage === 'home' && !hasUnveiled) {
     return null;
   }
 
-  // On phone / mobile: keep top banner hidden on first poster until scrolled
-  const isHiddenOnMobile = currentPage === 'home' && !scrolled;
-
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 ${
-        isHiddenOnMobile ? 'max-md:-translate-y-full max-md:opacity-0 max-md:pointer-events-none' : 'max-md:translate-y-0 max-md:opacity-100'
-      } ${
         scrolled
           ? 'bg-[#F0EBE3]/85 backdrop-blur-2xl py-3 border-b border-[#C8BEAF]/40 shadow-[0_4px_25px_rgba(46,36,56,0.06)]'
           : 'bg-transparent py-5'

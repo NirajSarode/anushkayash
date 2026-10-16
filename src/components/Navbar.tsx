@@ -5,8 +5,8 @@ import { audioSynth } from '../utils/audioSynth';
 
 interface NavbarProps {
   onOpenRSVP: () => void;
-  currentPage: 'home' | 'story';
-  onNavigate: (page: 'home' | 'story', targetSection?: string) => void;
+  currentPage: 'home' | 'story' | 'themes' | 'blessings';
+  onNavigate: (page: 'home' | 'story' | 'themes' | 'blessings', targetSection?: string) => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({ onOpenRSVP, currentPage, onNavigate }) => {
@@ -26,7 +26,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenRSVP, currentPage, onNavig
     { id: 'story', label: 'Story', action: () => { onNavigate('story'); setMobileMenuOpen(false); }, active: currentPage === 'story' },
     { id: 'events', label: 'Events', action: () => { onNavigate('home', 'events'); setMobileMenuOpen(false); } },
     { id: 'venue', label: 'Venue', action: () => { onNavigate('home', 'venue'); setMobileMenuOpen(false); } },
-    { id: 'blessings', label: 'Blessings', action: () => { onNavigate('home', 'blessings'); setMobileMenuOpen(false); } },
+    { id: 'blessings', label: 'Blessings', action: () => { onNavigate('home', 'blessings'); setMobileMenuOpen(false); }, active: currentPage === 'blessings' },
   ];
 
   return (

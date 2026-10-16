@@ -13,7 +13,7 @@ export const RSVPModal: React.FC<RSVPModalProps> = ({ isOpen, onClose }) => {
   const [formData, setFormData] = useState({
     guestName: '', email: '', attendingCount: '1',
     dietary: 'Gourmet Pure Vegetarian',
-    events: ['mehendi', 'sangeet', 'pheras'],
+    events: ['mehendi', 'haldi', 'mayera', 'sangeet', 'baraat', 'phere', 'reception'],
     songRequest: '',
   });
 
@@ -97,19 +97,27 @@ export const RSVPModal: React.FC<RSVPModalProps> = ({ isOpen, onClose }) => {
                   </select>
                 </div>
                 <div>
-                  <label className="block text-[11px] uppercase font-bold text-[#5E3D7A] mb-2 tracking-[0.15em]">Events Attending</label>
-                  <div className="grid grid-cols-3 gap-2">
+                  <label className="block text-[11px] uppercase font-bold text-[#5E3D7A] mb-2 tracking-[0.15em]">Events Attending (Select all that apply)</label>
+                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
                     {[
-                      { id: 'mehendi', label: 'Mehendi & Haldi', color: '#B0542C' },
-                      { id: 'sangeet', label: 'Sangeet Night', color: '#5E3D7A' },
-                      { id: 'pheras', label: 'Sunset Pheras', color: '#C58F64' },
+                      { id: 'mehendi', day: '31 Jan', time: 'Evening', label: 'Mehendi', color: '#B0542C' },
+                      { id: 'haldi', day: '1 Feb', time: 'Morning', label: 'Haldi', color: '#D47B50' },
+                      { id: 'mayera', day: '1 Feb', time: 'Afternoon', label: 'Mayera', color: '#B83253' },
+                      { id: 'sangeet', day: '1 Feb', time: 'Evening', label: 'Sangeet', color: '#5E3D7A' },
+                      { id: 'baraat', day: '2 Feb', time: 'Morning', label: 'Baraat', color: '#B0542C' },
+                      { id: 'phere', day: '2 Feb', time: 'Evening', label: 'Phere', color: '#7C6090' },
+                      { id: 'reception', day: '2 Feb', time: 'Night', label: 'Reception', color: '#5E3D7A' },
                     ].map((ev) => (
                       <button key={ev.id} type="button" onClick={() => handleEventToggle(ev.id)}
-                        className={`px-3 py-2.5 rounded-xl text-xs font-bold text-center transition-all cursor-pointer ${
+                        className={`p-2.5 rounded-xl text-left transition-all cursor-pointer ${
                           formData.events.includes(ev.id) ? 'bg-white shadow-md' : 'bg-[#F0EBE3] text-[#4B3E5B]/60'
                         }`}
                         style={formData.events.includes(ev.id) ? { border: `2px solid ${ev.color}`, color: ev.color } : { border: '1px solid #C8BEAF' }}>
-                        {ev.label}
+                        <div className="flex items-center justify-between text-[10px] font-bold opacity-80 mb-0.5">
+                          <span>{ev.day}</span>
+                          <span className="uppercase text-[9px] tracking-wide">{ev.time}</span>
+                        </div>
+                        <div className="text-xs font-bold truncate">{ev.label}</div>
                       </button>
                     ))}
                   </div>

@@ -37,27 +37,28 @@ export const VenueTravel: React.FC = () => {
         </div>
 
         {/* Tabs with Smooth Sliding Layout Pill */}
-        <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-12 p-1.5 rounded-full bg-[#F7F3EE]/80 border border-[#C8BEAF]/50 max-w-fit mx-auto shadow-xs">
+        <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-12 p-1.5 rounded-full bg-[#F7F3EE] border border-[#C8BEAF]/60 max-w-fit mx-auto shadow-xs">
           {tabs.map((tab) => {
             const isActive = activeTab === tab.id;
             return (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`relative flex items-center gap-2 px-5 sm:px-7 py-2.5 rounded-full text-xs uppercase tracking-[0.15em] font-bold transition-colors duration-300 cursor-pointer ${
-                  isActive ? 'text-white' : 'text-[#4B3E5B] hover:text-[#1A1222]'
+                className={`relative flex items-center gap-2 px-5 sm:px-7 py-2.5 rounded-full text-xs uppercase tracking-[0.15em] font-bold transition-all duration-300 cursor-pointer isolate ${
+                  isActive ? 'text-white font-extrabold shadow-sm' : 'text-[#4B3E5B] hover:text-[#1A1222]'
                 }`}
               >
                 {isActive && (
                   <motion.div
                     layoutId="venueActiveTabPill"
-                    className="absolute inset-0 rounded-full shadow-md -z-10"
-                    style={{ background: 'linear-gradient(135deg, #6B4984, #B05B43, #A85630)' }}
+                    className="absolute inset-0 rounded-full shadow-md bg-gradient-to-r from-[#5E3D7A] via-[#8E445F] to-[#B0542C] z-0 pointer-events-none"
                     transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                   />
                 )}
-                {tab.icon}
-                <span>{tab.label}</span>
+                <span className="relative z-10 flex items-center gap-2">
+                  {tab.icon}
+                  <span>{tab.label}</span>
+                </span>
               </button>
             );
           })}
@@ -79,16 +80,16 @@ export const VenueTravel: React.FC = () => {
                   <div>
                     <p className="text-[11px] uppercase tracking-[0.2em] font-bold text-[#B0542C] mb-2">Host Resort</p>
                     <h3 className="font-royal-custom text-2xl sm:text-3xl font-bold text-[#1A1222] mb-3">
-                      Tropicores Resort &amp; Spa
+                      Touchwood Bliss, Igatpuri
                     </h3>
                     <p className="font-serif-custom text-[#2B2136] text-base leading-relaxed font-normal">
-                      Surrounded by Sahyadri mountain peaks and waterfalls &mdash; luxury villas, infinity pools overlooking fog-covered valleys, and warm hospitality.
+                      Surrounded by Sahyadri mountain peaks and tranquil valleys &mdash; luxury nature glamping villas, open courtyards, and warm mountain hospitality.
                     </p>
                   </div>
                   <div className="space-y-2.5 text-xs sm:text-sm text-[#2B2136] font-medium">
                     <div className="flex items-center gap-3">
                       <Navigation className="w-4 h-4 text-[#5E3D7A] flex-shrink-0" />
-                      Mumbai-Nashik Expressway, Igatpuri, MH 422403
+                      Touchwood Bliss, Bhavali Dam Road, Igatpuri, Maharashtra 422403
                     </div>
                     <div className="flex items-center gap-3">
                       <Compass className="w-4 h-4 text-[#B0542C] flex-shrink-0" />
@@ -96,7 +97,7 @@ export const VenueTravel: React.FC = () => {
                     </div>
                   </div>
                   <a
-                    href="https://maps.google.com/?q=Igatpuri+Resort+Maharashtra"
+                    href="https://maps.google.com/?q=Touchwood+Bliss+Igatpuri+Maharashtra"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="btn-sheen inline-flex items-center gap-2 px-7 py-3 rounded-full text-white text-xs uppercase tracking-[0.15em] font-bold shadow-md hover:shadow-xl hover:scale-105 active:scale-95 transition-all cursor-pointer"
@@ -170,7 +171,7 @@ export const VenueTravel: React.FC = () => {
                 className="max-w-2xl mx-auto space-y-6 text-left"
               >
                 <div className="p-6 rounded-2xl bg-[#F0EBE3] border border-[#C8BEAF]/40 hover:shadow-md transition-shadow">
-                  <h4 className="font-royal-custom text-lg font-bold text-[#1A1222] mb-3">Early February Weather</h4>
+                  <h4 className="font-royal-custom text-lg font-bold text-[#1A1222] mb-3">Late January &amp; Early February Weather</h4>
                   <p className="font-serif-custom text-[#2B2136] leading-relaxed">
                     Daytime: <strong>24&deg;C</strong> with pleasant sunshine. Evenings: a crisp <strong>14&deg;C</strong> with misty mountain breezes.
                   </p>

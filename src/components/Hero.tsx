@@ -1,17 +1,25 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence, type Variants } from 'framer-motion';
 
 interface HeroProps {
   onEnter?: () => void;
+  hasUnveiled?: boolean;
+  onUnveil?: () => void;
 }
 
-export const Hero: React.FC<HeroProps> = () => {
-  const [curtainRevealed, setCurtainRevealed] = useState(false);
-  const [showCurtain, setShowCurtain] = useState(true);
-  const [isMobile, setIsMobile] = useState(false);
+export const Hero: React.FC<HeroProps> = ({ onEnter: _onEnter, hasUnveiled = false, onUnveil }) => {
+  const [curtainRevealed, setCurtainRevealed] = useState(hasUnveiled);
+  const [showCurtain, setShowCurtain] = useState(!hasUnveiled);
+  const [isMobile, setIsMobile] = useState(() =>
+    typeof window !== 'undefined' ? window.innerWidth < 768 : false
+  );
 
-  const targetDate = new Date('2027-02-02T16:00:00+05:30').getTime();
+  const targetDate = new Date('2027-01-31T10:00:00+05:30').getTime();
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+
+  const isRevealing = useRef(hasUnveiled);
+  const touchStartY = useRef<number | null>(null);
+  const touchStartX = useRef<number | null>(null);
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
@@ -21,11 +29,111 @@ export const Hero: React.FC<HeroProps> = () => {
   }, []);
 
   const handleUnveil = () => {
-    if (curtainRevealed) return;
+    if (curtainRevealed || isRevealing.current) return;
+    isRevealing.current = true;
     setCurtainRevealed(true);
+    if (onUnveil) onUnveil();
     setTimeout(() => {
       setShowCurtain(false);
-    }, 1500);
+    }, 1400);
+  };
+
+  // Enable smooth vertical swipe / scroll to unveil on mobile and trackpads
+  useEffect(() => {
+    if (!showCurtain || curtainRevealed) return;
+
+    let startY: number | null = null;
+    let startX: number | null = null;
+
+    const onTouchStart = (e: TouchEvent) => {
+      if (e.touches && e.touches.length > 0) {
+        startY = e.touches[0].clientY;
+        startX = e.touches[0].clientX;
+      }
+    };
+
+    const onTouchMove = (e: TouchEvent) => {
+      if (startY === null || isRevealing.current || curtainRevealed) return;
+      const currentY = e.touches[0].clientY;
+      const currentX = e.touches[0].clientX;
+      const diffY = currentY - startY;
+      const diffX = currentX - (startX ?? currentX);
+
+      // Trigger if vertical gesture exceeds threshold and is predominantly vertical
+      if (Math.abs(diffY) > 30 && Math.abs(diffY) > Math.abs(diffX) * 0.75) {
+        handleUnveil();
+      }
+    };
+
+    const onTouchEnd = () => {
+      startY = null;
+      startX = null;
+    };
+
+    const onWheel = (e: WheelEvent) => {
+      if (isRevealing.current || curtainRevealed) return;
+      if (Math.abs(e.deltaY) > 18) {
+        handleUnveil();
+      }
+    };
+
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (['Space', 'ArrowDown', 'PageDown', 'Enter'].includes(e.code)) {
+        handleUnveil();
+      }
+    };
+
+    window.addEventListener('touchstart', onTouchStart, { passive: true });
+    window.addEventListener('touchmove', onTouchMove, { passive: true });
+    window.addEventListener('touchend', onTouchEnd, { passive: true });
+    window.addEventListener('wheel', onWheel, { passive: true });
+    window.addEventListener('keydown', onKeyDown);
+
+    return () => {
+      window.removeEventListener('touchstart', onTouchStart);
+      window.removeEventListener('touchmove', onTouchMove);
+      window.removeEventListener('touchend', onTouchEnd);
+      window.removeEventListener('wheel', onWheel);
+      window.removeEventListener('keydown', onKeyDown);
+    };
+  }, [showCurtain, curtainRevealed]);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    if (e.touches && e.touches.length > 0) {
+      touchStartY.current = e.touches[0].clientY;
+      touchStartX.current = e.touches[0].clientX;
+    }
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (touchStartY.current === null || isRevealing.current || curtainRevealed) return;
+    const currentY = e.touches[0].clientY;
+    const currentX = e.touches[0].clientX;
+    const diffY = currentY - touchStartY.current;
+    const diffX = currentX - (touchStartX.current ?? currentX);
+
+    if (Math.abs(diffY) > 30 && Math.abs(diffY) > Math.abs(diffX) * 0.75) {
+      handleUnveil();
+    }
+  };
+
+  const handleTouchEnd = () => {
+    touchStartY.current = null;
+    touchStartX.current = null;
+  };
+
+  const handleWheel = (e: React.WheelEvent) => {
+    if (isRevealing.current || curtainRevealed) return;
+    if (Math.abs(e.deltaY) > 18) {
+      handleUnveil();
+    }
+  };
+
+  const handleContainerScroll = (e: React.UIEvent<HTMLDivElement>) => {
+    if (isRevealing.current || curtainRevealed) return;
+    if (e.currentTarget.scrollTop > 12) {
+      handleUnveil();
+    }
   };
 
   useEffect(() => {
@@ -54,10 +162,14 @@ export const Hero: React.FC<HeroProps> = () => {
     show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: 'easeOut' as const } },
   };
 
+  // Ultra-smooth physical easing curve
+  const curtainTransition = {
+    duration: 1.4,
+    ease: [0.16, 1, 0.3, 1] as const,
+  };
+
   return (
-    <section className="relative min-h-screen w-full flex flex-col justify-center items-center text-center overflow-hidden pt-20 pb-20">
-
-
+    <section className="relative min-h-screen w-full flex flex-col justify-center items-center text-center overflow-x-hidden overflow-y-visible pt-16 pb-16 sm:pt-20 sm:pb-20">
 
       {/* ── Curtain Reveal Overlay ── */}
       <AnimatePresence>
@@ -66,7 +178,16 @@ export const Hero: React.FC<HeroProps> = () => {
             initial={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.6 }}
-            className="fixed inset-0 z-50 flex flex-col md:flex-row pointer-events-auto overflow-hidden min-h-[100dvh]"
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
+            onWheel={handleWheel}
+            onScroll={handleContainerScroll}
+            className="fixed inset-0 z-50 flex flex-col md:flex-row pointer-events-auto overflow-y-auto md:overflow-hidden min-h-[100dvh] touch-pan-y overscroll-y-contain select-none"
+            style={{
+              WebkitOverflowScrolling: 'touch',
+              scrollBehavior: 'smooth',
+            }}
           >
             {/* Top (Mobile) / Left (Desktop) — Delhi / Lavender side */}
             <motion.div
@@ -78,7 +199,7 @@ export const Hero: React.FC<HeroProps> = () => {
                     : { x: '-105%' }
                   : { x: 0, y: 0 }
               }
-              transition={{ duration: 1.5, ease: [0.77, 0, 0.175, 1] }}
+              transition={curtainTransition}
               className="w-full h-1/2 md:w-1/2 md:h-full md:min-h-[100dvh] relative overflow-hidden flex flex-col justify-between p-4 sm:p-10"
               style={{
                 background: isMobile
@@ -114,7 +235,7 @@ export const Hero: React.FC<HeroProps> = () => {
                     : { x: '105%' }
                   : { x: 0, y: 0 }
               }
-              transition={{ duration: 1.5, ease: [0.77, 0, 0.175, 1] }}
+              transition={curtainTransition}
               className="w-full h-1/2 md:w-1/2 md:h-full md:min-h-[100dvh] relative overflow-hidden flex flex-col justify-between items-end p-4 sm:p-10"
               style={{
                 background: isMobile
@@ -142,8 +263,8 @@ export const Hero: React.FC<HeroProps> = () => {
 
             {/* Center — merging names, couple figures, and unveiling button */}
             <motion.div
-              animate={curtainRevealed ? { opacity: 0, scale: 0.9 } : { opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, ease: 'easeInOut' }}
+              animate={curtainRevealed ? { opacity: 0, scale: 0.94, y: isMobile ? -20 : 0 } : { opacity: 1, scale: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
               className="absolute inset-0 flex flex-col items-center justify-center pointer-events-auto z-20 px-3 py-6 my-auto"
             >
               {/* Ambient radiant glow behind the union */}
@@ -183,8 +304,9 @@ export const Hero: React.FC<HeroProps> = () => {
                 >
                   {/* Anush (Deep Pastel Lavender) */}
                   <span
-                    className="font-royal-custom text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-[0.02em] sm:tracking-[0.04em]"
+                    className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-[0.02em] sm:tracking-[0.04em]"
                     style={{
+                      fontFamily: "'Cinzel Decorative', serif",
                       color: '#5E3D7A',
                       textShadow: '0 2px 10px rgba(255, 255, 255, 0.6), 0 4px 16px rgba(94, 61, 122, 0.15)',
                     }}
@@ -208,8 +330,9 @@ export const Hero: React.FC<HeroProps> = () => {
                       delay: 0.2,
                       ease: 'easeInOut',
                     }}
-                    className="font-royal-custom text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-[0.02em] sm:tracking-[0.04em] inline-block"
+                    className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-[0.02em] sm:tracking-[0.04em] inline-block"
                     style={{
+                      fontFamily: "'Cinzel Decorative', serif",
                       textShadow: '0 0 16px rgba(254, 240, 138, 0.85), 0 2px 10px rgba(217, 119, 6, 0.35), 0 4px 16px rgba(197, 143, 100, 0.25)',
                     }}
                   >
@@ -225,8 +348,9 @@ export const Hero: React.FC<HeroProps> = () => {
                   className="inline-flex items-baseline"
                 >
                   <span
-                    className="font-royal-custom text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-[0.02em] sm:tracking-[0.04em]"
+                    className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-[0.02em] sm:tracking-[0.04em]"
                     style={{
+                      fontFamily: "'Cinzel Decorative', serif",
                       color: '#B0542C',
                       textShadow: '0 2px 10px rgba(255, 255, 255, 0.6), 0 4px 16px rgba(176, 84, 44, 0.15)',
                     }}
@@ -244,8 +368,9 @@ export const Hero: React.FC<HeroProps> = () => {
                 className="flex items-center justify-center"
               >
                 <p
-                  className="font-serif-custom text-xs sm:text-sm tracking-[0.3em] uppercase font-bold text-[#5E3D7A]"
+                  className="text-xs sm:text-sm tracking-[0.3em] uppercase font-bold text-[#5E3D7A]"
                   style={{
+                    fontFamily: "'Cormorant Garamond', Georgia, serif",
                     textShadow: '0 1px 6px rgba(255, 255, 255, 0.6)',
                   }}
                 >
@@ -254,12 +379,12 @@ export const Hero: React.FC<HeroProps> = () => {
               </motion.div>
             </motion.div>
 
-            {/* ── Minimalist Unveil Button pinned at bottom, subtly blended with theme ── */}
+            {/* ── Minimalist Unveil Button pinned at bottom with mobile scroll cue ── */}
             <motion.div
               initial={{ opacity: 0, y: 15 }}
               animate={curtainRevealed ? { opacity: 0, scale: 0.95 } : { opacity: 1, y: 0 }}
               transition={{ delay: 2.8, duration: 0.8 }}
-              className="absolute bottom-5 sm:bottom-8 left-1/2 -translate-x-1/2 z-30 pointer-events-auto flex items-center justify-center w-full px-4"
+              className="absolute bottom-4 sm:bottom-8 left-1/2 -translate-x-1/2 z-30 pointer-events-auto flex flex-col items-center justify-center w-full px-4"
             >
               <motion.button
                 whileHover={{ scale: 1.03 }}
@@ -271,11 +396,36 @@ export const Hero: React.FC<HeroProps> = () => {
                   backdropFilter: 'blur(8px)',
                 }}
               >
-                <span className="font-serif-custom text-[11px] sm:text-xs tracking-[0.25em] uppercase font-semibold text-[#30223E]">
+                <span
+                  className="text-[11px] sm:text-xs tracking-[0.25em] uppercase font-semibold text-[#30223E]"
+                  style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}
+                >
                   Unveil the Celebration
                 </span>
                 <span className="text-xs text-[#5E3D7A] font-light">&rarr;</span>
               </motion.button>
+
+              {/* Mobile Smooth Scroll / Swipe Cue */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={curtainRevealed ? { opacity: 0 } : { opacity: 0.9 }}
+                transition={{ delay: 3.2, duration: 0.8 }}
+                className="flex md:hidden items-center justify-center gap-1.5 mt-2 text-[#5E3D7A] pointer-events-none select-none"
+              >
+                <span
+                  className="text-[10px] tracking-[0.22em] uppercase font-semibold"
+                  style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}
+                >
+                  Scroll or swipe to open
+                </span>
+                <motion.span
+                  animate={{ y: [0, 4, 0] }}
+                  transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }}
+                  className="text-xs text-[#B0542C]"
+                >
+                  &darr;
+                </motion.span>
+              </motion.div>
             </motion.div>
           </motion.div>
         )}
@@ -294,20 +444,29 @@ export const Hero: React.FC<HeroProps> = () => {
           className="flex flex-nowrap whitespace-nowrap items-center justify-center gap-2 sm:gap-3 md:gap-4 mt-1 sm:mt-2 mb-1.5 sm:mb-2.5 w-full overflow-hidden"
         >
           <h1
-            className="font-royal-custom tracking-[0.08em] sm:tracking-[0.12em] text-[#2E2438] font-bold leading-none shrink-0"
-            style={{ fontSize: 'clamp(1.5rem, 4.4vw, 4.2rem)' }}
+            className="font-royal-custom tracking-[0.08em] sm:tracking-[0.12em] font-bold leading-none shrink-0"
+            style={{
+              fontSize: 'clamp(1.5rem, 4.4vw, 4.2rem)',
+              color: 'var(--color-her-deep, #5E3D7A)',
+            }}
           >
             ANUSHKA
           </h1>
           <span
-            className="font-script-custom text-[#A06B55] px-0.5 sm:px-1 select-none leading-none shrink-0"
-            style={{ fontSize: 'clamp(1.5rem, 4.2vw, 4.2rem)' }}
+            className="font-script-custom px-0.5 sm:px-1 select-none leading-none shrink-0"
+            style={{
+              fontSize: 'clamp(1.5rem, 4.2vw, 4.2rem)',
+              color: 'var(--color-accent, #C58F64)',
+            }}
           >
             &
           </span>
           <h1
-            className="font-royal-custom tracking-[0.08em] sm:tracking-[0.12em] text-[#2E2438] font-bold leading-none shrink-0"
-            style={{ fontSize: 'clamp(1.5rem, 4.4vw, 4.2rem)' }}
+            className="font-royal-custom tracking-[0.08em] sm:tracking-[0.12em] font-bold leading-none shrink-0"
+            style={{
+              fontSize: 'clamp(1.5rem, 4.4vw, 4.2rem)',
+              color: 'var(--color-him-deep, #B0542C)',
+            }}
           >
             YASH
           </h1>
@@ -324,9 +483,9 @@ export const Hero: React.FC<HeroProps> = () => {
         {/* Date & Destination Banner — distinct colors for Date and Location (+10% font size) */}
         <motion.div variants={fadeUp} className="text-center mb-3 sm:mb-4 px-2">
           <p className="font-serif-custom text-sm sm:text-base md:text-[1.125rem] tracking-[0.20em] sm:tracking-[0.24em] uppercase font-bold drop-shadow-[0_1px_1px_rgba(255,255,255,0.7)] flex flex-wrap items-center justify-center gap-1 sm:gap-2">
-            <span className="text-[#5E3D7A]">FEBRUARY 1 &ndash; 3, 2027</span>
-            <span className="text-[#C58F64]">&bull;</span>
-            <span className="text-[#B0542C]">IGATPURI, MAHARASHTRA</span>
+            <span style={{ color: 'var(--color-her-deep, #5E3D7A)' }}>JANUARY 31 &ndash; FEBRUARY 3, 2027</span>
+            <span style={{ color: 'var(--color-accent, #C58F64)' }}>&bull;</span>
+            <span style={{ color: 'var(--color-him-deep, #B0542C)' }}>IGATPURI, MAHARASHTRA</span>
           </p>
         </motion.div>
 
@@ -437,7 +596,7 @@ export const Hero: React.FC<HeroProps> = () => {
           >
             <img
               src="/images/family_illustration_transparent.webp"
-              alt="Anushka and Yash with Verma and Biyani families under the auspicious wedding mandap"
+              alt="Anushka and Yash with Biyani and Verma families under the auspicious wedding mandap"
               decoding="async"
               className="w-full h-auto object-contain filter drop-shadow-[0_14px_30px_rgba(46,36,56,0.12)] group-hover:scale-[1.015] transition-transform duration-700"
             />
@@ -449,9 +608,9 @@ export const Hero: React.FC<HeroProps> = () => {
           variants={fadeUp}
           className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-6 text-xs sm:text-sm tracking-[0.25em] uppercase text-[#3D2C50] font-semibold"
         >
-          <span>Verma Family</span>
-          <span className="hidden sm:inline text-[#B05B43]">&mdash;</span>
           <span>Biyani Family</span>
+          <span className="hidden sm:inline text-[#B05B43]">&mdash;</span>
+          <span>Verma Family</span>
         </motion.div>
       </motion.div>
     </section>

@@ -207,9 +207,9 @@ export const SaveTheDateBanner: React.FC<SaveTheDateBannerProps> = ({
                 <div className="text-center md:text-left space-y-1.5">
                   <p className="font-serif-custom text-sm sm:text-base md:text-lg tracking-[0.12em] text-[#2B2136] font-bold drop-shadow-[0_1px_2px_rgba(255,255,255,0.85)]">
                     Save the Date &mdash;{' '}
-                    <span className="text-[#5E3D7A]">February 1 &ndash; 3, 2027</span>{' '}
+                    <span className="text-[#5E3D7A]">January 31 &ndash; February 3, 2027</span>{' '}
                     &bull;{' '}
-                    <span className="text-[#B0542C]">The Palace Resort, Igatpuri</span>
+                    <span className="text-[#B0542C]">Touchwood Bliss, Igatpuri</span>
                   </p>
 
                   <div className="flex items-center justify-center md:justify-start gap-4 text-xs tracking-[0.25em] uppercase font-bold text-[#4B3E5B]">

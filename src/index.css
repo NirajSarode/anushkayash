@@ -2,8 +2,8 @@
 
 @layer base {
   :root {
-    --font-serif: 'Cormorant Garamond', Georgia, serif;
-    --font-royal: 'Cinzel Decorative', serif;
+    --font-serif: 'Plus Jakarta Sans', sans-serif;
+    --font-royal: 'Prata', serif;
     --font-script: 'Great Vibes', cursive;
     --font-sans: 'Plus Jakarta Sans', sans-serif;
 
@@ -23,10 +23,16 @@
     --color-border: #C8BEAF;
   }
 
+  html {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+
   body {
     font-family: var(--font-sans);
     background-color: var(--color-bg);
     color: var(--color-body);
+    overflow-x: hidden;
   }
 }
 
@@ -128,6 +134,15 @@
 ::-webkit-scrollbar-thumb {
   background: linear-gradient(to bottom, var(--color-her), var(--color-him));
   border-radius: 2px;
+}
+
+/* Hide scrollbar utility for clean horizontal galleries */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 /* Section spacing */

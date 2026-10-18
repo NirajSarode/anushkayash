@@ -49,6 +49,16 @@ export const ThemePreview: React.FC<ThemePreviewProps> = ({ onBack, onNavigateHo
     setAppliedColorId(cId);
     setSelectedEventLayout(eLayout);
     setAppliedEventLayout(eLayout);
+
+    // Dynamically load full preview font catalog only when ThemePreview is opened
+    const linkId = 'google-fonts-preview-catalog';
+    if (!document.getElementById(linkId)) {
+      const link = document.createElement('link');
+      link.id = linkId;
+      link.rel = 'stylesheet';
+      link.href = 'https://fonts.googleapis.com/css2?family=Alex+Brush&family=Allura&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Marcellus&family=Montserrat:wght@400;600;700&family=Parisienne&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400&family=Rozha+One&display=swap';
+      document.head.appendChild(link);
+    }
   }, []);
 
   const currentFont: FontOption =

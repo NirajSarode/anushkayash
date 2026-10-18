@@ -1,5 +1,13 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: 'Atavian';
+  src: url('/fonts/Atavian-REGULAR.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 @layer base {
   :root {
     --font-serif: 'Plus Jakarta Sans', sans-serif;
@@ -241,4 +249,43 @@
   -webkit-text-fill-color: transparent;
   animation: textShimmer 8s linear infinite;
 }
+
+/* Split Curtain Divisions — mathematically seamless clip-path parting */
+.curtain-half-left {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  clip-path: polygon(0 0, calc(50% + 1px) 0, calc(50% + 1px) 100%, 0 100%);
+  -webkit-clip-path: polygon(0 0, calc(50% + 1px) 0, calc(50% + 1px) 100%, 0 100%);
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.curtain-half-right {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  clip-path: polygon(50% 0, 100% 0, 100% 100%, 50% 100%);
+  -webkit-clip-path: polygon(50% 0, 100% 0, 100% 100%, 50% 100%);
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* User's Royal Crimson & Gold Typography */
+.text-royal-crimson {
+  background: linear-gradient(180deg, #C21D27 0%, #8E0E16 55%, #560309 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.20));
+}
+
+.text-royal-gold {
+  background: linear-gradient(180deg, #E6BD70 0%, #CD9F48 45%, #9A6C20 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.20));
+}
+
 

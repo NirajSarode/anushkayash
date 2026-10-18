@@ -1,21 +1,23 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense, lazy } from 'react';
 import { MistCanvas } from './components/MistCanvas';
 import { FloatingDecor } from './components/FloatingDecor';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
-import { OurStory } from './components/OurStory';
 import { RoyalInvitation } from './components/RoyalInvitation';
 import { Events } from './components/Events';
 import { VenueTravel } from './components/VenueTravel';
 import { BlessingsWall } from './components/BlessingsWall';
 import { SaveTheDateBanner } from './components/SaveTheDateBanner';
 import { Footer } from './components/Footer';
-import { RSVPModal } from './components/RSVPModal';
 import { StoryTeaser } from './components/StoryTeaser';
-import { ThemePreview } from './components/ThemePreview';
-import { BlessingsPage } from './components/BlessingsPage';
 import { AmbientCursorAura } from './components/AmbientCursorAura';
 import { getStoredFontTheme, getStoredColorTheme, applyThemeToDom } from './utils/themeStore';
+
+// Code-split auxiliary pages & modals so mobile phone loads landing instantaneously
+const OurStory = lazy(() => import('./components/OurStory').then(m => ({ default: m.OurStory })));
+const ThemePreview = lazy(() => import('./components/ThemePreview'));
+const BlessingsPage = lazy(() => import('./components/BlessingsPage').then(m => ({ default: m.BlessingsPage })));
+const RSVPModal = lazy(() => import('./components/RSVPModal').then(m => ({ default: m.RSVPModal })));
 
 export const App: React.FC = () => {
   const [currentPage, setCurrentPage] = useState<'home' | 'story' | 'themes' | 'blessings'>('home');
@@ -111,7 +113,7 @@ export const App: React.FC = () => {
 
       {/* Soft ambient background */}
       <MistCanvas />
-      <FloatingDecor />
+      {hasUnveiledCurtain && <FloatingDecor />}
       <AmbientCursorAura />
 
       {/* Navigation */}
@@ -123,40 +125,44 @@ export const App: React.FC = () => {
       />
 
       <main>
-        {currentPage === 'themes' ? (
-          <ThemePreview
-            onBack={() => handleNavigate('home')}
-            onNavigateHome={() => handleNavigate('home')}
-          />
-        ) : currentPage === 'blessings' ? (
-          <BlessingsPage onBackToHome={() => handleNavigate('home')} />
-        ) : currentPage === 'home' ? (
-          <>
-            <Hero
-              onEnter={() => handleNavigate('home', 'invitation')}
-              hasUnveiled={hasUnveiledCurtain}
-              onUnveil={() => setHasUnveiledCurtain(true)}
+        <Suspense fallback={<div className="min-h-screen bg-[#F0EBE3]" />}>
+          {currentPage === 'themes' ? (
+            <ThemePreview
+              onBack={() => handleNavigate('home')}
+              onNavigateHome={() => handleNavigate('home')}
             />
-            <RoyalInvitation />
-            <StoryTeaser onOpenStory={() => handleNavigate('story')} />
-            <Events />
-            <VenueTravel />
-            <BlessingsWall onViewAll={() => handleNavigate('blessings')} />
-            <SaveTheDateBanner
-              onOpenRSVP={() => setIsRSVPOpen(true)}
-              onNavigateToVenue={() => handleNavigate('home', 'venue')}
+          ) : currentPage === 'blessings' ? (
+            <BlessingsPage onBackToHome={() => handleNavigate('home')} />
+          ) : currentPage === 'home' ? (
+            <>
+              <Hero
+                onEnter={() => handleNavigate('home', 'invitation')}
+                hasUnveiled={hasUnveiledCurtain}
+                onUnveil={() => setHasUnveiledCurtain(true)}
+              />
+              <RoyalInvitation />
+              <StoryTeaser onOpenStory={() => handleNavigate('story')} />
+              <Events />
+              <VenueTravel />
+              <BlessingsWall onViewAll={() => handleNavigate('blessings')} />
+              <SaveTheDateBanner
+                onOpenRSVP={() => setIsRSVPOpen(true)}
+                onNavigateToVenue={() => handleNavigate('home', 'venue')}
+              />
+            </>
+          ) : (
+            <OurStory
+              onBackToHome={() => handleNavigate('home')}
+              onNavigateToEvents={() => handleNavigate('home', 'events')}
             />
-          </>
-        ) : (
-          <OurStory
-            onBackToHome={() => handleNavigate('home')}
-            onNavigateToEvents={() => handleNavigate('home', 'events')}
-          />
-        )}
+          )}
+        </Suspense>
       </main>
 
       <Footer />
-      <RSVPModal isOpen={isRSVPOpen} onClose={() => setIsRSVPOpen(false)} />
+      <Suspense fallback={null}>
+        {isRSVPOpen && <RSVPModal isOpen={isRSVPOpen} onClose={() => setIsRSVPOpen(false)} />}
+      </Suspense>
     </div>
   );
 };

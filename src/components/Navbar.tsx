@@ -19,7 +19,13 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenRSVP, currentPage, onNavig
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 40);
     window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    const unsubscribeAudio = audioSynth.subscribe((playing) => {
+      setIsPlaying(playing);
+    });
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      unsubscribeAudio();
+    };
   }, []);
 
   const navLinks = [

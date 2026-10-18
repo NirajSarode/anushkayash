@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence, type Variants } from 'framer-motion';
+import { audioSynth } from '../utils/audioSynth';
 
 interface HeroProps {
   onEnter?: () => void;
@@ -30,6 +31,10 @@ export const Hero: React.FC<HeroProps> = ({ onEnter: _onEnter, hasUnveiled = fal
     if (curtainRevealed || isRevealing.current) return;
     isRevealing.current = true;
     setCurtainRevealed(true);
+
+    // Play Mast Magan instrumental music as default sound on user gesture
+    audioSynth.start().catch((err) => console.warn('Audio play:', err));
+
     setTimeout(() => {
       setShowCurtain(false);
       if (onUnveil) onUnveil();
@@ -133,7 +138,7 @@ export const Hero: React.FC<HeroProps> = ({ onEnter: _onEnter, hasUnveiled = fal
             aria-label="Click or tap anywhere to unveil the wedding celebration"
             className="fixed inset-0 z-[100] flex flex-col md:flex-row pointer-events-auto overflow-hidden h-[100dvh] w-full touch-none select-none cursor-pointer"
           >
-            {/* Top (Mobile) / Left (Desktop) — Delhi / Lavender side */}
+            {/* Top (Mobile) / Left (Desktop) — New Background Split Division */}
             <motion.div
               initial={{ x: 0, y: 0 }}
               animate={
@@ -144,32 +149,19 @@ export const Hero: React.FC<HeroProps> = ({ onEnter: _onEnter, hasUnveiled = fal
                   : { x: 0, y: 0 }
               }
               transition={curtainTransition}
-              className="w-full h-1/2 md:w-1/2 md:h-full relative overflow-hidden flex flex-col justify-between p-4 sm:p-10 pointer-events-none"
-              style={{
-                background: isMobile
-                  ? 'linear-gradient(180deg, #7C6090 0%, #9478A8 45%, #B89FC8 100%)'
-                  : 'linear-gradient(135deg, #7C6090 0%, #9478A8 40%, #B89FC8 100%)',
-              }}
+              className="w-full h-1/2 md:w-1/2 md:h-full relative overflow-hidden pointer-events-none"
             >
-              <div className="absolute inset-0 opacity-25 pointer-events-none mix-blend-overlay">
-                <img
-                  src="/images/delhi_side.webp"
-                  alt=""
-                  decoding="async"
-                  className="w-full h-full object-cover filter blur-[0.5px]"
-                />
-              </div>
-              <div
-                className="absolute inset-0 pointer-events-none"
-                style={{
-                  background: isMobile
-                    ? 'radial-gradient(circle at 50% 65%, rgba(255,255,255,0.2) 0%, transparent 65%)'
-                    : 'radial-gradient(circle at 70% 50%, rgba(255,255,255,0.18) 0%, transparent 60%)',
-                }}
+              <img
+                src="/images/landing_background.webp"
+                alt=""
+                decoding="async"
+                className="absolute top-0 left-0 w-screen h-[100dvh] object-cover filter brightness-[0.98] select-none"
               />
+              {/* Subtle ambient film wash */}
+              <div className="absolute inset-0 bg-gradient-to-b from-[#2E2438]/20 via-transparent to-[#2E2438]/10 pointer-events-none" />
             </motion.div>
 
-            {/* Bottom (Mobile) / Right (Desktop) — Maharashtra / Peach side */}
+            {/* Bottom (Mobile) / Right (Desktop) — New Background Split Division */}
             <motion.div
               initial={{ x: 0, y: 0 }}
               animate={
@@ -180,29 +172,18 @@ export const Hero: React.FC<HeroProps> = ({ onEnter: _onEnter, hasUnveiled = fal
                   : { x: 0, y: 0 }
               }
               transition={curtainTransition}
-              className="w-full h-1/2 md:w-1/2 md:h-full relative overflow-hidden flex flex-col justify-between items-end p-4 sm:p-10 pointer-events-none"
-              style={{
-                background: isMobile
-                  ? 'linear-gradient(180deg, #E8A987 0%, #D08B68 55%, #B56241 100%)'
-                  : 'linear-gradient(225deg, #B56241 0%, #D08B68 40%, #E8A987 100%)',
-              }}
+              className="w-full h-1/2 md:w-1/2 md:h-full relative overflow-hidden pointer-events-none"
             >
-              <div className="absolute inset-0 opacity-25 pointer-events-none mix-blend-overlay">
-                <img
-                  src="/images/maharashtra_side.webp"
-                  alt=""
-                  decoding="async"
-                  className="w-full h-full object-cover filter blur-[0.5px]"
-                />
-              </div>
-              <div
-                className="absolute inset-0 pointer-events-none"
-                style={{
-                  background: isMobile
-                    ? 'radial-gradient(circle at 50% 35%, rgba(255,255,255,0.2) 0%, transparent 65%)'
-                    : 'radial-gradient(circle at 30% 50%, rgba(255,255,255,0.18) 0%, transparent 60%)',
-                }}
+              <img
+                src="/images/landing_background.webp"
+                alt=""
+                decoding="async"
+                className={`absolute w-screen h-[100dvh] object-cover filter brightness-[0.98] select-none ${
+                  isMobile ? '-top-[50dvh] left-0' : 'top-0 -left-[50vw]'
+                }`}
               />
+              {/* Subtle ambient film wash */}
+              <div className="absolute inset-0 bg-gradient-to-t from-[#2E2438]/20 via-transparent to-[#2E2438]/10 pointer-events-none" />
             </motion.div>
 
             {/* Center — merging names, couple figures, and unveiling button */}

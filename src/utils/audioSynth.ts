@@ -1,67 +1,83 @@
-// Web Audio API ambient flute and Indian classical shehnai synth player
-class AmbientAudioSynth {
-  private ctx: AudioContext | null = null;
+// Mast Magan Instrumental Player & Audio Controller
+class MastMaganAudioController {
+  private audio: HTMLAudioElement | null = null;
   private isPlaying: boolean = false;
-  private timer: number | null = null;
+  private listeners: Set<(playing: boolean) => void> = new Set();
+  private hasInitialized: boolean = false;
 
-  private notes = [
-    // Raag Yaman / Bhupali romantic scale (C, D, E, G, A)
-    261.63, 293.66, 329.63, 392.00, 440.00, 523.25, 587.33, 659.25
-  ];
-
-  public start() {
-    if (this.isPlaying) return;
+  private initAudio() {
+    if (this.hasInitialized || typeof window === 'undefined') return;
+    this.hasInitialized = true;
     try {
-      const AudioCtx = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
-      this.ctx = new AudioCtx();
-      this.isPlaying = true;
-      this.playNextNote();
+      // Prioritize m4a for fast mobile loading, fallback to mp3
+      const audio = new Audio('/audio/mast_magan.m4a');
+      audio.loop = true;
+      audio.preload = 'auto';
+
+      audio.addEventListener('play', () => {
+        this.isPlaying = true;
+        this.notify();
+      });
+      audio.addEventListener('pause', () => {
+        this.isPlaying = false;
+        this.notify();
+      });
+      audio.addEventListener('ended', () => {
+        this.isPlaying = false;
+        this.notify();
+      });
+      audio.addEventListener('error', () => {
+        // Fallback to mp3 if m4a fails
+        if (audio.src.endsWith('.m4a')) {
+          audio.src = '/audio/mast_magan.mp3';
+          audio.load();
+        }
+      });
+
+      this.audio = audio;
     } catch (err) {
-      console.error('Audio initialization failed', err);
+      console.warn('Audio initialization error:', err);
     }
   }
 
-  private playNextNote = () => {
-    if (!this.isPlaying || !this.ctx) return;
+  public subscribe(cb: (playing: boolean) => void): () => void {
+    this.listeners.add(cb);
+    cb(this.isPlaying);
+    return () => {
+      this.listeners.delete(cb);
+    };
+  }
 
-    const osc = this.ctx.createOscillator();
-    const gain = this.ctx.createGain();
+  private notify() {
+    this.listeners.forEach((cb) => {
+      try {
+        cb(this.isPlaying);
+      } catch (e) {
+        console.error(e);
+      }
+    });
+  }
 
-    // Random note selection with soft pitch bending like shehnai / bansuri
-    const note = this.notes[Math.floor(Math.random() * this.notes.length)];
-    osc.type = 'sine';
-    osc.frequency.setValueAtTime(note, this.ctx.currentTime);
-    osc.frequency.exponentialRampToValueAtTime(
-      note * (Math.random() > 0.5 ? 1.05 : 0.95),
-      this.ctx.currentTime + 1.8
-    );
-
-    // Warm gain envelope
-    gain.gain.setValueAtTime(0.001, this.ctx.currentTime);
-    gain.gain.linearRampToValueAtTime(0.08, this.ctx.currentTime + 0.6);
-    gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 2.2);
-
-    osc.connect(gain);
-    gain.connect(this.ctx.destination);
-
-    osc.start();
-    osc.stop(this.ctx.currentTime + 2.2);
-
-    // Schedule next phrase
-    const interval = Math.random() * 1200 + 1000;
-    this.timer = window.setTimeout(this.playNextNote, interval);
-  };
+  public async start(): Promise<boolean> {
+    this.initAudio();
+    if (!this.audio) return false;
+    try {
+      await this.audio.play();
+      this.isPlaying = true;
+      this.notify();
+      return true;
+    } catch (err) {
+      console.warn('Audio playback error:', err);
+      return false;
+    }
+  }
 
   public stop() {
+    if (this.audio) {
+      this.audio.pause();
+    }
     this.isPlaying = false;
-    if (this.timer) {
-      clearTimeout(this.timer);
-      this.timer = null;
-    }
-    if (this.ctx) {
-      this.ctx.close();
-      this.ctx = null;
-    }
+    this.notify();
   }
 
   public toggle(): boolean {
@@ -79,4 +95,5 @@ class AmbientAudioSynth {
   }
 }
 
-export const audioSynth = new AmbientAudioSynth();
+export const audioSynth = new MastMaganAudioController();
+

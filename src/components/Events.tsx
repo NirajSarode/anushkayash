@@ -71,7 +71,7 @@ export const Events: React.FC<EventsProps> = ({ layoutOverride, hideHeader = fal
         {!hideHeader && (
           <div className="text-center mb-12 sm:mb-16">
             <motion.p initial="hidden" whileInView="show" viewport={{ once: true }} variants={fadeUp}
-              className="font-serif-custom text-[#5E3D7A] text-xs tracking-[0.35em] uppercase mb-4 font-bold">
+              className="font-serif-custom text-[#8E0E16] text-xs tracking-[0.35em] uppercase mb-4 font-bold">
               The Wedding Itinerary
             </motion.p>
             <motion.h2 initial="hidden" whileInView="show" viewport={{ once: true }} variants={fadeUp}
@@ -79,13 +79,13 @@ export const Events: React.FC<EventsProps> = ({ layoutOverride, hideHeader = fal
               Celebrations &amp; Festivities
             </motion.h2>
             <motion.p initial="hidden" whileInView="show" viewport={{ once: true }} variants={fadeUp}
-              className="font-serif-custom text-[#2B2136] text-lg sm:text-xl italic max-w-xl mx-auto font-medium mb-8">
+              className="font-serif-custom text-[#342226] text-lg sm:text-xl italic max-w-xl mx-auto font-medium mb-8">
               January 31 &ndash; February 3, 2027 &middot; Touchwood Bliss, Igatpuri
             </motion.p>
 
             {/* Day Navigation Tabs for grid & list layouts */}
             {currentLayout === 'arch-cards' && (
-              <div className="inline-flex flex-wrap items-center justify-center gap-2 p-1.5 rounded-full bg-[#F7F3EE]/80 backdrop-blur-md border border-[#C8BEAF]/50 shadow-xs max-w-full">
+              <div className="inline-flex flex-wrap items-center justify-center gap-2 p-1.5 rounded-full bg-[#FFFDF9]/80 backdrop-blur-md border border-[#DFCAB0]/70 shadow-xs max-w-full">
                 {dayTabs.map((tab) => {
                   const isActive = selectedDay === tab.id;
                   return (
@@ -93,8 +93,8 @@ export const Events: React.FC<EventsProps> = ({ layoutOverride, hideHeader = fal
                       key={tab.id}
                       onClick={() => setSelectedDay(tab.id)}
                       className={`px-4 sm:px-5 py-2 rounded-full text-xs uppercase tracking-[0.14em] font-bold transition-all duration-300 cursor-pointer ${isActive
-                          ? 'bg-gradient-to-r from-[#5E3D7A] to-[#B0542C] text-white shadow-md scale-[1.02]'
-                          : 'text-[#4B3E5B] hover:text-[#1A1222] hover:bg-white/60'
+                          ? 'bg-gradient-to-r from-[#8E0E16] to-[#D4AF37] text-white shadow-md scale-[1.02]'
+                          : 'text-[#6E3840] hover:text-[#2E1015] hover:bg-white/60'
                         }`}
                     >
                       <span>{tab.label}</span>
@@ -147,7 +147,7 @@ export const Events: React.FC<EventsProps> = ({ layoutOverride, hideHeader = fal
 
                 <div className="p-6 sm:p-7 flex-1 flex flex-col justify-between">
                   <div>
-                    <h3 className="font-royal-custom text-xl font-bold text-[#1A1222] mb-1 group-hover:text-[#5E3D7A] transition-colors tracking-[0.02em]">
+                    <h3 className="font-royal-custom text-xl font-bold text-[#1A1222] mb-1 group-hover:text-[#8E0E16] transition-colors tracking-[0.02em]">
                       {ev.title}
                     </h3>
                     <p className="font-serif-custom text-sm italic font-semibold text-[#B0542C] mb-4">
@@ -193,7 +193,7 @@ export const Events: React.FC<EventsProps> = ({ layoutOverride, hideHeader = fal
           <div className="max-w-5xl mx-auto py-6 sm:py-10 px-4 sm:px-6">
             <div className="relative">
               {/* Center Vertical Golden Thread - same coordinate space as timeline nodes */}
-              <div className="absolute top-6 bottom-6 left-6 md:left-1/2 w-0.5 -translate-x-1/2 bg-gradient-to-b from-[#C58F64] via-[#5E3D7A] to-[#B0542C] opacity-40 pointer-events-none rounded-full" />
+              <div className="absolute top-6 bottom-6 left-6 md:left-1/2 w-0.5 -translate-x-1/2 bg-gradient-to-b from-[#D4AF37] via-[#8E0E16] to-[#D4AF37] opacity-50 pointer-events-none rounded-full" />
 
               <div className="space-y-8 sm:space-y-10">
               {WEDDING_EVENTS.map((ev, index) => {
@@ -225,10 +225,10 @@ export const Events: React.FC<EventsProps> = ({ layoutOverride, hideHeader = fal
                         /* Date Marker on Left */
                         <div className="hidden md:flex items-center justify-end pr-3 order-2 md:order-1">
                           <div className="flex flex-col items-end text-right">
-                            <span className="text-xs uppercase tracking-[0.18em] font-bold text-[#5E3D7A] mb-0.5">
+                            <span className="text-xs uppercase tracking-[0.18em] font-bold text-[#8E0E16] mb-0.5">
                               {ev.date}
                             </span>
-                            <span className="text-xs font-serif-custom italic text-[#B0542C] font-semibold">
+                            <span className="text-xs font-serif-custom italic text-[#9A6C20] font-semibold">
                               {ev.timeOfDay} Celebration &bull; {ev.time}
                             </span>
                           </div>
@@ -238,7 +238,7 @@ export const Events: React.FC<EventsProps> = ({ layoutOverride, hideHeader = fal
                         <div className="w-full pl-14 sm:pl-16 md:pl-0 order-1">
                           <div
                             onClick={() => setSelectedEvent(ev)}
-                            className="card-sheen rounded-3xl p-5 sm:p-6 bg-[#FBF9F5] border border-[#C8BEAF]/80 shadow-md hover:shadow-xl hover:border-[#5E3D7A]/50 transition-all duration-300 cursor-pointer group flex flex-col justify-between overflow-hidden"
+                            className="card-sheen rounded-3xl p-5 sm:p-6 bg-[#FFFDF9] border border-[#DFCAB0]/80 shadow-md hover:shadow-xl hover:border-[#8E0E16]/50 transition-all duration-300 cursor-pointer group flex flex-col justify-between overflow-hidden"
                           >
                             {/* Ceremony Thumbnail Image Banner */}
                             <div className="w-full h-36 sm:h-40 rounded-2xl overflow-hidden shrink-0 relative mb-4 shadow-2xs">
@@ -259,17 +259,17 @@ export const Events: React.FC<EventsProps> = ({ layoutOverride, hideHeader = fal
                             {/* Event Information (Crisp, perfectly padded from all edges, zero overflow) */}
                             <div className="w-full text-left min-w-0">
                               <div className="flex items-center gap-2 mb-2 flex-wrap">
-                                <span className="font-royal-custom text-[11px] font-bold text-[#5E3D7A] bg-[#5E3D7A]/10 px-2.5 py-0.5 rounded-md">
+                                <span className="font-royal-custom text-[11px] font-bold text-[#8E0E16] bg-[#8E0E16]/10 px-2.5 py-0.5 rounded-md">
                                   {ev.dayLabel}
                                 </span>
-                                <span className="text-[#C8BEAF]">&bull;</span>
-                                <span className="text-xs font-semibold text-[#6D5F80] flex items-center gap-1">
-                                  <Clock className="w-3.5 h-3.5 text-[#C58F64] shrink-0" />
+                                <span className="text-[#DFCAB0]">&bull;</span>
+                                <span className="text-xs font-semibold text-[#8F5A62] flex items-center gap-1">
+                                  <Clock className="w-3.5 h-3.5 text-[#D4AF37] shrink-0" />
                                   <span>{ev.time}</span>
                                 </span>
                               </div>
 
-                              <h3 className="font-royal-custom text-xl sm:text-2xl font-bold text-[#1A1222] group-hover:text-[#5E3D7A] transition-colors leading-snug mb-1 break-words">
+                              <h3 className="font-royal-custom text-xl sm:text-2xl font-bold text-[#2E1015] group-hover:text-[#8E0E16] transition-colors leading-snug mb-1 break-words">
                                 {ev.title}
                               </h3>
 
@@ -283,7 +283,7 @@ export const Events: React.FC<EventsProps> = ({ layoutOverride, hideHeader = fal
                                   <span className="truncate">{ev.date}</span>
                                 </div>
                                 <div className="flex items-center gap-1.5 font-medium min-w-0">
-                                  <MapPin className="w-3.5 h-3.5 text-[#5E3D7A] shrink-0" />
+                                  <MapPin className="w-3.5 h-3.5 text-[#8E0E16] shrink-0" />
                                   <span className="truncate">{ev.location}</span>
                                 </div>
                               </div>
@@ -313,7 +313,7 @@ export const Events: React.FC<EventsProps> = ({ layoutOverride, hideHeader = fal
                         <div className="w-full pl-14 sm:pl-16 md:pl-0 order-1 md:order-2">
                           <div
                             onClick={() => setSelectedEvent(ev)}
-                            className="card-sheen rounded-3xl p-5 sm:p-6 bg-[#FBF9F5] border border-[#C8BEAF]/80 shadow-md hover:shadow-xl hover:border-[#5E3D7A]/50 transition-all duration-300 cursor-pointer group flex flex-col justify-between overflow-hidden"
+                            className="card-sheen rounded-3xl p-5 sm:p-6 bg-[#FFFDF9] border border-[#DFCAB0]/80 shadow-md hover:shadow-xl hover:border-[#8E0E16]/50 transition-all duration-300 cursor-pointer group flex flex-col justify-between overflow-hidden"
                           >
                             {/* Ceremony Thumbnail Image Banner */}
                             <div className="w-full h-36 sm:h-40 rounded-2xl overflow-hidden shrink-0 relative mb-4 shadow-2xs">
@@ -334,39 +334,39 @@ export const Events: React.FC<EventsProps> = ({ layoutOverride, hideHeader = fal
                             {/* Event Information (Crisp, perfectly padded from all edges, zero overflow) */}
                             <div className="w-full text-left min-w-0">
                               <div className="flex items-center gap-2 mb-2 flex-wrap">
-                                <span className="font-royal-custom text-[11px] font-bold text-[#5E3D7A] bg-[#5E3D7A]/10 px-2.5 py-0.5 rounded-md">
+                                <span className="font-royal-custom text-[11px] font-bold text-[#8E0E16] bg-[#8E0E16]/10 px-2.5 py-0.5 rounded-md">
                                   {ev.dayLabel}
                                 </span>
-                                <span className="text-[#C8BEAF]">&bull;</span>
-                                <span className="text-xs font-semibold text-[#6D5F80] flex items-center gap-1">
-                                  <Clock className="w-3.5 h-3.5 text-[#C58F64] shrink-0" />
+                                <span className="text-[#DFCAB0]">&bull;</span>
+                                <span className="text-xs font-semibold text-[#8F5A62] flex items-center gap-1">
+                                  <Clock className="w-3.5 h-3.5 text-[#D4AF37] shrink-0" />
                                   <span>{ev.time}</span>
                                 </span>
                               </div>
 
-                              <h3 className="font-royal-custom text-xl sm:text-2xl font-bold text-[#1A1222] group-hover:text-[#5E3D7A] transition-colors leading-snug mb-1 break-words">
+                              <h3 className="font-royal-custom text-xl sm:text-2xl font-bold text-[#2E1015] group-hover:text-[#8E0E16] transition-colors leading-snug mb-1 break-words">
                                 {ev.title}
                               </h3>
 
-                              <p className="font-serif-custom text-xs sm:text-sm italic text-[#B0542C] font-semibold mb-2.5 break-words">
+                              <p className="font-serif-custom text-xs sm:text-sm italic text-[#9A6C20] font-semibold mb-2.5 break-words">
                                 {ev.subTitle}
                               </p>
 
-                              <div className="space-y-1 mb-3.5 text-xs text-[#4A3F58]">
+                              <div className="space-y-1 mb-3.5 text-xs text-[#342226]">
                                 <div className="flex items-center gap-1.5 font-medium min-w-0">
-                                  <Calendar className="w-3.5 h-3.5 text-[#B0542C] shrink-0" />
+                                  <Calendar className="w-3.5 h-3.5 text-[#8E0E16] shrink-0" />
                                   <span className="truncate">{ev.date}</span>
                                 </div>
                                 <div className="flex items-center gap-1.5 font-medium min-w-0">
-                                  <MapPin className="w-3.5 h-3.5 text-[#5E3D7A] shrink-0" />
+                                  <MapPin className="w-3.5 h-3.5 text-[#8E0E16] shrink-0" />
                                   <span className="truncate">{ev.location}</span>
                                 </div>
                               </div>
 
                               {/* Attire & Details Action */}
-                              <div className="flex items-center justify-between pt-3 border-t border-[#C8BEAF]/40 text-xs gap-2">
-                                <div className="flex items-center gap-1.5 text-[#6D5F80] font-medium text-[11px] min-w-0">
-                                  <Sparkles className="w-3.5 h-3.5 text-[#C58F64] shrink-0" />
+                              <div className="flex items-center justify-between pt-3 border-t border-[#DFCAB0]/50 text-xs gap-2">
+                                <div className="flex items-center gap-1.5 text-[#8F5A62] font-medium text-[11px] min-w-0">
+                                  <Sparkles className="w-3.5 h-3.5 text-[#D4AF37] shrink-0" />
                                   <span className="truncate">{ev.dressCodeTitle}</span>
                                 </div>
                                 <span
@@ -384,10 +384,10 @@ export const Events: React.FC<EventsProps> = ({ layoutOverride, hideHeader = fal
                         /* Date Marker on Right */
                         <div className="hidden md:flex items-center justify-start pl-3 order-2">
                           <div className="flex flex-col items-start text-left">
-                            <span className="text-xs uppercase tracking-[0.18em] font-bold text-[#5E3D7A] mb-0.5">
+                            <span className="text-xs uppercase tracking-[0.18em] font-bold text-[#8E0E16] mb-0.5">
                               {ev.date}
                             </span>
-                            <span className="text-xs font-serif-custom italic text-[#B0542C] font-semibold">
+                            <span className="text-xs font-serif-custom italic text-[#9A6C20] font-semibold">
                               {ev.timeOfDay} Celebration &bull; {ev.time}
                             </span>
                           </div>
@@ -406,18 +406,18 @@ export const Events: React.FC<EventsProps> = ({ layoutOverride, hideHeader = fal
         {currentLayout === 'day-folio' && (
           <div className="space-y-8 sm:space-y-12 max-w-5xl mx-auto">
             {[
-              { dayKey: 'jan31', title: 'Day 01 · The Welcoming & Henna', date: 'Sunday, January 31, 2027', accent: '#B0542C' },
-              { dayKey: 'feb1', title: 'Day 02 · Festivities of Haldi, Mayera & Sangeet', date: 'Monday, February 1, 2027', accent: '#5E3D7A' },
-              { dayKey: 'feb2', title: 'Day 03 · The Royal Baraat, Sunset Phere & Reception', date: 'Tuesday, February 2, 2027', accent: '#C58F64' },
+              { dayKey: 'jan31', title: 'Day 01 · The Welcoming & Henna', date: 'Sunday, January 31, 2027', accent: '#9A6C20' },
+              { dayKey: 'feb1', title: 'Day 02 · Festivities of Haldi, Mayera & Sangeet', date: 'Monday, February 1, 2027', accent: '#8E0E16' },
+              { dayKey: 'feb2', title: 'Day 03 · The Royal Baraat, Sunset Phere & Reception', date: 'Tuesday, February 2, 2027', accent: '#D4AF37' },
             ].map((dayGroup) => {
               const dayEvents = WEDDING_EVENTS.filter((e) => e.day === dayGroup.dayKey);
               return (
                 <div
                   key={dayGroup.dayKey}
-                  className="rounded-3xl p-6 sm:p-10 bg-[#F7F3EE] border border-[#C8BEAF]/80 shadow-lg relative overflow-hidden"
+                  className="rounded-3xl p-6 sm:p-10 bg-[#FFFDF9] border border-[#DFCAB0]/80 shadow-lg relative overflow-hidden"
                 >
                   {/* Top Day Banner */}
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-6 mb-6 border-b border-[#C8BEAF]/50 gap-2">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-6 mb-6 border-b border-[#DFCAB0]/60 gap-2">
                     <div>
                       <span
                         className="text-[10px] uppercase font-bold tracking-[0.25em] px-3 py-1 rounded-full text-white shadow-2xs inline-block mb-2"
@@ -425,11 +425,11 @@ export const Events: React.FC<EventsProps> = ({ layoutOverride, hideHeader = fal
                       >
                         {dayGroup.date}
                       </span>
-                      <h3 className="font-royal-custom text-xl sm:text-2xl font-bold text-[#1A1222]">
+                      <h3 className="font-royal-custom text-xl sm:text-2xl font-bold text-[#2E1015]">
                         {dayGroup.title}
                       </h3>
                     </div>
-                    <span className="text-xs font-serif-custom italic text-[#6D5F80]">
+                    <span className="text-xs font-serif-custom italic text-[#8F5A62]">
                       {dayEvents.length} {dayEvents.length === 1 ? 'Ceremony' : 'Ceremonies'}
                     </span>
                   </div>
@@ -440,7 +440,7 @@ export const Events: React.FC<EventsProps> = ({ layoutOverride, hideHeader = fal
                       <div
                         key={ev.id}
                         onClick={() => setSelectedEvent(ev)}
-                        className="card-sheen rounded-2xl p-5 bg-white border border-[#C8BEAF]/50 hover:shadow-xl transition-all duration-300 cursor-pointer group flex flex-col justify-between"
+                        className="card-sheen rounded-2xl p-5 bg-white border border-[#DFCAB0]/60 hover:shadow-xl hover:border-[#8E0E16]/40 transition-all duration-300 cursor-pointer group flex flex-col justify-between"
                       >
                         <div>
                           <div className="h-40 rounded-xl overflow-hidden relative mb-4">
@@ -457,15 +457,15 @@ export const Events: React.FC<EventsProps> = ({ layoutOverride, hideHeader = fal
                             </span>
                           </div>
 
-                          <div className="flex items-center gap-2 text-xs text-[#5E3D7A] font-bold mb-1">
+                          <div className="flex items-center gap-2 text-xs text-[#8E0E16] font-bold mb-1">
                             <Clock className="w-3.5 h-3.5 shrink-0" />
                             <span>{ev.time}</span>
                           </div>
 
-                          <h4 className="font-royal-custom text-lg font-bold text-[#1A1222] group-hover:text-[#5E3D7A] transition-colors mb-1">
+                          <h4 className="font-royal-custom text-lg font-bold text-[#2E1015] group-hover:text-[#8E0E16] transition-colors mb-1">
                             {ev.title}
                           </h4>
-                          <p className="font-serif-custom text-xs italic text-[#B0542C] font-semibold mb-3">
+                          <p className="font-serif-custom text-xs italic text-[#9A6C20] font-semibold mb-3">
                             {ev.subTitle}
                           </p>
                         </div>
@@ -495,7 +495,7 @@ export const Events: React.FC<EventsProps> = ({ layoutOverride, hideHeader = fal
           <div className="relative">
             {/* Scroll Navigation Arrows */}
             <div className="flex items-center justify-between mb-4 px-2">
-              <span className="text-xs uppercase tracking-[0.2em] font-bold text-[#5E3D7A] flex items-center gap-1.5">
+              <span className="text-xs uppercase tracking-[0.2em] font-bold text-[#8E0E16] flex items-center gap-1.5">
                 <Sparkles className="w-3.5 h-3.5" />
                 <span>Swipe or Scroll Through the 7 Ceremonies</span>
               </span>
@@ -558,7 +558,7 @@ export const Events: React.FC<EventsProps> = ({ layoutOverride, hideHeader = fal
 
                   <div className="p-6 sm:p-7 flex-1 flex flex-col justify-between">
                     <div>
-                      <h3 className="font-royal-custom text-xl sm:text-2xl font-bold text-[#1A1222] group-hover:text-[#5E3D7A] transition-colors mb-1">
+                      <h3 className="font-royal-custom text-xl sm:text-2xl font-bold text-[#1A1222] group-hover:text-[#8E0E16] transition-colors mb-1">
                         {ev.title}
                       </h3>
                       <p className="font-serif-custom text-sm italic text-[#B0542C] font-semibold mb-4">
@@ -610,11 +610,11 @@ export const Events: React.FC<EventsProps> = ({ layoutOverride, hideHeader = fal
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 25 }}
               transition={{ type: 'spring', damping: 26, stiffness: 300 }}
-              className="bg-[#F7F3EE] rounded-3xl max-w-2xl w-full p-6 sm:p-8 relative shadow-2xl overflow-y-auto max-h-[90vh] text-[#1A1222] border border-[#C8BEAF]"
+              className="bg-[#FFFDF9] rounded-3xl max-w-2xl w-full p-6 sm:p-8 relative shadow-2xl overflow-y-auto max-h-[90vh] text-[#2E1015] border border-[#DFCAB0]"
             >
               <button
                 onClick={() => setSelectedEvent(null)}
-                className="absolute top-4 right-4 p-2 rounded-full text-[#5E3D7A] hover:text-[#1A1222] hover:bg-black/5 transition-colors cursor-pointer"
+                className="absolute top-4 right-4 p-2 rounded-full text-[#8E0E16] hover:text-[#2E1015] hover:bg-black/5 transition-colors cursor-pointer"
                 aria-label="Close details"
               >
                 <X className="w-5 h-5" />
@@ -622,7 +622,7 @@ export const Events: React.FC<EventsProps> = ({ layoutOverride, hideHeader = fal
 
               <div className="mb-6">
                 <div className="flex items-center gap-2 mb-2">
-                  <span className="font-royal-custom text-xs font-bold px-2.5 py-0.5 rounded-full bg-white border border-[#C8BEAF]/40 text-[#5E3D7A]">
+                  <span className="font-royal-custom text-xs font-bold px-2.5 py-0.5 rounded-full bg-white border border-[#DFCAB0]/70 text-[#8E0E16]">
                     {selectedEvent.dayLabel}
                   </span>
                   <span
@@ -632,37 +632,37 @@ export const Events: React.FC<EventsProps> = ({ layoutOverride, hideHeader = fal
                     {selectedEvent.timeOfDay}
                   </span>
                 </div>
-                <h3 className="font-royal-custom text-2xl sm:text-3xl font-bold text-[#1A1222] tracking-[0.03em]">
+                <h3 className="font-royal-custom text-2xl sm:text-3xl font-bold text-[#2E1015] tracking-[0.03em]">
                   {selectedEvent.title}
                 </h3>
-                <p className="font-serif-custom text-[#B0542C] italic text-base mt-1 font-semibold">
+                <p className="font-serif-custom text-[#9A6C20] italic text-base mt-1 font-semibold">
                   {selectedEvent.subTitle}
                 </p>
               </div>
 
-              <div className="grid grid-cols-2 gap-3 mb-6 text-xs sm:text-sm text-[#2B2136] font-medium p-4 rounded-2xl bg-[#F0EBE3] border border-[#C8BEAF]/40">
+              <div className="grid grid-cols-2 gap-3 mb-6 text-xs sm:text-sm text-[#342226] font-medium p-4 rounded-2xl bg-[#FAF6F0] border border-[#DFCAB0]/50">
                 <div className="flex items-center gap-2">
-                  <Calendar className="w-4 h-4 text-[#5E3D7A]" />
+                  <Calendar className="w-4 h-4 text-[#8E0E16]" />
                   <span>{selectedEvent.date}</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Clock className="w-4 h-4 text-[#B0542C]" />
+                  <Clock className="w-4 h-4 text-[#9A6C20]" />
                   <span>{selectedEvent.time}</span>
                 </div>
                 <div className="flex items-center gap-2 col-span-2">
-                  <MapPin className="w-4 h-4 text-[#C58F64]" />
+                  <MapPin className="w-4 h-4 text-[#8E0E16]" />
                   <span>{selectedEvent.location}</span>
                 </div>
               </div>
 
-              <p className="font-serif-custom text-[#2B2136] text-base leading-relaxed mb-6 font-normal">
+              <p className="font-serif-custom text-[#342226] text-base leading-relaxed mb-6 font-normal">
                 {selectedEvent.description}
               </p>
 
               {/* Dress code */}
-              <div className="bg-[#F0EBE3] rounded-2xl p-5 mb-6 border border-[#C8BEAF]/40">
+              <div className="bg-[#FAF6F0] rounded-2xl p-5 mb-6 border border-[#DFCAB0]/50">
                 <div className="flex items-center justify-between mb-3">
-                  <div className="flex items-center gap-2 text-[#B0542C] text-xs uppercase tracking-[0.1em] font-bold">
+                  <div className="flex items-center gap-2 text-[#8E0E16] text-xs uppercase tracking-[0.1em] font-bold">
                     <Shirt className="w-4 h-4" />
                     <span>Dress Code</span>
                   </div>
@@ -676,18 +676,18 @@ export const Events: React.FC<EventsProps> = ({ layoutOverride, hideHeader = fal
                     ))}
                   </div>
                 </div>
-                <p className="font-royal-custom text-sm font-bold text-[#1A1222] mb-2">
+                <p className="font-royal-custom text-sm font-bold text-[#2E1015] mb-2">
                   {selectedEvent.dressCodeTitle}
                 </p>
-                <ul className="space-y-1.5 text-xs text-[#2B2136] list-disc list-inside font-serif-custom font-medium">
+                <ul className="space-y-1.5 text-xs text-[#342226] list-disc list-inside font-serif-custom font-medium">
                   {selectedEvent.dressCodeSuggestions.map((s, i) => (
                     <li key={i}>{s}</li>
                   ))}
                 </ul>
               </div>
 
-              <div className="flex items-center gap-3 text-xs text-[#5E3D7A] mb-6 font-semibold">
-                <Music className="w-4 h-4 text-[#5E3D7A]" />
+              <div className="flex items-center gap-3 text-xs text-[#8E0E16] mb-6 font-semibold">
+                <Music className="w-4 h-4 text-[#8E0E16]" />
                 <span><strong>Music Vibe:</strong> {selectedEvent.musicVibe}</span>
               </div>
 

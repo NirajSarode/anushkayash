@@ -21,9 +21,9 @@ export const StoryTeaser: React.FC<StoryTeaserProps> = ({ onOpenStory }) => {
           className="relative"
         >
           {/* Breathing glow behind */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[300px] rounded-full animate-breathe pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(184,159,200,0.18) 0%, rgba(232,169,135,0.18) 50%, transparent 70%)' }} />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[300px] rounded-full animate-breathe pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(212,175,55,0.18) 0%, rgba(142,14,22,0.15) 50%, transparent 70%)' }} />
 
-          <p className="font-serif-custom text-[#5E3D7A] text-xs tracking-[0.35em] uppercase mb-4 font-bold relative">
+          <p className="font-serif-custom text-[#8E0E16] text-xs tracking-[0.35em] uppercase mb-4 font-bold relative">
             Our Journey
           </p>
 
@@ -42,36 +42,36 @@ export const StoryTeaser: React.FC<StoryTeaserProps> = ({ onOpenStory }) => {
               className="relative group cursor-pointer"
               style={{ transition: 'transform 0.3s ease' }}
             >
-              <div className="absolute -inset-4 bg-gradient-to-r from-[#B89FC8]/40 via-[#FDE047]/30 to-[#E8A987]/40 rounded-full blur-2xl opacity-60 group-hover:opacity-90 transition duration-700 animate-pulse pointer-events-none" />
+              <div className="absolute -inset-4 bg-gradient-to-r from-[#D4AF37]/30 via-[#FDE047]/30 to-[#8E0E16]/30 rounded-full blur-2xl opacity-60 group-hover:opacity-90 transition duration-700 animate-pulse pointer-events-none" />
               <div className="relative w-44 h-48 sm:w-56 sm:h-60 flex items-center justify-center">
                 <img
                   src="/images/couple_transparent.webp"
                   alt="Anushka & Yash"
                   loading="lazy"
                   decoding="async"
-                  className="w-full h-full object-contain filter drop-shadow-[0_12px_24px_rgba(46,36,56,0.15)] transform group-hover:scale-105 transition-transform duration-700"
+                  className="w-full h-full object-contain filter drop-shadow-[0_12px_24px_rgba(46,16,21,0.15)] transform group-hover:scale-105 transition-transform duration-700"
                 />
               </div>
             </motion.div>
           </div>
 
-          <p className="font-serif-custom text-[#2B2136] text-lg sm:text-xl italic max-w-xl mx-auto mb-8 relative leading-relaxed font-medium">
+          <p className="font-serif-custom text-[#342226] text-lg sm:text-xl italic max-w-xl mx-auto mb-8 relative leading-relaxed font-medium">
             From the bustling heritage lanes of Delhi to the tranquil hillscapes of Maharashtra &mdash; a love story written across two states.
           </p>
 
           {/* Two states indicators */}
           <div className="flex justify-center items-center gap-4 sm:gap-8 mb-10 relative">
-            <span className="text-xs sm:text-sm uppercase tracking-[0.2em] font-bold text-[#5E3D7A]">Delhi</span>
-            <span className="text-sm text-[#C58F64]">&hearts;</span>
-            <span className="text-xs sm:text-sm uppercase tracking-[0.2em] font-black text-[#B0542C] font-royal-custom">#AnushKaYash</span>
-            <span className="text-sm text-[#C58F64]">&hearts;</span>
-            <span className="text-xs sm:text-sm uppercase tracking-[0.2em] font-bold text-[#B0542C]">Maharashtra</span>
+            <span className="text-xs sm:text-sm uppercase tracking-[0.2em] font-bold text-[#8E0E16]">Delhi</span>
+            <span className="text-sm text-[#D4AF37]">&hearts;</span>
+            <span className="text-xs sm:text-sm uppercase tracking-[0.2em] font-normal text-royal-crimson font-royal-custom">#AnushKaYash</span>
+            <span className="text-sm text-[#D4AF37]">&hearts;</span>
+            <span className="text-xs sm:text-sm uppercase tracking-[0.2em] font-bold text-[#9A6C20]">Maharashtra</span>
           </div>
 
           <button
             onClick={onOpenStory}
             className="btn-sheen relative inline-flex items-center gap-3 px-8 py-3.5 rounded-full text-white text-xs uppercase tracking-[0.2em] font-semibold shadow-md hover:shadow-xl hover:scale-105 active:scale-95 transition-all cursor-pointer"
-            style={{ background: 'linear-gradient(135deg, #6B4984, #B05B43, #A85630)' }}
+            style={{ background: 'linear-gradient(135deg, #8E0E16 0%, #C21D27 50%, #D4AF37 100%)' }}
           >
             <span>Read Our Full Story</span>
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />

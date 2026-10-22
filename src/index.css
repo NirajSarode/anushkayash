@@ -15,20 +15,21 @@
     --font-script: 'Great Vibes', cursive;
     --font-sans: 'Plus Jakarta Sans', sans-serif;
 
-    /* Richer, high-contrast palette — warm neutral base with deep legible text */
-    --color-bg: #F0EBE3;
-    --color-bg-deep: #E6DED3;
-    --color-card: #F7F3EE;
-    --color-her: #8E68A8;        /* Deeper royal lavender */
-    --color-her-deep: #4A2E64;
-    --color-him: #D47B50;        /* Deeper warm peach */
-    --color-him-deep: #633318;
-    --color-accent: #B05B43;     /* Rich terracotta */
-    --color-heading: #1A1222;    /* Deep regal near-black */
-    --color-body: #2B2136;       /* Deep rich plum-charcoal for crisp text */
-    --color-muted: #4B3E5B;      /* High-contrast medium tone */
-    --color-faint: #6D5F80;      /* Darker legible subtext */
-    --color-border: #C8BEAF;
+    /* Minimalist Red & Satin Gold Theme */
+    --color-bg: #FAF8F5;
+    --color-bg-deep: #F3EFE9;
+    --color-card: #FFFFFF;
+    --color-her: #941B26;        /* Refined Minimalist Crimson (Anushka) */
+    --color-her-deep: #7A151C;   /* Deep Understated Carmine */
+    --color-him: #941B26;        /* Refined Minimalist Crimson (Yash in Red also) */
+    --color-him-deep: #7A151C;   /* Deep Understated Carmine */
+    --color-accent: #D4AF37;     /* Delicate Metallic Temple Gold (& ampersand) */
+    --color-gold: #B88E3E;       /* Warm Satin Gold Filigree */
+    --color-heading: #1F191B;    /* Clean Modern Dark Charcoal */
+    --color-body: #2B2326;       /* Crisp High-Contrast Body Text */
+    --color-muted: #5C4A4F;      /* Soft Warm Charcoal */
+    --color-faint: #826E74;      /* Delicate Subtitle Tone */
+    --color-border: #E7DECE;     /* Subtle Hairline Linen-Gold Border */
   }
 
   html {
@@ -52,28 +53,28 @@
 
 /* Gradient text */
 .gradient-text-blend {
-  background: linear-gradient(135deg, #5E3D7A 0%, #B0542C 50%, #C58F64 100%);
+  background: linear-gradient(135deg, #941B26 0%, #D4AF37 50%, #941B26 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 .gradient-text-her {
-  background: linear-gradient(135deg, #7C6090 0%, #5E3D7A 100%);
+  background: linear-gradient(135deg, #941B26 0%, #7A151C 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 .gradient-text-him {
-  background: linear-gradient(135deg, #D47B50 0%, #B0542C 100%);
+  background: linear-gradient(135deg, #941B26 0%, #7A151C 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 /* Soft card */
 .soft-card {
-  background: rgba(247, 243, 238, 0.85);
+  background: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid var(--color-border);
-  box-shadow: 0 2px 20px rgba(46, 36, 56, 0.04);
+  box-shadow: 0 2px 20px rgba(46, 16, 21, 0.04);
 }
 
 /* Film grain overlay — subtle analog texture */
@@ -93,9 +94,9 @@
   position: fixed;
   top: 0;
   left: 0;
-  height: 2px;
+  height: 3px;
   z-index: 9999;
-  background: linear-gradient(to right, var(--color-her), var(--color-accent), var(--color-him));
+  background: linear-gradient(to right, #941B26, #D4AF37, #941B26);
   transform-origin: left;
   will-change: transform;
 }

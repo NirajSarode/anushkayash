@@ -10,47 +10,20 @@ import { BlessingsWall } from './components/BlessingsWall';
 import { SaveTheDateBanner } from './components/SaveTheDateBanner';
 import { Footer } from './components/Footer';
 import { StoryTeaser } from './components/StoryTeaser';
-import { AmbientCursorAura } from './components/AmbientCursorAura';
 import { getStoredFontTheme, getStoredColorTheme, applyThemeToDom } from './utils/themeStore';
 
 // Code-split auxiliary pages & modals so mobile phone loads landing instantaneously
 const OurStory = lazy(() => import('./components/OurStory').then(m => ({ default: m.OurStory })));
-const ThemePreview = lazy(() => import('./components/ThemePreview'));
 const BlessingsPage = lazy(() => import('./components/BlessingsPage').then(m => ({ default: m.BlessingsPage })));
-const RSVPModal = lazy(() => import('./components/RSVPModal').then(m => ({ default: m.RSVPModal })));
 
 export const App: React.FC = () => {
-  const [currentPage, setCurrentPage] = useState<'home' | 'story' | 'themes' | 'blessings'>('home');
-  const [isRSVPOpen, setIsRSVPOpen] = useState(false);
+  const [currentPage, setCurrentPage] = useState<'home' | 'story' | 'blessings'>('home');
   const [scrollProgress, setScrollProgress] = useState(0);
   const [hasUnveiledCurtain, setHasUnveiledCurtain] = useState(false);
 
   // Apply saved theme on boot
   useEffect(() => {
     applyThemeToDom(getStoredFontTheme(), getStoredColorTheme());
-  }, []);
-
-  // Theme page detection via query param (?themes) or hash (#themes)
-  useEffect(() => {
-    const checkThemeUrl = () => {
-      const isTheme =
-        window.location.search.includes('themes') ||
-        window.location.hash.toLowerCase().includes('themes') ||
-        window.location.pathname.toLowerCase().endsWith('/themes');
-
-      if (isTheme) {
-        setCurrentPage('themes');
-        setHasUnveiledCurtain(true);
-      }
-    };
-
-    checkThemeUrl();
-    window.addEventListener('hashchange', checkThemeUrl);
-    window.addEventListener('popstate', checkThemeUrl);
-    return () => {
-      window.removeEventListener('hashchange', checkThemeUrl);
-      window.removeEventListener('popstate', checkThemeUrl);
-    };
   }, []);
 
   // Scroll progress tracker
@@ -73,12 +46,9 @@ export const App: React.FC = () => {
     }
   };
 
-  const handleNavigate = (page: 'home' | 'story' | 'themes' | 'blessings', targetSection?: string) => {
+  const handleNavigate = (page: 'home' | 'story' | 'blessings', targetSection?: string) => {
     if (page === 'home' && targetSection) {
       setHasUnveiledCurtain(true);
-      if (window.location.search.includes('themes')) {
-        window.history.replaceState({}, '', window.location.pathname);
-      }
       if (currentPage !== 'home') {
         setCurrentPage('home');
         setTimeout(() => {
@@ -92,16 +62,13 @@ export const App: React.FC = () => {
 
     setCurrentPage(page);
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    if (page === 'story' || page === 'themes' || page === 'blessings') {
+    if (page === 'story' || page === 'blessings') {
       setHasUnveiledCurtain(true);
-    }
-    if (page === 'home' && window.location.search.includes('themes')) {
-      window.history.replaceState({}, '', window.location.pathname);
     }
   };
 
   return (
-    <div className="relative min-h-screen bg-[#F0EBE3] text-[#4A3F58] selection:bg-[#B89FC8]/30 selection:text-[#2E2438] font-sans-custom">
+    <div className="relative min-h-screen bg-[var(--color-bg)] text-[var(--color-body)] selection:bg-[#D4AF37]/30 selection:text-[#560309] font-sans-custom">
       {/* Scroll progress bar */}
       <div
         className="scroll-progress"
@@ -114,24 +81,17 @@ export const App: React.FC = () => {
       {/* Soft ambient background */}
       <MistCanvas />
       {hasUnveiledCurtain && <FloatingDecor />}
-      <AmbientCursorAura />
 
       {/* Navigation */}
       <Navbar
         currentPage={currentPage}
         onNavigate={handleNavigate}
-        onOpenRSVP={() => setIsRSVPOpen(true)}
         hasUnveiled={hasUnveiledCurtain}
       />
 
       <main>
-        <Suspense fallback={<div className="min-h-screen bg-[#F0EBE3]" />}>
-          {currentPage === 'themes' ? (
-            <ThemePreview
-              onBack={() => handleNavigate('home')}
-              onNavigateHome={() => handleNavigate('home')}
-            />
-          ) : currentPage === 'blessings' ? (
+        <Suspense fallback={<div className="min-h-screen bg-[var(--color-bg)]" />}>
+          {currentPage === 'blessings' ? (
             <BlessingsPage onBackToHome={() => handleNavigate('home')} />
           ) : currentPage === 'home' ? (
             <>
@@ -146,7 +106,6 @@ export const App: React.FC = () => {
               <VenueTravel />
               <BlessingsWall onViewAll={() => handleNavigate('blessings')} />
               <SaveTheDateBanner
-                onOpenRSVP={() => setIsRSVPOpen(true)}
                 onNavigateToVenue={() => handleNavigate('home', 'venue')}
               />
             </>
@@ -160,9 +119,6 @@ export const App: React.FC = () => {
       </main>
 
       <Footer />
-      <Suspense fallback={null}>
-        {isRSVPOpen && <RSVPModal isOpen={isRSVPOpen} onClose={() => setIsRSVPOpen(false)} />}
-      </Suspense>
     </div>
   );
 };

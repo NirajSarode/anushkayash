@@ -142,7 +142,7 @@ export const Hero: React.FC<HeroProps> = ({ onEnter: _onEnter, hasUnveiled = fal
   };
 
   return (
-    <section className="relative min-h-screen w-full flex flex-col justify-center items-center text-center overflow-x-hidden overflow-y-visible pt-16 pb-16 sm:pt-20 sm:pb-20">
+    <section className="relative min-h-screen lg:min-h-0 w-full flex flex-col justify-center items-center text-center overflow-x-hidden overflow-y-visible pt-10 pb-14 sm:pt-14 sm:pb-16 lg:pt-8 lg:pb-10">
 
       {/* ── Curtain Reveal Overlay ── */}
       <AnimatePresence>
@@ -204,13 +204,13 @@ export const Hero: React.FC<HeroProps> = ({ onEnter: _onEnter, hasUnveiled = fal
             >
               {/* Ambient radiant glow behind the couple */}
               <div
-                className="absolute w-[320px] h-[320px] sm:w-[600px] sm:h-[600px] rounded-full animate-breathe pointer-events-none"
+                className="absolute w-[320px] h-[320px] sm:w-[500px] sm:h-[500px] lg:w-[420px] lg:h-[420px] rounded-full animate-breathe pointer-events-none"
                 style={{
                   background: 'radial-gradient(circle, rgba(255, 235, 215, 0.35) 0%, rgba(230, 189, 112, 0.18) 45%, transparent 70%)',
                 }}
               />
 
-              {/* ── Couple Figure (52-54% of viewport height matching reference) ── */}
+              {/* ── Couple Figure (scaled appropriately on laptop) ── */}
               <motion.div
                 initial={{ scale: 0.9, opacity: 0, y: -15 }}
                 animate={{ scale: 1, opacity: 1, y: 0 }}
@@ -218,7 +218,7 @@ export const Hero: React.FC<HeroProps> = ({ onEnter: _onEnter, hasUnveiled = fal
                 className="relative flex flex-col items-center justify-center pointer-events-none shrink-0"
               >
                 {/* Soft warm champagne gold backlight glow */}
-                <div className="absolute -inset-6 sm:-inset-10 bg-gradient-to-r from-[#E6BD70]/25 via-[#FDE047]/30 to-[#D47B50]/25 rounded-full blur-2xl sm:blur-3xl opacity-75 animate-pulse" />
+                <div className="absolute -inset-6 sm:-inset-8 bg-gradient-to-r from-[#E6BD70]/25 via-[#FDE047]/30 to-[#D47B50]/25 rounded-full blur-2xl sm:blur-3xl opacity-75 animate-pulse" />
 
                 <picture>
                   <source media="(max-width: 767px)" srcSet="/images/couple_mobile.webp" />
@@ -227,13 +227,13 @@ export const Hero: React.FC<HeroProps> = ({ onEnter: _onEnter, hasUnveiled = fal
                     alt="Anushka & Yash"
                     decoding="async"
                     fetchPriority="high"
-                    className="relative z-10 h-[36vh] sm:h-[44vh] md:h-[50vh] lg:h-[52vh] max-h-[560px] w-auto object-contain filter drop-shadow-[0_12px_28px_rgba(0,0,0,0.32)]"
+                    className="relative z-10 h-[36vh] sm:h-[44vh] md:h-[40vh] lg:h-[38vh] max-h-[420px] w-auto object-contain filter drop-shadow-[0_12px_28px_rgba(0,0,0,0.32)]"
                   />
                 </picture>
               </motion.div>
 
               {/* Names: AnushKaYash directly below couple lehenga */}
-              <div className="relative mt-2 sm:mt-3 lg:mt-4 flex items-center justify-center flex-nowrap max-w-full overflow-visible shrink-0">
+              <div className="relative mt-3 sm:mt-3 lg:mt-3 flex items-center justify-center flex-nowrap max-w-full overflow-visible shrink-0">
                 {/* Anushka side */}
                 <motion.div
                   initial={{ x: -80, opacity: 0 }}
@@ -243,7 +243,7 @@ export const Hero: React.FC<HeroProps> = ({ onEnter: _onEnter, hasUnveiled = fal
                 >
                   {/* Anush (Royal Crimson) */}
                   <span
-                    className="text-4xl sm:text-5xl md:text-6xl lg:text-[5.8rem] xl:text-[6.4rem] font-normal tracking-[0.01em] text-royal-crimson select-none leading-none"
+                    className="text-4xl sm:text-5xl md:text-5xl lg:text-[4.2rem] xl:text-[4.6rem] font-normal tracking-[0.01em] text-royal-crimson select-none leading-none"
                     style={{
                       fontFamily: "'Atavian', 'Bodoni Moda', serif",
                     }}
@@ -253,7 +253,7 @@ export const Hero: React.FC<HeroProps> = ({ onEnter: _onEnter, hasUnveiled = fal
 
                   {/* 'Ka' (Radiant Royal Gold) */}
                   <span
-                    className="text-4xl sm:text-5xl md:text-6xl lg:text-[5.8rem] xl:text-[6.4rem] font-normal tracking-[0.01em] text-royal-gold select-none inline-block leading-none"
+                    className="text-4xl sm:text-5xl md:text-5xl lg:text-[4.2rem] xl:text-[4.6rem] font-normal tracking-[0.01em] text-royal-gold select-none inline-block leading-none"
                     style={{
                       fontFamily: "'Atavian', 'Bodoni Moda', serif",
                     }}
@@ -271,7 +271,7 @@ export const Hero: React.FC<HeroProps> = ({ onEnter: _onEnter, hasUnveiled = fal
                 >
                   {/* Yash (Royal Crimson) */}
                   <span
-                    className="text-4xl sm:text-5xl md:text-6xl lg:text-[5.8rem] xl:text-[6.4rem] font-normal tracking-[0.01em] text-royal-crimson select-none leading-none"
+                    className="text-4xl sm:text-5xl md:text-5xl lg:text-[4.2rem] xl:text-[4.6rem] font-normal tracking-[0.01em] text-royal-crimson select-none leading-none"
                     style={{
                       fontFamily: "'Atavian', 'Bodoni Moda', serif",
                     }}
@@ -286,10 +286,10 @@ export const Hero: React.FC<HeroProps> = ({ onEnter: _onEnter, hasUnveiled = fal
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1.8, duration: 1.0 }}
-                className="flex items-center justify-center mt-1 sm:mt-2 lg:mt-3 shrink-0"
+                className="flex items-center justify-center mt-2 sm:mt-2 lg:mt-2 shrink-0"
               >
                 <p
-                  className="text-xs sm:text-base md:text-lg lg:text-xl xl:text-2xl font-normal tracking-[0.04em]"
+                  className="text-xs sm:text-base md:text-base lg:text-lg xl:text-xl font-normal tracking-[0.04em]"
                   style={{
                     fontFamily: "'Atavian', 'Bodoni Moda', serif",
                     color: '#764309',
@@ -309,181 +309,187 @@ export const Hero: React.FC<HeroProps> = ({ onEnter: _onEnter, hasUnveiled = fal
         variants={stagger}
         initial="hidden"
         animate="show"
-        className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 flex flex-col items-center w-full"
+        className="relative z-10 w-full max-w-[96vw] md:max-w-2xl lg:max-w-[850px] xl:max-w-[880px] mx-auto px-3 sm:px-6 flex flex-col items-center"
       >
-        {/* Names — horizontal royal typography, close & natural spacing */}
+        {/* Names — horizontal royal typography matching reference */}
         <motion.div
           variants={fadeUp}
-          className="flex flex-nowrap whitespace-nowrap items-center justify-center gap-2 sm:gap-3 md:gap-4 mt-1 sm:mt-2 mb-1.5 sm:mb-2.5 w-full overflow-hidden"
+          className="flex flex-nowrap whitespace-nowrap items-center justify-center gap-2 sm:gap-3 md:gap-3.5 mt-2 sm:mt-2 lg:mt-1 mb-1.5 sm:mb-2 lg:mb-1 w-full overflow-hidden"
         >
           <h1
-            className="font-royal-custom tracking-[0.08em] sm:tracking-[0.12em] font-bold leading-none shrink-0"
+            className="font-royal-custom tracking-[0.08em] sm:tracking-[0.12em] font-bold leading-none shrink-0 text-3xl sm:text-4xl md:text-5xl lg:text-[2.75rem]"
             style={{
-              fontSize: 'clamp(1.5rem, 4.4vw, 4.2rem)',
-              color: 'var(--color-her-deep, #5E3D7A)',
+              color: 'var(--color-her, #941B26)',
             }}
           >
             ANUSHKA
           </h1>
           <span
-            className="font-script-custom px-0.5 sm:px-1 select-none leading-none shrink-0"
+            className="font-script-custom px-0.5 sm:px-1 select-none leading-none shrink-0 text-3xl sm:text-4xl md:text-5xl lg:text-[2.75rem]"
             style={{
-              fontSize: 'clamp(1.5rem, 4.2vw, 4.2rem)',
-              color: 'var(--color-accent, #C58F64)',
+              color: 'var(--color-accent, #D4AF37)',
             }}
           >
             &
           </span>
           <h1
-            className="font-royal-custom tracking-[0.08em] sm:tracking-[0.12em] font-bold leading-none shrink-0"
+            className="font-royal-custom tracking-[0.08em] sm:tracking-[0.12em] font-bold leading-none shrink-0 text-3xl sm:text-4xl md:text-5xl lg:text-[2.75rem]"
             style={{
-              fontSize: 'clamp(1.5rem, 4.4vw, 4.2rem)',
-              color: 'var(--color-him-deep, #B0542C)',
+              color: 'var(--color-her, #941B26)',
             }}
           >
             YASH
           </h1>
         </motion.div>
 
-        {/* Auspicious Sanskrit / Marathi Inscription */}
-        <motion.p
+        {/* Auspicious Sanskrit / Marathi Inscription flanked by golden divider lines */}
+        <motion.div
           variants={fadeUp}
-          className="font-serif-custom text-xs sm:text-sm md:text-base tracking-[0.25em] uppercase mb-1.5 sm:mb-2 font-bold"
+          className="flex items-center justify-center gap-2.5 sm:gap-3.5 mb-1.5 sm:mb-2 lg:mb-1"
         >
-          ॥ शुभमंगल सावधान ॥
-        </motion.p>
+          <span className="w-6 sm:w-10 lg:w-12 h-[1px] bg-gradient-to-r from-transparent via-[#D4AF37]/70 to-[#D4AF37]" />
+          <p className="font-serif-custom text-[11px] sm:text-xs lg:text-[0.8rem] tracking-[0.22em] sm:tracking-[0.26em] uppercase font-bold text-[#9A6C20]">
+            ॥ शुभमंगल सावधान ॥
+          </p>
+          <span className="w-6 sm:w-10 lg:w-12 h-[1px] bg-gradient-to-l from-transparent via-[#D4AF37]/70 to-[#D4AF37]" />
+        </motion.div>
 
-        {/* Date & Destination Banner — distinct colors for Date and Location (+10% font size) */}
-        <motion.div variants={fadeUp} className="text-center mb-3 sm:mb-4 px-2">
-          <p className="font-serif-custom text-sm sm:text-base md:text-[1.125rem] tracking-[0.20em] sm:tracking-[0.24em] uppercase font-bold drop-shadow-[0_1px_1px_rgba(255,255,255,0.7)] flex flex-wrap items-center justify-center gap-1 sm:gap-2">
-            <span style={{ color: 'var(--color-her-deep, #5E3D7A)' }}>JANUARY 31 &ndash; FEBRUARY 3, 2027</span>
-            <span style={{ color: 'var(--color-accent, #C58F64)' }}>&bull;</span>
-            <span style={{ color: 'var(--color-him-deep, #B0542C)' }}>IGATPURI, MAHARASHTRA</span>
+        {/* Date & Destination Banner — uniform warm golden bronze */}
+        <motion.div variants={fadeUp} className="text-center mb-3 sm:mb-3.5 lg:mb-2 px-2">
+          <p className="font-serif-custom text-[11px] sm:text-xs md:text-sm lg:text-[0.88rem] tracking-[0.18em] sm:tracking-[0.22em] uppercase font-bold text-[#9A6C20] flex flex-wrap items-center justify-center gap-1.5 sm:gap-2">
+            <span>JANUARY 31 &ndash; FEBRUARY 3, 2027</span>
+            <span className="text-[#D4AF37]">&bull;</span>
+            <span>IGATPURI, MAHARASHTRA</span>
           </p>
         </motion.div>
 
-        {/* ── Filigree Ornamental Countdown Plaque ── */}
+        {/* ── Authentic Ornate Cartouche Countdown Plaque ── */}
         <motion.div
           variants={fadeUp}
-          className="my-1 sm:my-2 flex items-center justify-center gap-1 sm:gap-3"
+          className="my-1.5 sm:my-2 lg:my-1.5 relative flex items-center justify-center select-none"
         >
-          {/* Left Filigree Scroll */}
-          <svg
-            className="w-8 sm:w-12 md:w-16 h-8 sm:h-12 text-[#B89267] opacity-80 shrink-0 hidden xs:block"
-            viewBox="0 0 64 48"
-            fill="none"
-            stroke="currentColor"
-          >
-            <path
-              d="M60 24 H42 C36 24 30 14 22 14 C14 14 10 20 12 28 C14 34 22 34 24 28 C26 20 18 16 10 20 C4 23 2 30 6 36 C10 40 18 38 22 34"
-              strokeWidth="1.2"
-              strokeLinecap="round"
-            />
-            <path d="M38 24 C34 16 26 8 18 8" strokeWidth="1" strokeLinecap="round" opacity="0.5" />
-            <path d="M44 24 C40 32 32 38 24 40" strokeWidth="1" strokeLinecap="round" opacity="0.5" />
-            <circle cx="62" cy="24" r="2" fill="currentColor" />
-            <circle cx="22" cy="14" r="1.5" fill="currentColor" />
-            <circle cx="6" cy="36" r="1.5" fill="currentColor" />
-          </svg>
+          {/* Cartouche Plaque Container — compact, matching reference (~52% width of date line) */}
+          <div className="relative w-[220px] xs:w-[245px] sm:w-[265px] md:w-[280px] lg:w-[290px] aspect-[910/184] flex items-center justify-center">
+            {/* The Authentic Ornate Plaque Frame Image from User */}
+            <picture className="absolute inset-0 w-full h-full pointer-events-none select-none">
+              <source srcSet="/images/timer_plaque_frame.webp" type="image/webp" />
+              <img
+                src="/images/timer_plaque_frame.png"
+                alt="Ornate Royal Wedding Countdown Plaque"
+                className="w-full h-full object-contain filter drop-shadow-[0_2px_10px_rgba(197,143,100,0.18)]"
+                draggable={false}
+              />
+            </picture>
 
-          {/* Elegant Filigree Framed Plaque */}
-          <div className="relative px-5 py-2.5 sm:px-8 sm:py-3 rounded-xl border border-[#C58F64]/45 bg-[#FDFBF7]/85 backdrop-blur-md shadow-[0_4px_25px_rgba(197,143,100,0.18)] hover:shadow-[0_8px_32px_rgba(197,143,100,0.28)] transition-all duration-500">
-            {/* Fine Inner Accent Border */}
-            <div className="absolute inset-1 rounded-lg border border-[#C58F64]/20 pointer-events-none" />
-
-            {/* Countdown Grid */}
-            <div className="relative flex items-center justify-center gap-2.5 sm:gap-5 md:gap-6 text-[#2E2438]">
-              <div className="flex flex-col items-center min-w-[34px] sm:min-w-[48px]">
-                <span className="font-royal-custom text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight">
+            {/* Countdown Content positioned inside the central region between filigree ends */}
+            <div className="relative z-10 w-[72%] h-full flex items-center justify-between px-1 sm:px-1.5 pt-0.5 sm:pt-1 pb-1 sm:pb-1.5">
+              {/* DAYS */}
+              <div className="flex flex-col items-center justify-center min-w-[28px] sm:min-w-[34px]">
+                <span
+                  className="font-royal-custom text-base xs:text-lg sm:text-xl lg:text-[1.32rem] font-normal leading-none tracking-tight select-none text-[#2E1810]"
+                >
                   {String(timeLeft.days).padStart(2, '0')}
                 </span>
-                <span className="text-[9px] sm:text-[10px] font-sans-custom uppercase tracking-[0.22em] text-[#6D5F80] font-bold mt-0.5">
-                  Days
+                <span className="text-[6.5px] xs:text-[7px] sm:text-[7.5px] lg:text-[8px] font-sans-custom uppercase tracking-[0.20em] font-bold text-[#8A7565] mt-0.5 sm:mt-1">
+                  DAYS
                 </span>
               </div>
 
-              <span className="font-royal-custom text-xl sm:text-2xl md:text-3xl font-bold text-[#C58F64] -mt-3.5">:</span>
+              {/* Colon 1 */}
+              <div className="flex flex-col items-center justify-center gap-1 sm:gap-1.5 -mt-2.5 sm:-mt-3 select-none">
+                <span className="w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full bg-[#C58F64]" />
+                <span className="w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full bg-[#C58F64]" />
+              </div>
 
-              <div className="flex flex-col items-center min-w-[34px] sm:min-w-[48px]">
-                <span className="font-royal-custom text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight">
+              {/* HOURS */}
+              <div className="flex flex-col items-center justify-center min-w-[28px] sm:min-w-[34px]">
+                <span
+                  className="font-royal-custom text-base xs:text-lg sm:text-xl lg:text-[1.32rem] font-normal leading-none tracking-tight select-none text-[#2E1810]"
+                >
                   {String(timeLeft.hours).padStart(2, '0')}
                 </span>
-                <span className="text-[9px] sm:text-[10px] font-sans-custom uppercase tracking-[0.22em] text-[#6D5F80] font-bold mt-0.5">
-                  Hours
+                <span className="text-[6.5px] xs:text-[7px] sm:text-[7.5px] lg:text-[8px] font-sans-custom uppercase tracking-[0.20em] font-bold text-[#8A7565] mt-0.5 sm:mt-1">
+                  HOURS
                 </span>
               </div>
 
-              <span className="font-royal-custom text-xl sm:text-2xl md:text-3xl font-bold text-[#C58F64] -mt-3.5">:</span>
+              {/* Colon 2 */}
+              <div className="flex flex-col items-center justify-center gap-1 sm:gap-1.5 -mt-2.5 sm:-mt-3 select-none">
+                <span className="w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full bg-[#C58F64]" />
+                <span className="w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full bg-[#C58F64]" />
+              </div>
 
-              <div className="flex flex-col items-center min-w-[34px] sm:min-w-[48px]">
-                <span className="font-royal-custom text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight">
+              {/* MINS */}
+              <div className="flex flex-col items-center justify-center min-w-[28px] sm:min-w-[34px]">
+                <span
+                  className="font-royal-custom text-base xs:text-lg sm:text-xl lg:text-[1.32rem] font-normal leading-none tracking-tight select-none text-[#2E1810]"
+                >
                   {String(timeLeft.minutes).padStart(2, '0')}
                 </span>
-                <span className="text-[9px] sm:text-[10px] font-sans-custom uppercase tracking-[0.22em] text-[#6D5F80] font-bold mt-0.5">
-                  Mins
+                <span className="text-[6.5px] xs:text-[7px] sm:text-[7.5px] lg:text-[8px] font-sans-custom uppercase tracking-[0.20em] font-bold text-[#8A7565] mt-0.5 sm:mt-1">
+                  MINS
                 </span>
               </div>
 
-              <span className="font-royal-custom text-xl sm:text-2xl md:text-3xl font-bold text-[#C58F64] -mt-3.5">:</span>
+              {/* Colon 3 */}
+              <div className="flex flex-col items-center justify-center gap-1 sm:gap-1.5 -mt-2.5 sm:-mt-3 select-none">
+                <span className="w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full bg-[#C58F64]" />
+                <span className="w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full bg-[#C58F64]" />
+              </div>
 
-              <div className="flex flex-col items-center min-w-[34px] sm:min-w-[48px]">
-                <span className="font-royal-custom text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-[#8E4A28]">
+              {/* SECS */}
+              <div className="flex flex-col items-center justify-center min-w-[28px] sm:min-w-[34px]">
+                <span
+                  className="font-royal-custom text-base xs:text-lg sm:text-xl lg:text-[1.32rem] font-normal leading-none tracking-tight select-none text-[#8E0E16]"
+                >
                   {String(timeLeft.seconds).padStart(2, '0')}
                 </span>
-                <span className="text-[9px] sm:text-[10px] font-sans-custom uppercase tracking-[0.22em] text-[#6D5F80] font-bold mt-0.5">
-                  Secs
+                <span className="text-[6.5px] xs:text-[7px] sm:text-[7.5px] lg:text-[8px] font-sans-custom uppercase tracking-[0.20em] font-bold text-[#8A7565] mt-0.5 sm:mt-1">
+                  SECS
                 </span>
               </div>
             </div>
           </div>
-
-          {/* Right Filigree Scroll (Mirrored) */}
-          <svg
-            className="w-8 sm:w-12 md:w-16 h-8 sm:h-12 text-[#B89267] opacity-80 shrink-0 hidden xs:block -scale-x-100"
-            viewBox="0 0 64 48"
-            fill="none"
-            stroke="currentColor"
-          >
-            <path
-              d="M60 24 H42 C36 24 30 14 22 14 C14 14 10 20 12 28 C14 34 22 34 24 28 C26 20 18 16 10 20 C4 23 2 30 6 36 C10 40 18 38 22 34"
-              strokeWidth="1.2"
-              strokeLinecap="round"
-            />
-            <path d="M38 24 C34 16 26 8 18 8" strokeWidth="1" strokeLinecap="round" opacity="0.5" />
-            <path d="M44 24 C40 32 32 38 24 40" strokeWidth="1" strokeLinecap="round" opacity="0.5" />
-            <circle cx="62" cy="24" r="2" fill="currentColor" />
-            <circle cx="22" cy="14" r="1.5" fill="currentColor" />
-            <circle cx="6" cy="36" r="1.5" fill="currentColor" />
-          </svg>
         </motion.div>
 
-        {/* ── Wide Grand Wedding Family Illustration Gathering (Transparent Cutout) ── */}
+        {/* ── Wide Grand Wedding Family Gathering under the Older Mandap (Transparent Cutout) ── */}
         <motion.div
           variants={fadeUp}
-          className="relative w-full max-w-4xl lg:max-w-5xl mt-2 sm:mt-4 flex flex-col items-center group cursor-pointer"
+          className="relative w-full max-w-[96vw] md:max-w-xl lg:max-w-[780px] xl:max-w-[820px] mt-4 sm:mt-5 lg:mt-3 px-1 flex flex-col items-center group cursor-pointer overflow-visible"
         >
           <motion.div
-            animate={{ y: [0, -8, 0] }}
+            animate={{ y: [0, -6, 0] }}
             transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
-            className="relative w-full flex justify-center"
+            className="relative w-full flex justify-center overflow-visible"
           >
-            <img
-              src="/images/family_illustration_transparent.webp"
-              alt="Anushka and Yash with Biyani and Verma families under the auspicious wedding mandap"
-              decoding="async"
-              className="w-full h-auto object-contain filter drop-shadow-[0_14px_30px_rgba(46,36,56,0.12)] group-hover:scale-[1.015] transition-transform duration-700"
-            />
+            <div
+              className="w-full flex justify-center"
+              style={{
+                transform: 'translateX(11.215%)',
+              }}
+            >
+              <picture className="w-full flex justify-center">
+                <source srcSet="/images/family_with_older_mandap.webp" type="image/webp" />
+                <img
+                  src="/images/family_with_older_mandap.png"
+                  alt="Anushka and Yash with Biyani and Verma families under the auspicious traditional wedding mandap"
+                  decoding="async"
+                  loading="lazy"
+                  className="w-full h-auto object-contain filter drop-shadow-[0_18px_44px_rgba(46,36,56,0.15)] group-hover:scale-[1.015] transition-transform duration-700"
+                />
+              </picture>
+            </div>
           </motion.div>
         </motion.div>
 
         {/* Family Names Banner */}
         <motion.div
           variants={fadeUp}
-          className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-6 text-xs sm:text-sm tracking-[0.25em] uppercase text-[#3D2C50] font-semibold"
+          className="mt-4 sm:mt-5 lg:mt-3 flex items-center justify-center gap-3 sm:gap-5 text-xs lg:text-[0.8rem] tracking-[0.22em] uppercase text-[#9A6C20] font-bold"
         >
-          <span>Biyani Family</span>
-          <span className="hidden sm:inline text-[#B05B43]">&mdash;</span>
-          <span>Verma Family</span>
+          <span>BIYANI FAMILY</span>
+          <span className="w-6 sm:w-8 h-[1px] bg-[#D4AF37]/60 inline-block" />
+          <span>VERMA FAMILY</span>
         </motion.div>
       </motion.div>
     </section>

@@ -143,7 +143,7 @@ export const BlessingsWall: React.FC<BlessingsWallProps> = ({ onViewAll, maxDisp
       particleCount: 50,
       spread: 65,
       origin: { y: 0.7 },
-      colors: ['#5E3D7A', '#B0542C', '#C58F64'],
+      colors: ['#8E0E16', '#D4AF37', '#C21D27'],
       disableForReducedMotion: true,
     });
 
@@ -181,14 +181,14 @@ export const BlessingsWall: React.FC<BlessingsWallProps> = ({ onViewAll, maxDisp
           particleCount: 30,
           spread: 70,
           origin: { x, y },
-          colors: ['#E11D48', '#FF4D6D', '#B0542C', '#C58F64', '#5E3D7A', '#F43F5E'],
+          colors: ['#8E0E16', '#C21D27', '#D4AF37', '#E6BD70', '#9A6C20', '#C58F64'],
           disableForReducedMotion: true,
         });
       }
     }
 
     // 2. Local floating hearts erupting from the button
-    const HEART_COLORS = ['#E11D48', '#FF4D6D', '#B0542C', '#C58F64', '#5E3D7A', '#F43F5E', '#D97706'];
+    const HEART_COLORS = ['#8E0E16', '#C21D27', '#D4AF37', '#E6BD70', '#9A6C20', '#F43F5E', '#D97706'];
     const newHearts: FloatingHeartParticle[] = Array.from({ length: 14 }).map((_, idx) => ({
       id: `${id}-${Date.now()}-${idx}-${Math.random()}`,
       x: (Math.random() - 0.5) * 16,
@@ -242,7 +242,7 @@ export const BlessingsWall: React.FC<BlessingsWallProps> = ({ onViewAll, maxDisp
             whileInView="show"
             viewport={{ once: true }}
             variants={fadeUp}
-            className="font-serif-custom text-[#5E3D7A] text-xs tracking-[0.35em] uppercase mb-4 font-bold"
+            className="font-serif-custom text-[#8E0E16] text-xs tracking-[0.35em] uppercase mb-4 font-bold"
           >
             Heartfelt Wishes
           </motion.p>
@@ -260,7 +260,7 @@ export const BlessingsWall: React.FC<BlessingsWallProps> = ({ onViewAll, maxDisp
             whileInView="show"
             viewport={{ once: true }}
             variants={fadeUp}
-            className="font-serif-custom text-[#2B2136] text-lg sm:text-xl italic max-w-md mx-auto font-medium"
+            className="font-serif-custom text-[#342226] text-lg sm:text-xl italic max-w-md mx-auto font-medium"
           >
             Leave a heartfelt note and blessing for Anushka &amp; Yash.
           </motion.p>
@@ -273,17 +273,17 @@ export const BlessingsWall: React.FC<BlessingsWallProps> = ({ onViewAll, maxDisp
             whileInView="show"
             viewport={{ once: true }}
             variants={fadeUp}
-            className="bg-[#F7F3EE] rounded-3xl p-6 sm:p-8 border border-[#C8BEAF]/60 shadow-xl lg:col-span-1"
+            className="bg-[#FFFDF9] rounded-3xl p-6 sm:p-8 border border-[#DFCAB0]/70 shadow-xl lg:col-span-1"
           >
-            <h3 className="font-royal-custom text-lg font-bold text-[#1A1222] flex items-center gap-2 mb-5">
-              <Heart className="w-4 h-4 text-[#B0542C] fill-[#B0542C]" />
+            <h3 className="font-royal-custom text-lg font-bold text-[#2E1015] flex items-center gap-2 mb-5">
+              <Heart className="w-4 h-4 text-[#8E0E16] fill-[#8E0E16]" />
               <span>Send Your Wish</span>
             </h3>
 
             <form onSubmit={handleAdd} className="space-y-4 text-left">
               {/* Name */}
               <div>
-                <label className="block text-[11px] font-bold text-[#5E3D7A] uppercase tracking-[0.15em] mb-1.5">
+                <label className="block text-[11px] font-bold text-[#8E0E16] uppercase tracking-[0.15em] mb-1.5">
                   Your Name *
                 </label>
                 <input
@@ -292,13 +292,13 @@ export const BlessingsWall: React.FC<BlessingsWallProps> = ({ onViewAll, maxDisp
                   placeholder="e.g. Uncle Rajesh & Family"
                   value={newName}
                   onChange={(e) => setNewName(e.target.value)}
-                  className="w-full px-4 py-2.5 rounded-xl bg-[#F0EBE3] border border-[#C8BEAF] text-[#1A1222] text-sm focus:outline-none focus:border-[#5E3D7A] focus:ring-1 focus:ring-[#5E3D7A] transition-colors"
+                  className="w-full px-4 py-2.5 rounded-xl bg-[#FAF6F0] border border-[#DFCAB0] text-[#2E1015] text-sm focus:outline-none focus:border-[#8E0E16] focus:ring-1 focus:ring-[#8E0E16] transition-colors"
                 />
               </div>
 
               {/* Relation */}
               <div>
-                <label className="block text-[11px] font-bold text-[#5E3D7A] uppercase tracking-[0.15em] mb-1.5">
+                <label className="block text-[11px] font-bold text-[#8E0E16] uppercase tracking-[0.15em] mb-1.5">
                   Relation
                 </label>
                 <input
@@ -306,13 +306,13 @@ export const BlessingsWall: React.FC<BlessingsWallProps> = ({ onViewAll, maxDisp
                   placeholder="e.g. Groom's Cousin / Bride's Friend"
                   value={newRelation}
                   onChange={(e) => setNewRelation(e.target.value)}
-                  className="w-full px-4 py-2.5 rounded-xl bg-[#F0EBE3] border border-[#C8BEAF] text-[#1A1222] text-sm focus:outline-none focus:border-[#5E3D7A] focus:ring-1 focus:ring-[#5E3D7A] transition-colors"
+                  className="w-full px-4 py-2.5 rounded-xl bg-[#FAF6F0] border border-[#DFCAB0] text-[#2E1015] text-sm focus:outline-none focus:border-[#8E0E16] focus:ring-1 focus:ring-[#8E0E16] transition-colors"
                 />
               </div>
 
               {/* Side of the Family Selector */}
               <div>
-                <label className="block text-[11px] font-bold text-[#5E3D7A] uppercase tracking-[0.15em] mb-1.5">
+                <label className="block text-[11px] font-bold text-[#8E0E16] uppercase tracking-[0.15em] mb-1.5">
                   Which side are you on?
                 </label>
                 <div className="grid grid-cols-3 gap-1.5">
@@ -326,14 +326,14 @@ export const BlessingsWall: React.FC<BlessingsWallProps> = ({ onViewAll, maxDisp
                         className={`py-2 px-1 text-center rounded-xl border text-[11px] font-bold transition-all cursor-pointer ${
                           isSelected
                             ? 'bg-white shadow-xs border-2'
-                            : 'bg-[#F0EBE3] border-[#C8BEAF] text-[#4A3F58] hover:bg-white/60'
+                            : 'bg-[#FAF6F0] border-[#DFCAB0] text-[#6E3840] hover:bg-white/60'
                         }`}
                         style={{
                           borderColor: isSelected ? sideColors[side] : undefined,
                           color: isSelected ? sideColors[side] : undefined,
                         }}
                       >
-                        {side === 'bride' ? 'Bride (Delhi)' : side === 'groom' ? 'Groom (Maha)' : 'Both'}
+                        {side === 'bride' ? "Bride's Side" : side === 'groom' ? "Groom's Side" : 'Both'}
                       </button>
                     );
                   })}
@@ -342,7 +342,7 @@ export const BlessingsWall: React.FC<BlessingsWallProps> = ({ onViewAll, maxDisp
 
               {/* Message */}
               <div>
-                <label className="block text-[11px] font-bold text-[#5E3D7A] uppercase tracking-[0.15em] mb-1.5">
+                <label className="block text-[11px] font-bold text-[#8E0E16] uppercase tracking-[0.15em] mb-1.5">
                   Message *
                 </label>
                 <textarea
@@ -351,7 +351,7 @@ export const BlessingsWall: React.FC<BlessingsWallProps> = ({ onViewAll, maxDisp
                   placeholder="Your blessings, memories and love..."
                   value={newMessage}
                   onChange={(e) => setNewMessage(e.target.value)}
-                  className="w-full px-4 py-2.5 rounded-xl bg-[#F0EBE3] border border-[#C8BEAF] text-[#1A1222] text-sm focus:outline-none focus:border-[#5E3D7A] focus:ring-1 focus:ring-[#5E3D7A] resize-none transition-colors"
+                  className="w-full px-4 py-2.5 rounded-xl bg-[#FAF6F0] border border-[#DFCAB0] text-[#2E1015] text-sm focus:outline-none focus:border-[#8E0E16] focus:ring-1 focus:ring-[#8E0E16] resize-none transition-colors"
                 />
               </div>
 
@@ -359,7 +359,7 @@ export const BlessingsWall: React.FC<BlessingsWallProps> = ({ onViewAll, maxDisp
               <button
                 type="submit"
                 className="btn-sheen w-full py-3.5 rounded-full text-white text-xs uppercase tracking-[0.15em] font-bold flex items-center justify-center gap-2 shadow-lg hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer"
-                style={{ background: 'linear-gradient(135deg, #6B4984, #B05B43, #A85630)' }}
+                style={{ background: 'linear-gradient(135deg, #8E0E16 0%, #C21D27 50%, #D4AF37 100%)' }}
               >
                 <Send className="w-4 h-4" />
                 <span>Post Blessing &rarr;</span>
@@ -370,20 +370,20 @@ export const BlessingsWall: React.FC<BlessingsWallProps> = ({ onViewAll, maxDisp
           {/* Cards Wall */}
           <div className="lg:col-span-2">
             <div className="flex items-center justify-between mb-4 px-1">
-              <span className="text-xs text-[#5E3D7A] font-bold tracking-wider uppercase font-serif-custom">
+              <span className="text-xs text-[#8E0E16] font-bold tracking-wider uppercase font-serif-custom">
                 {blessings.length} Heartfelt Wishes
               </span>
             </div>
 
             {blessings.length === 0 ? (
-              <div className="card-sheen bg-[#F7F3EE] rounded-3xl p-8 sm:p-12 text-center border border-[#C8BEAF]/50 shadow-xs">
-                <div className="w-14 h-14 mx-auto mb-4 rounded-full bg-[#B0542C]/10 border border-[#B0542C]/30 flex items-center justify-center">
-                  <Heart className="w-7 h-7 text-[#B0542C] fill-[#B0542C]/20" />
+              <div className="card-sheen bg-[#FAF6F0] rounded-3xl p-8 sm:p-12 text-center border border-[#D4AF37]/50 shadow-xs">
+                <div className="w-14 h-14 mx-auto mb-4 rounded-full bg-[#8E0E16]/10 border border-[#8E0E16]/30 flex items-center justify-center">
+                  <Heart className="w-7 h-7 text-[#8E0E16] fill-[#8E0E16]/20" />
                 </div>
                 <h3 className="font-royal-custom text-xl sm:text-2xl font-bold text-[#1A1222] mb-2">
                   Be the First to Send Blessings
                 </h3>
-                <p className="font-serif-custom text-sm sm:text-base text-[#5E3D7A] leading-relaxed max-w-md mx-auto">
+                <p className="font-serif-custom text-sm sm:text-base text-[#8E0E16] leading-relaxed max-w-md mx-auto">
                   Your heartfelt thoughts will be cherished by Anushka &amp; Yash forever. Write your warm wishes in the form to start the celebration wall!
                 </p>
               </div>
@@ -543,11 +543,11 @@ export const BlessingsWall: React.FC<BlessingsWallProps> = ({ onViewAll, maxDisp
                           <span className="block font-royal-custom font-bold text-[#1A1222] text-sm">
                             {b.name}
                           </span>
-                          <span className="block text-[10px] text-[#5E3D7A] font-medium tracking-wide">
+                          <span className="block text-[10px] text-[#8E0E16] font-medium tracking-wide">
                             {b.relation}
                           </span>
                         </div>
-                        <span className="text-[10px] text-[#B0542C] font-semibold">{b.date}</span>
+                        <span className="text-[10px] text-[#9A6C20] font-semibold">{b.date}</span>
                       </div>
                     </motion.div>
                   );
@@ -562,13 +562,13 @@ export const BlessingsWall: React.FC<BlessingsWallProps> = ({ onViewAll, maxDisp
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.97 }}
                   onClick={onViewAll}
-                  className="inline-flex items-center gap-2.5 px-6 py-3 rounded-full bg-[#F7F3EE] border-2 border-[#C58F64]/60 hover:border-[#B0542C] text-sm font-bold text-[#B0542C] hover:text-[#1A1222] shadow-sm hover:shadow-md transition-all cursor-pointer group"
+                  className="inline-flex items-center gap-2.5 px-6 py-3 rounded-full bg-[#FFFDF9] border-2 border-[#D4AF37]/60 hover:border-[#8E0E16] text-sm font-bold text-[#8E0E16] hover:text-[#1A1222] shadow-sm hover:shadow-md transition-all cursor-pointer group"
                 >
-                  <Heart className="w-4 h-4 fill-[#B0542C] text-[#B0542C] group-hover:scale-110 transition-transform" />
+                  <Heart className="w-4 h-4 fill-[#8E0E16] text-[#8E0E16] group-hover:scale-110 transition-transform" />
                   <span>View All {blessings.length} Wishes on Blessings Wall</span>
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </motion.button>
-                <p className="text-xs text-[#5E3D7A] font-medium mt-2">
+                <p className="text-xs text-[#8E0E16] font-medium mt-2">
                   Showing {displayedBlessings.length} of {blessings.length} wishes
                 </p>
               </div>
@@ -579,7 +579,7 @@ export const BlessingsWall: React.FC<BlessingsWallProps> = ({ onViewAll, maxDisp
                 <button
                   type="button"
                   onClick={onViewAll}
-                  className="inline-flex items-center gap-1.5 text-xs font-bold text-[#5E3D7A] hover:text-[#B0542C] transition-colors cursor-pointer"
+                  className="inline-flex items-center gap-1.5 text-xs font-bold text-[#8E0E16] hover:text-[#9A6C20] transition-colors cursor-pointer"
                 >
                   <span>Open Dedicated Blessings Wall Gallery</span>
                   <ArrowRight className="w-3.5 h-3.5" />

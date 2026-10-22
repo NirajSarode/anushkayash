@@ -36,14 +36,25 @@ export interface BackgroundOption {
 export const FONT_OPTIONS: FontOption[] = [
   {
     id: 'prata-chic',
-    name: 'Contemporary Palace',
-    tag: 'Minimalist Luxe (Active)',
-    description: 'Refined teardrop serifs with ultra-crisp modern sans geometric details.',
+    name: 'Prata Minimalist (Previous Font)',
+    tag: 'Previous Font (Active)',
+    description: 'The elegant high-fashion serif with refined teardrops and crisp modern sans details.',
     titleFont: "'Prata', serif",
     subtitleFont: "'Plus Jakarta Sans', sans-serif",
     scriptFont: "'Great Vibes', cursive",
     titleFamilyName: 'Prata',
     samplePairing: 'Prata + Plus Jakarta Sans + Great Vibes',
+  },
+  {
+    id: 'atavian-royal',
+    name: 'Atavian Imperial',
+    tag: 'Landing Curtain Font',
+    description: 'The bold editorial serif typography from the AnushKaYash landing page curtain and royal crest.',
+    titleFont: "'Atavian', 'Bodoni Moda', Georgia, serif",
+    subtitleFont: "'Plus Jakarta Sans', sans-serif",
+    scriptFont: "'Great Vibes', cursive",
+    titleFamilyName: 'Atavian',
+    samplePairing: 'Atavian + Plus Jakarta Sans + Great Vibes',
   },
   {
     id: 'cinzel-royal',
@@ -92,6 +103,32 @@ export const FONT_OPTIONS: FontOption[] = [
 ];
 
 export const COLOR_PALETTES: ColorPalette[] = [
+  {
+    id: 'minimalist-red-gold',
+    name: 'Minimalist Red & Satin Gold',
+    tag: 'Minimalist Edition (Active)',
+    description: 'Restrained deep ruby crimson (#941B26) for both Anushka & Yash, with delicate metallic temple gold ampersand and airy warm pearl ivory canvas.',
+    herColor: '#941B26',       // Deep ruby crimson (Anushka in Red)
+    himColor: '#941B26',       // Deep ruby crimson (Yash in Red also)
+    accentColor: '#D4AF37',    // Delicate metallic gold accent (& ampersand)
+    bgCanvas: '#FAF8F5',       // Airy minimalist warm pearl canvas
+    headingColor: '#1F191B',   // Clean high-contrast charcoal
+    cardBg: '#FFFFFF',         // Crisp clean white cards
+    borderTone: '#E7DECE',     // Delicate hairline border
+  },
+  {
+    id: 'crimson-gold',
+    name: 'Royal Crimson & Radiant Gold',
+    tag: 'Saturated Regal Edition',
+    description: 'Rich bridal crimson and radiant temple gold inspired by the landing curtain & couple lehenga.',
+    herColor: '#8E0E16',       // Deep Royal Crimson
+    himColor: '#D4AF37',       // Radiant Royal Gold
+    accentColor: '#C59A45',    // Antique Warm Gold
+    bgCanvas: '#FAF6F0',       // Warm Luminous Papyrus Ivory
+    headingColor: '#2E1015',   // Deep Regal Crimson-Charcoal
+    cardBg: '#FFFDF9',         // Gilded Warm Ivory
+    borderTone: '#DFCAB0',     // Brushed Warm Gold Border
+  },
   {
     id: 'two-states',
     name: 'Two States Original',
@@ -161,6 +198,13 @@ export const COLOR_PALETTES: ColorPalette[] = [
 
 export const BACKGROUND_OPTIONS: BackgroundOption[] = [
   {
+    id: 'minimalist-pearl',
+    name: 'Minimalist Warm Pearl',
+    tag: 'Minimalist Canvas (Active)',
+    color: '#FAF8F5',
+    description: 'Serene, airy warm pearl canvas with maximum reading clarity and refined gold harmony.',
+  },
+  {
     id: 'original-ivory',
     name: 'Original Ivory Canvas',
     tag: 'Classic Two States',
@@ -207,17 +251,23 @@ export const BACKGROUND_OPTIONS: BackgroundOption[] = [
 
 export const getStoredFontTheme = (): string => {
   if (typeof window === 'undefined') return 'prata-chic';
-  return localStorage.getItem('anushkayash_font_theme') || 'prata-chic';
+  const stored = localStorage.getItem('anushkayash_font_theme');
+  if (!stored) return 'prata-chic';
+  return stored;
 };
 
 export const getStoredColorTheme = (): string => {
-  if (typeof window === 'undefined') return COLOR_PALETTES[0].id;
-  return localStorage.getItem('anushkayash_color_theme') || COLOR_PALETTES[0].id;
+  if (typeof window === 'undefined') return 'minimalist-red-gold';
+  const stored = localStorage.getItem('anushkayash_color_theme');
+  if (!stored) return 'minimalist-red-gold';
+  return stored;
 };
 
 export const getStoredBgTheme = (): string => {
-  if (typeof window === 'undefined') return BACKGROUND_OPTIONS[0].color;
-  return localStorage.getItem('anushkayash_bg_theme') || BACKGROUND_OPTIONS[0].color;
+  if (typeof window === 'undefined') return '#FAF8F5';
+  const stored = localStorage.getItem('anushkayash_bg_theme');
+  if (!stored) return '#FAF8F5';
+  return stored;
 };
 
 export const applyThemeToDom = (fontId: string, colorId: string, customBg?: string) => {
@@ -233,7 +283,9 @@ export const applyThemeToDom = (fontId: string, colorId: string, customBg?: stri
   root.style.setProperty('--font-script', font.scriptFont);
 
   // Apply color tokens
+  root.style.setProperty('--color-her', color.herColor);
   root.style.setProperty('--color-her-deep', color.herColor);
+  root.style.setProperty('--color-him', color.himColor);
   root.style.setProperty('--color-him-deep', color.himColor);
   root.style.setProperty('--color-accent', color.accentColor);
   root.style.setProperty('--color-bg', activeBg);

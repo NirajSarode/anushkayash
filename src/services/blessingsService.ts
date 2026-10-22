@@ -14,14 +14,14 @@ export const STORAGE_KEY = 'anushkayash_blessings';
 export const LIKES_KEY = 'anushkayash_liked_blessings';
 
 export const sideColors = {
-  bride: '#5E3D7A',
-  groom: '#B0542C',
-  mutual: '#C58F64',
+  bride: '#8E0E16',
+  groom: '#9A6C20',
+  mutual: '#D4AF37',
 } as const;
 
 export const sideLabels = {
-  bride: "Bride's Side (Delhi)",
-  groom: "Groom's Side (Maharashtra)",
+  bride: "Bride's Side",
+  groom: "Groom's Side",
   mutual: 'Both / Friends',
 } as const;
 

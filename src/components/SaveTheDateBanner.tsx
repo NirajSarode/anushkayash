@@ -2,12 +2,10 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 interface SaveTheDateBannerProps {
-  onOpenRSVP: () => void;
   onNavigateToVenue?: () => void;
 }
 
 export const SaveTheDateBanner: React.FC<SaveTheDateBannerProps> = ({
-  onOpenRSVP,
   onNavigateToVenue,
 }) => {
   const handleVenueClick = (e: React.MouseEvent) => {
@@ -194,63 +192,31 @@ export const SaveTheDateBanner: React.FC<SaveTheDateBannerProps> = ({
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.9, delay: 0.1 }}
-                className="font-royal-custom text-2xl xs:text-3xl sm:text-5xl md:text-6xl tracking-[0.14em] text-[#1A1222] font-bold mt-1 sm:mt-2 drop-shadow-[0_2px_10px_rgba(255,255,255,0.8)]"
+                className="font-royal-custom text-2xl xs:text-3xl sm:text-5xl md:text-6xl tracking-[0.14em] font-bold mt-1 sm:mt-2 drop-shadow-[0_2px_10px_rgba(255,255,255,0.8)]"
               >
-                ANUSHKA &amp; YASH
+                <span className="text-[var(--color-her,#941B26)]">ANUSHKA</span>{' '}
+                <span className="font-serif-custom text-[var(--color-accent,#D4AF37)] italic font-light">&amp;</span>{' '}
+                <span className="text-[var(--color-him,#941B26)]">YASH</span>
               </motion.h2>
             </div>
 
-            {/* ── Bottom Save the Date & RSVP Call-to-Action Bar ── */}
+            {/* ── Bottom Save the Date Details ── */}
             <div className="relative z-20 px-6 sm:px-12 pb-6 sm:pb-8 pt-6">
-              <div className="flex flex-col md:flex-row items-center md:items-end justify-between gap-6 md:gap-4">
-                {/* Left/Center Details: Save the Date & Links */}
-                <div className="text-center md:text-left space-y-1.5">
-                  <p className="font-serif-custom text-sm sm:text-base md:text-lg tracking-[0.12em] text-[#2B2136] font-bold drop-shadow-[0_1px_2px_rgba(255,255,255,0.85)]">
-                    Save the Date &mdash;{' '}
-                    <span className="text-[#5E3D7A]">January 31 &ndash; February 3, 2027</span>{' '}
-                    &bull;{' '}
-                    <span className="text-[#B0542C]">Touchwood Bliss, Igatpuri</span>
-                  </p>
+              <div className="flex flex-col items-center justify-center text-center space-y-2">
+                <p className="font-serif-custom text-sm sm:text-base md:text-lg tracking-[0.12em] text-[#2B2136] font-bold drop-shadow-[0_1px_2px_rgba(255,255,255,0.85)]">
+                  Save the Date &mdash;{' '}
+                  <span className="text-[#8E0E16]">January 31 &ndash; February 3, 2027</span>{' '}
+                  &bull;{' '}
+                  <span className="text-[#9A6C20]">Touchwood Bliss, Igatpuri</span>
+                </p>
 
-                  <div className="flex items-center justify-center md:justify-start gap-4 text-xs tracking-[0.25em] uppercase font-bold text-[#4B3E5B]">
-                    <button
-                      onClick={onOpenRSVP}
-                      className="hover:text-[#8E4A28] underline underline-offset-4 decoration-[#C58F64]/60 transition-colors cursor-pointer"
-                    >
-                      RSVP
-                    </button>
-                    <span className="text-[#C58F64] font-light">|</span>
-                    <button
-                      onClick={handleVenueClick}
-                      className="hover:text-[#8E4A28] underline underline-offset-4 decoration-[#C58F64]/60 transition-colors cursor-pointer"
-                    >
-                      VENUES
-                    </button>
-                  </div>
-                </div>
-
-                {/* Right Call-to-Action: Kindly RSVP & Pill Button */}
-                <div className="flex flex-col sm:flex-row items-center gap-4 text-center md:text-right">
-                  <div className="leading-tight">
-                    <p className="font-serif-custom italic text-xl sm:text-2xl text-[#2E2438] font-bold drop-shadow-[0_1px_2px_rgba(255,255,255,0.8)]">
-                      Kindly RSVP
-                    </p>
-                    <p className="font-serif-custom text-xs sm:text-sm tracking-[0.15em] text-[#5E3D7A] font-semibold mt-0.5">
-                      By Jan 10th, 2027
-                    </p>
-                  </div>
-
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.96 }}
-                    onClick={onOpenRSVP}
-                    className="btn-sheen px-7 sm:px-9 py-3 sm:py-3.5 rounded-full text-white text-xs sm:text-sm font-serif-custom tracking-[0.22em] uppercase font-bold shadow-[0_8px_24px_rgba(142,74,40,0.35)] hover:shadow-[0_12px_32px_rgba(142,74,40,0.45)] transition-all duration-300 cursor-pointer"
-                    style={{
-                      background: 'linear-gradient(135deg, #8E4A28 0%, #B0542C 50%, #5E3D7A 100%)',
-                    }}
+                <div className="flex items-center justify-center gap-4 text-xs tracking-[0.25em] uppercase font-bold text-[#6E3840]">
+                  <button
+                    onClick={handleVenueClick}
+                    className="hover:text-[#8E0E16] underline underline-offset-4 decoration-[#D4AF37]/60 transition-colors cursor-pointer"
                   >
-                    RSVP NOW
-                  </motion.button>
+                    EXPLORE VENUE &amp; TRAVEL
+                  </button>
                 </div>
               </div>
             </div>

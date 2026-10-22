@@ -44,7 +44,7 @@ export const OurStory: React.FC<OurStoryProps> = ({ onBackToHome, onNavigateToEv
       icon: <Coffee className="w-5 h-5" />,
       tag: 'The Spark',
       image: '/images/delhi_side.webp',
-      accent: '#5E3D7A',
+      accent: '#8E0E16',
     },
     {
       id: 2,
@@ -153,7 +153,7 @@ export const OurStory: React.FC<OurStoryProps> = ({ onBackToHome, onNavigateToEv
           {onBackToHome && (
             <button
               onClick={onBackToHome}
-              className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] font-bold text-[#5E3D7A] hover:text-[#1A1222] transition-colors cursor-pointer px-4 py-2 rounded-full bg-[#F7F3EE] border border-[#C8BEAF] shadow-xs hover:shadow-md"
+              className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] font-bold text-[#8E0E16] hover:text-[#2E1015] transition-colors cursor-pointer px-4 py-2 rounded-full bg-[#FFFDF9] border border-[#DFCAB0] shadow-xs hover:shadow-md"
             >
               <ArrowLeft className="w-4 h-4" />
               <span>Back to Home</span>
@@ -198,11 +198,11 @@ export const OurStory: React.FC<OurStoryProps> = ({ onBackToHome, onNavigateToEv
             variants={fadeUp}
             className="flex justify-center mb-5"
           >
-            <div className="p-1.5 sm:p-2 rounded-full bg-white/95 border border-[#C58F64]/40 shadow-2xl hover:scale-105 transition-transform duration-500">
+            <div className="rounded-full border-4 border-white shadow-2xl hover:scale-105 transition-transform duration-500 overflow-hidden">
               <img
-                src="/images/wedding_crest.png"
-                alt="Two States Royal Crest"
-                className="w-24 h-24 sm:w-32 sm:h-32 rounded-full object-cover"
+                src="/images/logo.png"
+                alt="Two States Royal Logo"
+                className="w-24 h-24 sm:w-32 sm:h-32 object-cover"
               />
             </div>
           </motion.div>
@@ -212,7 +212,7 @@ export const OurStory: React.FC<OurStoryProps> = ({ onBackToHome, onNavigateToEv
             whileInView="show"
             viewport={{ once: true }}
             variants={fadeUp}
-            className="font-serif-custom text-[#5E3D7A] text-xs tracking-[0.35em] uppercase mb-2 font-bold"
+            className="font-serif-custom text-[#8E0E16] text-xs tracking-[0.35em] uppercase mb-2 font-bold"
           >
             Our Journey &bull; The Chronology
           </motion.p>
@@ -232,7 +232,7 @@ export const OurStory: React.FC<OurStoryProps> = ({ onBackToHome, onNavigateToEv
             whileInView="show"
             viewport={{ once: true }}
             variants={fadeUp}
-            className="font-serif-custom text-[#2B2136] text-base sm:text-lg italic max-w-lg mx-auto font-medium"
+            className="font-serif-custom text-[#342226] text-base sm:text-lg italic max-w-lg mx-auto font-medium"
           >
             From the historic heart of Delhi to the tranquil hills of Maharashtra.
           </motion.p>
@@ -242,7 +242,7 @@ export const OurStory: React.FC<OurStoryProps> = ({ onBackToHome, onNavigateToEv
         <div className="mb-8 px-2 max-w-3xl mx-auto">
           {/* Timeline Track Line */}
           <div className="relative flex items-center justify-between">
-            <div className="absolute top-1/2 left-0 right-0 h-0.5 -translate-y-1/2 bg-gradient-to-r from-[#7C6090]/30 via-[#C58F64]/40 to-[#B0542C]/30 z-0" />
+            <div className="absolute top-1/2 left-0 right-0 h-0.5 -translate-y-1/2 bg-gradient-to-r from-[#D4AF37]/40 via-[#8E0E16]/40 to-[#D4AF37]/40 z-0" />
 
             {milestones.map((item, index) => {
               const isActive = activeIndex === index;
@@ -258,12 +258,12 @@ export const OurStory: React.FC<OurStoryProps> = ({ onBackToHome, onNavigateToEv
                     transition={{ type: 'spring', stiffness: 300, damping: 20 }}
                     className={`w-9 h-9 sm:w-11 sm:h-11 rounded-full flex items-center justify-center transition-all duration-300 shadow-md ${
                       isActive
-                        ? 'bg-white border-2 shadow-lg ring-4 ring-[#C58F64]/20'
-                        : 'bg-[#F7F3EE] border border-[#C8BEAF] hover:border-[#5E3D7A] hover:bg-white'
+                        ? 'bg-white border-2 shadow-lg ring-4 ring-[#D4AF37]/30'
+                        : 'bg-[#FFFDF9] border border-[#DFCAB0] hover:border-[#8E0E16] hover:bg-white'
                     }`}
                     style={{
                       borderColor: isActive ? item.accent : undefined,
-                      color: isActive ? item.accent : '#5E3D7A',
+                      color: isActive ? item.accent : '#8E0E16',
                     }}
                   >
                     {item.icon}
@@ -339,7 +339,7 @@ export const OurStory: React.FC<OurStoryProps> = ({ onBackToHome, onNavigateToEv
                           </span>
                         </div>
 
-                        <div className="flex items-center gap-1.5 text-xs text-[#5E3D7A] font-bold">
+                        <div className="flex items-center gap-1.5 text-xs text-[#8E0E16] font-bold">
                           <Calendar className="w-3.5 h-3.5" />
                           <span>{item.date}</span>
                         </div>
@@ -393,39 +393,39 @@ export const OurStory: React.FC<OurStoryProps> = ({ onBackToHome, onNavigateToEv
               transition={{ duration: 0.6 }}
               className="w-[85vw] sm:w-[420px] md:w-[460px] shrink-0 snap-center flex flex-col"
             >
-              <div className="card-sheen bg-gradient-to-br from-[#F7F3EE] via-[#F2ECE4] to-[#EAE0D5] rounded-3xl p-6 sm:p-8 border border-[#C58F64]/50 shadow-xl flex flex-col justify-between h-full relative overflow-hidden group">
-                <div className="absolute -top-12 -right-12 w-44 h-44 rounded-full bg-[#5E3D7A]/10 blur-2xl pointer-events-none" />
-                <div className="absolute -bottom-12 -left-12 w-44 h-44 rounded-full bg-[#B0542C]/10 blur-2xl pointer-events-none" />
+              <div className="card-sheen bg-gradient-to-br from-[#FFFDF9] via-[#FAF6F0] to-[#F5ECE0] rounded-3xl p-6 sm:p-8 border border-[#D4AF37]/50 shadow-xl flex flex-col justify-between h-full relative overflow-hidden group">
+                <div className="absolute -top-12 -right-12 w-44 h-44 rounded-full bg-[#8E0E16]/10 blur-2xl pointer-events-none" />
+                <div className="absolute -bottom-12 -left-12 w-44 h-44 rounded-full bg-[#D4AF37]/15 blur-2xl pointer-events-none" />
 
                 <div>
                   <div className="flex items-center justify-between mb-4">
-                    <span className="font-royal-custom text-xs font-black px-3 py-1 rounded-full bg-white/90 text-[#5E3D7A] shadow-2xs border border-[#C8BEAF]/40">
+                    <span className="font-royal-custom text-xs font-black px-3 py-1 rounded-full bg-white/90 text-[#8E0E16] shadow-2xs border border-[#DFCAB0]/50">
                       The Next Chapter
                     </span>
-                    <span className="text-[10px] sm:text-[11px] uppercase tracking-[0.2em] font-bold px-3 py-1 rounded-full bg-[#5E3D7A]/10 text-[#5E3D7A]">
+                    <span className="text-[10px] sm:text-[11px] uppercase tracking-[0.2em] font-bold px-3 py-1 rounded-full bg-[#8E0E16]/10 text-[#8E0E16]">
                       Jan 31 – Feb 3, 2027
                     </span>
                   </div>
 
-                  <h3 className="font-royal-custom text-2xl sm:text-3xl font-bold text-[#1A1222] mb-3 tracking-[0.02em]">
+                  <h3 className="font-royal-custom text-2xl sm:text-3xl font-bold text-[#2E1015] mb-3 tracking-[0.02em]">
                     The Wedding Celebrations
                   </h3>
 
-                  <div className="flex items-center gap-1.5 text-xs uppercase tracking-[0.18em] text-[#B0542C] font-bold mb-4">
+                  <div className="flex items-center gap-1.5 text-xs uppercase tracking-[0.18em] text-[#9A6C20] font-bold mb-4">
                     <MapPin className="w-3.5 h-3.5" />
                     <span>Igatpuri, Maharashtra</span>
                   </div>
 
-                  <p className="font-serif-custom text-[#2B2136] text-base sm:text-lg leading-relaxed mb-6 font-normal">
+                  <p className="font-serif-custom text-[#342226] text-base sm:text-lg leading-relaxed mb-6 font-normal">
                     The journey culminates in Igatpuri — from the sundowner Mehendi, morning Haldi &amp; afternoon Mayera to the high-energy Sangeet, royal Baraat, sunset Phere, and gala Night Reception.
                   </p>
                 </div>
 
-                <div className="mt-auto pt-6 border-t border-[#C8BEAF]/40">
+                <div className="mt-auto pt-6 border-t border-[#DFCAB0]/50">
                   <button
                     onClick={onNavigateToEvents}
                     className="w-full btn-sheen py-3.5 px-6 rounded-2xl text-white font-bold text-xs uppercase tracking-[0.2em] shadow-lg flex items-center justify-center gap-2 group-hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer"
-                    style={{ background: 'linear-gradient(135deg, #5E3D7A, #B0542C, #C58F64)' }}
+                    style={{ background: 'linear-gradient(135deg, #8E0E16 0%, #C21D27 50%, #D4AF37 100%)' }}
                   >
                     <span>Explore Wedding Events</span>
                     <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
@@ -436,11 +436,11 @@ export const OurStory: React.FC<OurStoryProps> = ({ onBackToHome, onNavigateToEv
           </div>
 
           {/* Mobile Swipe Guidance & Indicators */}
-          <div className="flex sm:hidden items-center justify-between px-2 pt-2 text-xs text-[#6D5F80]">
+          <div className="flex sm:hidden items-center justify-between px-2 pt-2 text-xs text-[#8F5A62]">
             <button
               onClick={() => handleScrollBy('left')}
               disabled={!canScrollLeft}
-              className="p-1.5 rounded-full bg-[#F7F3EE] border border-[#C8BEAF] disabled:opacity-40 cursor-pointer"
+              className="p-1.5 rounded-full bg-[#FFFDF9] border border-[#DFCAB0] disabled:opacity-40 cursor-pointer"
             >
               <ChevronLeft className="w-4 h-4" />
             </button>
@@ -450,7 +450,7 @@ export const OurStory: React.FC<OurStoryProps> = ({ onBackToHome, onNavigateToEv
                   key={i}
                   onClick={() => scrollToMilestone(i)}
                   className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
-                    activeIndex === i ? 'w-6 bg-[#5E3D7A]' : 'w-2 bg-[#C8BEAF]'
+                    activeIndex === i ? 'w-6 bg-[#8E0E16]' : 'w-2 bg-[#DFCAB0]'
                   }`}
                   aria-label={`Jump to milestone ${i + 1}`}
                 />
@@ -459,7 +459,7 @@ export const OurStory: React.FC<OurStoryProps> = ({ onBackToHome, onNavigateToEv
             <button
               onClick={() => handleScrollBy('right')}
               disabled={!canScrollRight}
-              className="p-1.5 rounded-full bg-[#F7F3EE] border border-[#C8BEAF] disabled:opacity-40 cursor-pointer"
+              className="p-1.5 rounded-full bg-[#FFFDF9] border border-[#DFCAB0] disabled:opacity-40 cursor-pointer"
             >
               <ChevronRight className="w-4 h-4" />
             </button>
@@ -472,22 +472,22 @@ export const OurStory: React.FC<OurStoryProps> = ({ onBackToHome, onNavigateToEv
           whileInView="show"
           viewport={{ once: true }}
           variants={fadeUp}
-          className="mt-12 sm:mt-16 text-center max-w-3xl mx-auto p-6 sm:p-10 rounded-3xl bg-[#F7F3EE]/90 backdrop-blur-md border border-[#C8BEAF]/60 shadow-lg"
+          className="mt-12 sm:mt-16 text-center max-w-3xl mx-auto p-6 sm:p-10 rounded-3xl bg-[#FFFDF9]/95 backdrop-blur-md border border-[#DFCAB0]/70 shadow-lg"
         >
-          <div className="w-12 h-12 mx-auto rounded-full bg-[#5E3D7A]/10 flex items-center justify-center text-[#5E3D7A] mb-4">
-            <Sparkles className="w-6 h-6 text-[#5E3D7A]" />
+          <div className="w-12 h-12 mx-auto rounded-full bg-[#8E0E16]/10 flex items-center justify-center text-[#8E0E16] mb-4">
+            <Sparkles className="w-6 h-6 text-[#8E0E16]" />
           </div>
-          <h3 className="font-royal-custom text-2xl sm:text-3xl font-bold text-[#1A1222] mb-3 tracking-[0.02em]">
+          <h3 className="font-royal-custom text-2xl sm:text-3xl font-bold text-[#2E1015] mb-3 tracking-[0.02em]">
             The Journey Leads to the Mandap
           </h3>
-          <p className="font-serif-custom text-[#2B2136] text-base sm:text-lg mb-6 max-w-xl mx-auto font-normal">
+          <p className="font-serif-custom text-[#342226] text-base sm:text-lg mb-6 max-w-xl mx-auto font-normal">
             Our story has brought us here — join us for the celebrations, ceremonies, and unforgettable memories from January 31st to February 3rd.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
             <button
               onClick={onNavigateToEvents}
               className="w-full sm:w-auto btn-sheen py-3.5 px-8 rounded-full text-white font-bold text-xs uppercase tracking-[0.2em] shadow-lg flex items-center justify-center gap-2 cursor-pointer hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all"
-              style={{ background: 'linear-gradient(135deg, #5E3D7A, #B0542C, #C58F64)' }}
+              style={{ background: 'linear-gradient(135deg, #8E0E16 0%, #C21D27 50%, #D4AF37 100%)' }}
             >
               <span>Explore Wedding Events</span>
               <ArrowRight className="w-4 h-4" />
@@ -495,7 +495,7 @@ export const OurStory: React.FC<OurStoryProps> = ({ onBackToHome, onNavigateToEv
             {onBackToHome && (
               <button
                 onClick={onBackToHome}
-                className="w-full sm:w-auto py-3.5 px-6 rounded-full text-[#4B3E5B] hover:text-[#1A1222] font-semibold text-xs uppercase tracking-[0.2em] border border-[#C8BEAF] hover:bg-white/60 transition-all cursor-pointer"
+                className="w-full sm:w-auto py-3.5 px-6 rounded-full text-[#6E3840] hover:text-[#2E1015] font-semibold text-xs uppercase tracking-[0.2em] border border-[#DFCAB0] hover:bg-white/60 transition-all cursor-pointer"
               >
                 Back to Home
               </button>

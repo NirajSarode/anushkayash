@@ -23,7 +23,7 @@ export const VenueTravel: React.FC = () => {
         {/* Header */}
         <div className="text-center mb-16">
           <motion.p initial="hidden" whileInView="show" viewport={{ once: true }} variants={fadeUp}
-            className="font-serif-custom text-[#5E3D7A] text-xs tracking-[0.35em] uppercase mb-4 font-bold">
+            className="font-serif-custom text-[#8E0E16] text-xs tracking-[0.35em] uppercase mb-4 font-bold">
             Destination
           </motion.p>
           <motion.h2 initial="hidden" whileInView="show" viewport={{ once: true }} variants={fadeUp}
@@ -31,13 +31,13 @@ export const VenueTravel: React.FC = () => {
             The Mountain Retreat
           </motion.h2>
           <motion.p initial="hidden" whileInView="show" viewport={{ once: true }} variants={fadeUp}
-            className="font-serif-custom text-[#2B2136] text-lg sm:text-xl italic max-w-xl mx-auto font-medium">
+            className="font-serif-custom text-[#342226] text-lg sm:text-xl italic max-w-xl mx-auto font-medium">
             Set in the misty Sahyadri slopes &mdash; where Delhi meets Maharashtra.
           </motion.p>
         </div>
 
         {/* Tabs with Smooth Sliding Layout Pill */}
-        <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-12 p-1.5 rounded-full bg-[#F7F3EE] border border-[#C8BEAF]/60 max-w-fit mx-auto shadow-xs">
+        <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-12 p-1.5 rounded-full bg-[#FFFDF9] border border-[#DFCAB0]/70 max-w-fit mx-auto shadow-xs">
           {tabs.map((tab) => {
             const isActive = activeTab === tab.id;
             return (
@@ -45,13 +45,13 @@ export const VenueTravel: React.FC = () => {
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
                 className={`relative flex items-center gap-2 px-5 sm:px-7 py-2.5 rounded-full text-xs uppercase tracking-[0.15em] font-bold transition-all duration-300 cursor-pointer isolate ${
-                  isActive ? 'text-white font-extrabold shadow-sm' : 'text-[#4B3E5B] hover:text-[#1A1222]'
+                  isActive ? 'text-white font-extrabold shadow-sm' : 'text-[#6E3840] hover:text-[#2E1015]'
                 }`}
               >
                 {isActive && (
                   <motion.div
                     layoutId="venueActiveTabPill"
-                    className="absolute inset-0 rounded-full shadow-md bg-gradient-to-r from-[#5E3D7A] via-[#8E445F] to-[#B0542C] z-0 pointer-events-none"
+                    className="absolute inset-0 rounded-full shadow-md bg-gradient-to-r from-[#8E0E16] via-[#C21D27] to-[#D4AF37] z-0 pointer-events-none"
                     transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                   />
                 )}
@@ -65,7 +65,7 @@ export const VenueTravel: React.FC = () => {
         </div>
 
         {/* Content with AnimatePresence */}
-        <div className="card-sheen bg-[#F7F3EE] rounded-3xl p-6 sm:p-10 border border-[#C8BEAF]/60 shadow-xl min-h-[380px] flex flex-col justify-center">
+        <div className="card-sheen bg-[#FFFDF9] rounded-3xl p-6 sm:p-10 border border-[#DFCAB0]/70 shadow-xl min-h-[380px] flex flex-col justify-center">
           <AnimatePresence mode="wait">
             {activeTab === 'venue' && (
               <motion.div
@@ -78,21 +78,21 @@ export const VenueTravel: React.FC = () => {
               >
                 <div className="space-y-6 text-left">
                   <div>
-                    <p className="text-[11px] uppercase tracking-[0.2em] font-bold text-[#B0542C] mb-2">Host Resort</p>
-                    <h3 className="font-royal-custom text-2xl sm:text-3xl font-bold text-[#1A1222] mb-3">
+                    <p className="text-[11px] uppercase tracking-[0.2em] font-bold text-[#8E0E16] mb-2">Host Resort</p>
+                    <h3 className="font-royal-custom text-2xl sm:text-3xl font-bold text-[#2E1015] mb-3">
                       Touchwood Bliss, Igatpuri
                     </h3>
-                    <p className="font-serif-custom text-[#2B2136] text-base leading-relaxed font-normal">
+                    <p className="font-serif-custom text-[#342226] text-base leading-relaxed font-normal">
                       Surrounded by Sahyadri mountain peaks and tranquil valleys &mdash; luxury nature glamping villas, open courtyards, and warm mountain hospitality.
                     </p>
                   </div>
-                  <div className="space-y-2.5 text-xs sm:text-sm text-[#2B2136] font-medium">
+                  <div className="space-y-2.5 text-xs sm:text-sm text-[#342226] font-medium">
                     <div className="flex items-center gap-3">
-                      <Navigation className="w-4 h-4 text-[#5E3D7A] flex-shrink-0" />
+                      <Navigation className="w-4 h-4 text-[#8E0E16] flex-shrink-0" />
                       Touchwood Bliss, Bhavali Dam Road, Igatpuri, Maharashtra 422403
                     </div>
                     <div className="flex items-center gap-3">
-                      <Compass className="w-4 h-4 text-[#B0542C] flex-shrink-0" />
+                      <Compass className="w-4 h-4 text-[#9A6C20] flex-shrink-0" />
                       Complimentary valet &amp; shuttle services provided
                     </div>
                   </div>
@@ -101,14 +101,14 @@ export const VenueTravel: React.FC = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="btn-sheen inline-flex items-center gap-2 px-7 py-3 rounded-full text-white text-xs uppercase tracking-[0.15em] font-bold shadow-md hover:shadow-xl hover:scale-105 active:scale-95 transition-all cursor-pointer"
-                    style={{ background: 'linear-gradient(135deg, #6B4984, #B05B43, #A85630)' }}
+                    style={{ background: 'linear-gradient(135deg, #8E0E16 0%, #C21D27 50%, #D4AF37 100%)' }}
                   >
                     <MapPin className="w-4 h-4" />Open in Google Maps
                   </a>
                 </div>
                 <div className="h-72 sm:h-80 rounded-2xl overflow-hidden relative shadow-lg">
                   <img src="/images/hero_mountain.webp" alt="Resort" className="w-full h-full object-cover img-film img-kenburns" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#F7F3EE]/40 via-transparent to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#FFFDF9]/40 via-transparent to-transparent" />
                 </div>
               </motion.div>
             )}
@@ -123,15 +123,15 @@ export const VenueTravel: React.FC = () => {
                 className="grid grid-cols-1 md:grid-cols-2 gap-6 text-left"
               >
                 {[
-                  { title: 'From Delhi (DEL)', icon: <Plane className="w-5 h-5 text-[#5E3D7A]" />, text: 'Fly to Mumbai BOM (2 hrs) or directly to Nashik. Dedicated wedding shuttle coaches run continuously from both airports.', color: '#5E3D7A' },
-                  { title: 'From Maharashtra', icon: <Plane className="w-5 h-5 text-[#B0542C]" />, text: 'Mumbai BOM is ~120 km (2.5 hrs via expressway). Regular pickup coaches will escort all arriving guests.', color: '#B0542C' },
+                  { title: 'From Delhi (DEL)', icon: <Plane className="w-5 h-5 text-[#8E0E16]" />, text: 'Fly to Mumbai BOM (2 hrs) or directly to Nashik. Dedicated wedding shuttle coaches run continuously from both airports.', color: '#8E0E16' },
+                  { title: 'From Maharashtra', icon: <Plane className="w-5 h-5 text-[#9A6C20]" />, text: 'Mumbai BOM is ~120 km (2.5 hrs via expressway). Regular pickup coaches will escort all arriving guests.', color: '#9A6C20' },
                 ].map((item) => (
-                  <div key={item.title} className="p-6 rounded-2xl bg-[#F0EBE3] space-y-3 border border-[#C8BEAF]/40 hover:shadow-md transition-shadow">
+                  <div key={item.title} className="p-6 rounded-2xl bg-[#FAF6F0] space-y-3 border border-[#DFCAB0]/50 hover:shadow-md transition-shadow">
                     <div className="flex items-center gap-3">
                       {item.icon}
-                      <h4 className="font-royal-custom text-base font-bold text-[#1A1222]">{item.title}</h4>
+                      <h4 className="font-royal-custom text-base font-bold text-[#2E1015]">{item.title}</h4>
                     </div>
-                    <p className="font-serif-custom text-[#2B2136] text-sm leading-relaxed">{item.text}</p>
+                    <p className="font-serif-custom text-[#342226] text-sm leading-relaxed">{item.text}</p>
                   </div>
                 ))}
               </motion.div>
@@ -147,15 +147,15 @@ export const VenueTravel: React.FC = () => {
                 className="grid grid-cols-1 md:grid-cols-2 gap-6 text-left"
               >
                 {[
-                  { title: 'Igatpuri Station (IGP)', icon: <Train className="w-5 h-5 text-[#5E3D7A]" />, text: '~5 km from resort (10 min). Major junction connecting Mumbai, Nashik, and Delhi express trains. Station pickups provided.' },
-                  { title: 'Scenic Highway Drive', icon: <Navigation className="w-5 h-5 text-[#B0542C]" />, text: 'Mumbai/Nashik via Kasara Ghat. Smooth 4-lane expressway with scenic mountain viewpoints.' },
+                  { title: 'Igatpuri Station (IGP)', icon: <Train className="w-5 h-5 text-[#8E0E16]" />, text: '~5 km from resort (10 min). Major junction connecting Mumbai, Nashik, and Delhi express trains. Station pickups provided.' },
+                  { title: 'Scenic Highway Drive', icon: <Navigation className="w-5 h-5 text-[#9A6C20]" />, text: 'Mumbai/Nashik via Kasara Ghat. Smooth 4-lane expressway with scenic mountain viewpoints.' },
                 ].map((item) => (
-                  <div key={item.title} className="p-6 rounded-2xl bg-[#F0EBE3] space-y-3 border border-[#C8BEAF]/40 hover:shadow-md transition-shadow">
+                  <div key={item.title} className="p-6 rounded-2xl bg-[#FAF6F0] space-y-3 border border-[#DFCAB0]/50 hover:shadow-md transition-shadow">
                     <div className="flex items-center gap-3">
                       {item.icon}
-                      <h4 className="font-royal-custom text-base font-bold text-[#1A1222]">{item.title}</h4>
+                      <h4 className="font-royal-custom text-base font-bold text-[#2E1015]">{item.title}</h4>
                     </div>
-                    <p className="font-serif-custom text-[#2B2136] text-sm leading-relaxed">{item.text}</p>
+                    <p className="font-serif-custom text-[#342226] text-sm leading-relaxed">{item.text}</p>
                   </div>
                 ))}
               </motion.div>
@@ -170,15 +170,15 @@ export const VenueTravel: React.FC = () => {
                 transition={{ duration: 0.45, ease: 'easeOut' }}
                 className="max-w-2xl mx-auto space-y-6 text-left"
               >
-                <div className="p-6 rounded-2xl bg-[#F0EBE3] border border-[#C8BEAF]/40 hover:shadow-md transition-shadow">
-                  <h4 className="font-royal-custom text-lg font-bold text-[#1A1222] mb-3">Late January &amp; Early February Weather</h4>
-                  <p className="font-serif-custom text-[#2B2136] leading-relaxed">
+                <div className="p-6 rounded-2xl bg-[#FAF6F0] border border-[#DFCAB0]/50 hover:shadow-md transition-shadow">
+                  <h4 className="font-royal-custom text-lg font-bold text-[#2E1015] mb-3">Late January &amp; Early February Weather</h4>
+                  <p className="font-serif-custom text-[#342226] leading-relaxed">
                     Daytime: <strong>24&deg;C</strong> with pleasant sunshine. Evenings: a crisp <strong>14&deg;C</strong> with misty mountain breezes.
                   </p>
                 </div>
-                <div className="p-6 rounded-2xl bg-[#F0EBE3] border border-[#C8BEAF]/40 hover:shadow-md transition-shadow">
-                  <h4 className="text-xs font-bold uppercase tracking-[0.15em] text-[#5E3D7A] mb-3">Packing Tips</h4>
-                  <ul className="space-y-2 text-sm text-[#2B2136] list-disc list-inside font-serif-custom font-medium">
+                <div className="p-6 rounded-2xl bg-[#FAF6F0] border border-[#DFCAB0]/50 hover:shadow-md transition-shadow">
+                  <h4 className="text-xs font-bold uppercase tracking-[0.15em] text-[#8E0E16] mb-3">Packing Tips</h4>
+                  <ul className="space-y-2 text-sm text-[#342226] list-disc list-inside font-serif-custom font-medium">
                     <li>Light jackets or shawls for evening outdoor events</li>
                     <li>Comfortable footwear for lawn walkways</li>
                     <li>Sun protection for daytime Mehendi</li>

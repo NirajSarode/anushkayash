@@ -1,0 +1,115 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 76" width="440" height="76" fill="none">
+  <defs>
+    <filter id="timerDropShadow" x="-5%" y="-15%" width="110%" height="140%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#8A5A36" flood-opacity="0.18" />
+      <feDropShadow dx="0" dy="1" stdDeviation="1.5" flood-color="#C8A270" flood-opacity="0.22" />
+    </filter>
+    <linearGradient id="parchmentBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFFEFA" />
+      <stop offset="50%" stop-color="#FBF6EE" />
+      <stop offset="100%" stop-color="#F4ECE0" />
+    </linearGradient>
+    <linearGradient id="goldBorder" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#D8B684" />
+      <stop offset="30%" stop-color="#B88D56" />
+      <stop offset="50%" stop-color="#E2C69B" />
+      <stop offset="70%" stop-color="#B58A53" />
+      <stop offset="100%" stop-color="#CBA472" />
+    </linearGradient>
+  </defs>
+
+  <!-- 1. Outer Cartouche Background with Drop Shadow -->
+  <!-- Left apex is at (20, 38). Right apex is at (420, 38). Height = 76. Center y = 38 -->
+  <path d="M 65 5 L 375 5 
+           C 382 5 387 8 390 13 
+           C 394 19 399 23 403 26 
+           C 400 28 398 30 401 33 
+           C 406 35 414 37 420 38 
+           C 414 39 406 41 401 43 
+           C 398 46 400 48 403 50 
+           C 399 53 394 57 390 63 
+           C 387 68 382 71 375 71 
+           L 65 71 
+           C 58 71 53 68 50 63 
+           C 46 57 41 53 37 50 
+           C 40 48 42 46 39 43 
+           C 34 41 26 39 20 38 
+           C 26 37 34 35 39 33 
+           C 42 30 40 28 37 26 
+           C 41 23 46 19 50 13 
+           C 53 8 58 5 65 5 Z"
+        fill="url(#parchmentBg)"
+        stroke="url(#goldBorder)"
+        stroke-width="1.5"
+        filter="url(#timerDropShadow)" />
+
+  <!-- 2. Inner Fine Concentric Border Line -->
+  <path d="M 66 9 L 374 9 
+           C 380 9 384 11.5 386.5 15.5 
+           C 390 20.5 394.5 24 398 26.5 
+           C 396 28.5 395 30 397 32.5 
+           C 401.5 34.5 408 36.5 414 38 
+           C 408 39.5 401.5 41.5 397 43.5 
+           C 395 46 396 47.5 398 49.5 
+           C 394.5 52 390 55.5 386.5 60.5 
+           C 384 64.5 380 67 374 67 
+           L 66 67 
+           C 60 67 56 64.5 53.5 60.5 
+           C 50 55.5 45.5 52 42 49.5 
+           C 44 47.5 45 46 43 43.5 
+           C 38.5 41.5 32 39.5 26 38 
+           C 32 36.5 38.5 34.5 43 32.5 
+           C 45 30 44 28.5 42 26.5 
+           C 45.5 24 50 20.5 53.5 15.5 
+           C 56 11.5 60 9 66 9 Z"
+        stroke="#C59B63"
+        stroke-width="0.85"
+        stroke-opacity="0.8"
+        fill="none" />
+
+  <!-- 3. Left Ornate Finial & Filigree Scrollwork -->
+  <g stroke="#B88D56" stroke-width="0.85" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Apex Finial Spire -->
+    <path d="M 20 38 L 10 38" stroke-width="1.2" />
+    <circle cx="9" cy="38" r="1.5" fill="#B88D56" />
+    <path d="M 14 35 C 17 36.5 19 37.5 22 38 C 19 38.5 17 39.5 14 41" stroke-width="0.8" />
+
+    <!-- Top Arabesque Scroll -->
+    <path d="M 26 36 C 29 32 33 27 38 24 C 42 21 46 22 46 25 C 46 28 42 30 38 29 C 34 28 32 24 33 20 C 34 16 38 13 43 14" />
+    <circle cx="40" cy="27" r="1" fill="#B88D56" />
+    <circle cx="35" cy="18" r="0.9" fill="#B88D56" />
+
+    <!-- Bottom Arabesque Scroll -->
+    <path d="M 26 40 C 29 44 33 49 38 52 C 42 55 46 54 46 51 C 46 48 42 46 38 47 C 34 48 32 52 33 56 C 34 60 38 63 43 62" />
+    <circle cx="40" cy="49" r="1" fill="#B88D56" />
+    <circle cx="35" cy="58" r="0.9" fill="#B88D56" />
+
+    <!-- Outer Decorative Pearl Beads on Cusps -->
+    <circle cx="38" cy="38" r="1.2" fill="#B88D56" />
+    <circle cx="49" cy="15" r="1" fill="#B88D56" />
+    <circle cx="49" cy="61" r="1" fill="#B88D56" />
+  </g>
+
+  <!-- 4. Right Ornate Finial & Filigree Scrollwork (Mirrored) -->
+  <g transform="translate(440, 0) scale(-1, 1)" stroke="#B88D56" stroke-width="0.85" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Apex Finial Spire -->
+    <path d="M 20 38 L 10 38" stroke-width="1.2" />
+    <circle cx="9" cy="38" r="1.5" fill="#B88D56" />
+    <path d="M 14 35 C 17 36.5 19 37.5 22 38 C 19 38.5 17 39.5 14 41" stroke-width="0.8" />
+
+    <!-- Top Arabesque Scroll -->
+    <path d="M 26 36 C 29 32 33 27 38 24 C 42 21 46 22 46 25 C 46 28 42 30 38 29 C 34 28 32 24 33 20 C 34 16 38 13 43 14" />
+    <circle cx="40" cy="27" r="1" fill="#B88D56" />
+    <circle cx="35" cy="18" r="0.9" fill="#B88D56" />
+
+    <!-- Bottom Arabesque Scroll -->
+    <path d="M 26 40 C 29 44 33 49 38 52 C 42 55 46 54 46 51 C 46 48 42 46 38 47 C 34 48 32 52 33 56 C 34 60 38 63 43 62" />
+    <circle cx="40" cy="49" r="1" fill="#B88D56" />
+    <circle cx="35" cy="58" r="0.9" fill="#B88D56" />
+
+    <!-- Outer Decorative Pearl Beads on Cusps -->
+    <circle cx="38" cy="38" r="1.2" fill="#B88D56" />
+    <circle cx="49" cy="15" r="1" fill="#B88D56" />
+    <circle cx="49" cy="61" r="1" fill="#B88D56" />
+  </g>
+</svg>

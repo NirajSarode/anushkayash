@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence, type Variants } from 'framer-motion';
-import { MapPin, Sparkles, ChevronUp, ScrollText } from 'lucide-react';
+import { MapPin, Sparkles, ChevronUp, ScrollText, X } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
 const fadeUp: Variants = {
@@ -50,6 +50,7 @@ const ScrollRod: React.FC<{ isBottom?: boolean }> = ({ isBottom }) => (
 
 export const RoyalInvitation: React.FC = () => {
   const [isUnfurled, setIsUnfurled] = useState(true);
+  const [isLogoEnlarged, setIsLogoEnlarged] = useState(false);
 
   const handleUnfurl = () => {
     setIsUnfurled(true);
@@ -57,7 +58,7 @@ export const RoyalInvitation: React.FC = () => {
       particleCount: 65,
       spread: 85,
       origin: { y: 0.6 },
-      colors: ['#D4AF37', '#5E3D7A', '#B0542C', '#C58F64', '#F3E5AB'],
+      colors: ['#D4AF37', '#8E0E16', '#C21D27', '#E6BD70', '#F3E5AB'],
       disableForReducedMotion: true,
     });
   };
@@ -69,7 +70,7 @@ export const RoyalInvitation: React.FC = () => {
         <motion.p
           initial="hidden" whileInView="show" viewport={{ once: true }}
           variants={fadeUp}
-          className="font-serif-custom text-[#5E3D7A] text-xs tracking-[0.35em] uppercase mb-3 font-bold"
+          className="font-serif-custom text-[#8E0E16] text-xs tracking-[0.35em] uppercase mb-3 font-bold"
         >
           Royal Farman &middot; शाही निमंत्रण
         </motion.p>
@@ -85,7 +86,7 @@ export const RoyalInvitation: React.FC = () => {
         <motion.p
           initial="hidden" whileInView="show" viewport={{ once: true }}
           variants={fadeUp}
-          className="font-serif-custom text-[#2B2136] text-base sm:text-lg italic mb-10 max-w-lg mx-auto font-medium"
+          className="font-serif-custom text-[#342226] text-base sm:text-lg italic mb-10 max-w-lg mx-auto font-medium"
         >
           {isUnfurled
             ? 'The auspicious royal farman from the Biyani & Verma families.'
@@ -114,7 +115,7 @@ export const RoyalInvitation: React.FC = () => {
                   title="Click to unfurl royal scroll"
                 >
                   {/* Ambient Royal Gold Glow on Hover */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-[#5E3D7A]/15 via-[#C58F64]/25 to-[#B0542C]/15 rounded-3xl blur-2xl opacity-60 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+                  <div className="absolute inset-0 bg-gradient-to-r from-[#8E0E16]/20 via-[#D4AF37]/30 to-[#C21D27]/20 rounded-3xl blur-2xl opacity-60 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
 
                   {/* Top Scroll Rod */}
                   <ScrollRod />
@@ -131,21 +132,19 @@ export const RoyalInvitation: React.FC = () => {
                       <div className="absolute inset-y-0 right-1 w-0.5 border-l border-dashed border-[#F3E5AB]/70" />
                     </div>
 
-                    {/* Embossed Royal Wax Seal (Center) */}
+                    {/* Royal Seal (Center) */}
                     <div className="relative z-20 flex flex-col items-center group-hover:scale-105 transition-transform duration-500">
-                      <div className="relative p-1.5 rounded-full bg-gradient-to-br from-[#E2B755] via-[#C58F64] to-[#8C5A3C] shadow-2xl">
-                        <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden bg-white/95 border-2 border-white shadow-inner flex items-center justify-center">
-                          <img
-                            src="/images/wedding_crest.png"
-                            alt="Royal Wedding Crest Seal"
-                            className="w-full h-full object-cover"
-                          />
-                        </div>
+                      <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden shadow-xl flex items-center justify-center border-4 border-white">
+                        <img
+                          src="/images/logo.png"
+                          alt="Royal Wedding Logo Seal"
+                          className="w-full h-full object-cover"
+                        />
                       </div>
 
                       {/* Golden Unfurl Cue Pill */}
-                      <div className="mt-4 px-5 py-2 rounded-full bg-white/95 backdrop-blur-md border border-[#C58F64]/70 shadow-lg flex items-center gap-2 text-[#5E3D7A] font-bold text-xs uppercase tracking-[0.2em] group-hover:bg-[#5E3D7A] group-hover:text-white transition-colors duration-300">
-                        <Sparkles className="w-3.5 h-3.5 text-[#C58F64] group-hover:text-white" />
+                      <div className="mt-4 px-5 py-2 rounded-full bg-white/95 backdrop-blur-md border border-[#D4AF37]/70 shadow-lg flex items-center gap-2 text-[#8E0E16] font-bold text-xs uppercase tracking-[0.2em] group-hover:bg-[#8E0E16] group-hover:text-white transition-colors duration-300">
+                        <Sparkles className="w-3.5 h-3.5 text-[#D4AF37] group-hover:text-white" />
                         <span>Tap to Unfurl Farman</span>
                       </div>
                     </div>
@@ -205,79 +204,86 @@ export const RoyalInvitation: React.FC = () => {
                       className="relative z-10 flex flex-col items-center"
                     >
                       {/* Sanskrit Auspicious Shloka */}
-                      <p className="font-serif-custom text-xs sm:text-sm tracking-[0.25em] text-[#B0542C] uppercase font-bold mb-1">
+                      <p className="font-serif-custom text-xs sm:text-sm tracking-[0.25em] text-[#8E0E16] uppercase font-bold mb-1">
                         ॥ श्री गणेशाय नमः ॥
                       </p>
-                      <p className="font-serif-custom text-[11px] sm:text-xs text-[#6D5F80] italic mb-6 max-w-md">
+                      <p className="font-serif-custom text-[11px] sm:text-xs text-[#8F5A62] italic mb-6 max-w-md">
                         वक्रतुण्ड महाकाय सूर्यकोटि समप्रभ । निर्विघ्नं कुरु मे देव सर्वकार्येषु सर्वदा ॥
                       </p>
 
-                      {/* Royal Crest Medallion */}
-                      <div className="mb-6 p-1.5 rounded-full bg-white/90 border border-[#C58F64]/40 shadow-lg">
-                        <img
-                          src="/images/wedding_crest.png"
-                          alt="Royal Wedding Crest"
-                          className="w-24 h-24 sm:w-32 sm:h-32 rounded-full object-cover"
-                        />
+                      {/* Royal Hallmark Crest (Clickable to Enlarge, styled like footer) */}
+                      <div className="flex justify-center mb-6">
+                        <button
+                          type="button"
+                          onClick={() => setIsLogoEnlarged(true)}
+                          className="rounded-full border-4 border-white shadow-xl hover:shadow-2xl hover:scale-105 active:scale-95 transition-all duration-300 cursor-zoom-in group focus:outline-none overflow-hidden"
+                          title="Click to view crest"
+                        >
+                          <img
+                            src="/images/logo.png"
+                            alt="Anushka & Yash Royal Hallmark"
+                            className="w-24 h-24 sm:w-32 sm:h-32 object-cover"
+                          />
+                        </button>
                       </div>
 
                       {/* Header */}
-                      <h3 className="font-royal-custom text-2xl sm:text-4xl font-bold text-[#1A1222] tracking-[0.06em] mb-6">
+                      <h3 className="font-royal-custom text-2xl sm:text-4xl font-bold text-[#2E1015] tracking-[0.06em] mb-6">
                         शाही निमंत्रण पत्रिका
                       </h3>
 
                       {/* Elder Invocation */}
-                      <p className="font-serif-custom text-[#4B3E5B] text-sm sm:text-base leading-relaxed max-w-xl mb-8 font-medium">
+                      <p className="font-serif-custom text-[#342226] text-sm sm:text-base leading-relaxed max-w-xl mb-8 font-medium">
                         With the auspicious blessings of our elders and the almighty, the families cordially request the honor of your presence and warm blessings to celebrate the wedding ceremonies of
                       </p>
 
                       {/* Couple Calligraphy */}
                       <div className="my-2 sm:my-4 text-center">
                         <h4 className="font-royal-custom text-3xl sm:text-5xl font-bold tracking-[0.08em] leading-tight">
-                          <span className="text-[#5E3D7A]">ANUSHKA</span>
-                          <span className="font-script-custom text-[#C58F64] text-4xl sm:text-6xl mx-2 sm:mx-3">&amp;</span>
-                          <span className="text-[#B0542C]">YASH</span>
+                          <span className="text-royal-crimson">ANUSHKA</span>
+                          <span className="font-script-custom text-[#D4AF37] text-4xl sm:text-6xl mx-2 sm:mx-3">&amp;</span>
+                          <span className="text-royal-crimson">YASH</span>
                         </h4>
                       </div>
 
                       {/* Two Families Split */}
                       <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 text-left my-8">
                         {/* Groom's Family */}
-                        <div className="p-4 sm:p-5 rounded-2xl bg-[#F0EBE3]/80 border border-[#E8A987]/40 shadow-2xs">
-                          <p className="text-[10px] sm:text-[11px] uppercase tracking-[0.2em] font-bold text-[#B0542C] mb-2 flex items-center gap-1.5">
-                            <span className="w-2 h-2 rounded-full bg-[#B0542C]" />
+                        <div className="p-4 sm:p-5 rounded-2xl bg-[#FFFDF9]/90 border border-[#D4AF37]/50 shadow-2xs">
+                          <p className="text-[10px] sm:text-[11px] uppercase tracking-[0.2em] font-bold text-[#9A6C20] mb-2 flex items-center gap-1.5">
+                            <span className="w-2 h-2 rounded-full bg-[#D4AF37]" />
                             Biyani Family
                           </p>
-                          <p className="font-serif-custom text-[#1A1222] text-sm sm:text-base font-bold">
+                          <p className="font-serif-custom text-[#2E1015] text-sm sm:text-base font-bold">
                             Grandson of Madanlal Biyani &amp; Kachribai Biyani
                           </p>
-                          <p className="font-serif-custom text-[#4B3E5B] text-xs sm:text-sm mt-0.5">
+                          <p className="font-serif-custom text-[#6E3840] text-xs sm:text-sm mt-0.5">
                             Son of Jugalkishor Biyani &amp; Meena Biyani
                           </p>
                         </div>
 
                         {/* Bride's Family */}
-                        <div className="p-4 sm:p-5 rounded-2xl bg-[#F0EBE3]/80 border border-[#B89FC8]/40 shadow-2xs">
-                          <p className="text-[10px] sm:text-[11px] uppercase tracking-[0.2em] font-bold text-[#5E3D7A] mb-2 flex items-center gap-1.5">
-                            <span className="w-2 h-2 rounded-full bg-[#5E3D7A]" />
+                        <div className="p-4 sm:p-5 rounded-2xl bg-[#FFFDF9]/90 border border-[#8E0E16]/40 shadow-2xs">
+                          <p className="text-[10px] sm:text-[11px] uppercase tracking-[0.2em] font-bold text-[#8E0E16] mb-2 flex items-center gap-1.5">
+                            <span className="w-2 h-2 rounded-full bg-[#8E0E16]" />
                             Verma Family
                           </p>
-                          <p className="font-serif-custom text-[#1A1222] text-sm sm:text-base font-bold">
+                          <p className="font-serif-custom text-[#2E1015] text-sm sm:text-base font-bold">
                             Granddaughter of Krishan Lal Verma &amp; Shakuntala Devi
                           </p>
-                          <p className="font-serif-custom text-[#4B3E5B] text-xs sm:text-sm mt-0.5">
+                          <p className="font-serif-custom text-[#6E3840] text-xs sm:text-sm mt-0.5">
                             Daughter of G K Verma &amp; Rajni Verma
                           </p>
                         </div>
                       </div>
 
                       {/* Venue & Dates Banner */}
-                      <div className="w-full p-4 sm:p-5 rounded-2xl bg-[#F0EBE3]/60 border border-[#C8BEAF]/50 text-center mb-8">
-                        <div className="flex items-center justify-center gap-2 text-[#1A1222] text-sm sm:text-base font-bold mb-1">
-                          <MapPin className="w-4 h-4 text-[#B0542C]" />
+                      <div className="w-full p-4 sm:p-5 rounded-2xl bg-[#FFFDF9]/80 border border-[#DFCAB0]/70 text-center mb-8">
+                        <div className="flex items-center justify-center gap-2 text-[#2E1015] text-sm sm:text-base font-bold mb-1">
+                          <MapPin className="w-4 h-4 text-[#8E0E16]" />
                           <span className="font-serif-custom">Touchwood Bliss, Igatpuri</span>
                         </div>
-                        <p className="text-xs uppercase tracking-[0.2em] text-[#5E3D7A] font-bold">
+                        <p className="text-xs uppercase tracking-[0.2em] text-[#8E0E16] font-bold">
                           January 31 &ndash; February 3, 2027
                         </p>
                       </div>
@@ -309,6 +315,57 @@ export const RoyalInvitation: React.FC = () => {
           </div>
         </div>
       </div>
+
+      {/* Enlarged Crest Lightbox Modal */}
+      <AnimatePresence>
+        {isLogoEnlarged && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setIsLogoEnlarged(false)}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#1A1222]/80 backdrop-blur-md cursor-zoom-out"
+          >
+            <motion.div
+              initial={{ scale: 0.85, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.85, opacity: 0, y: 20 }}
+              transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+              onClick={(e) => e.stopPropagation()}
+              className="relative max-w-lg w-full p-4 sm:p-8 flex flex-col items-center"
+            >
+              {/* Close button */}
+              <button
+                type="button"
+                onClick={() => setIsLogoEnlarged(false)}
+                className="absolute top-2 right-2 sm:top-4 sm:right-4 p-2.5 rounded-full bg-white/90 hover:bg-white text-[#1A1222] shadow-xl hover:scale-105 active:scale-95 transition-all cursor-pointer z-10"
+                title="Close"
+              >
+                <X className="w-5 h-5" />
+              </button>
+
+              {/* High-res Crest Display */}
+              <div className="relative rounded-full border-4 border-white shadow-2xl overflow-hidden">
+                <img
+                  src="/images/logo.png"
+                  alt="Anushka & Yash Royal Logo - Enlarged"
+                  className="w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 object-cover"
+                />
+              </div>
+
+              <p
+                className="font-serif-custom text-white text-sm sm:text-base tracking-[0.2em] uppercase mt-6 font-semibold text-center"
+                style={{ textShadow: '0 2px 8px rgba(0,0,0,0.8)' }}
+              >
+                Anushka &amp; Yash &middot; Royal Wedding Crest
+              </p>
+              <p className="font-serif-custom text-white/70 text-xs tracking-wider mt-1 text-center">
+                Tap anywhere outside to close
+              </p>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 };

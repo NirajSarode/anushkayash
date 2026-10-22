@@ -156,13 +156,13 @@ export const BlessingsPage: React.FC<BlessingsPageProps> = ({ onBackToHome }) =>
           particleCount: 30,
           spread: 70,
           origin: { x, y },
-          colors: ['#E11D48', '#FF4D6D', '#B0542C', '#C58F64', '#5E3D7A', '#F43F5E'],
+          colors: ['#8E0E16', '#C21D27', '#D4AF37', '#E6BD70', '#9A6C20', '#C58F64'],
           disableForReducedMotion: true,
         });
       }
     }
 
-    const HEART_COLORS = ['#E11D48', '#FF4D6D', '#B0542C', '#C58F64', '#5E3D7A', '#F43F5E', '#D97706'];
+    const HEART_COLORS = ['#8E0E16', '#C21D27', '#D4AF37', '#E6BD70', '#9A6C20', '#F43F5E', '#D97706'];
     const newHearts: FloatingHeartParticle[] = Array.from({ length: 14 }).map((_, idx) => ({
       id: `${id}-${Date.now()}-${idx}-${Math.random()}`,
       x: (Math.random() - 0.5) * 16,
@@ -234,7 +234,7 @@ export const BlessingsPage: React.FC<BlessingsPageProps> = ({ onBackToHome }) =>
       particleCount: 50,
       spread: 65,
       origin: { y: 0.7 },
-      colors: ['#5E3D7A', '#B0542C', '#C58F64'],
+      colors: ['#8E0E16', '#D4AF37', '#C21D27'],
       disableForReducedMotion: true,
     });
 
@@ -283,7 +283,7 @@ export const BlessingsPage: React.FC<BlessingsPageProps> = ({ onBackToHome }) =>
         <div className="flex items-center justify-between gap-4 mb-8 sm:mb-12">
           <button
             onClick={onBackToHome}
-            className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] font-bold text-[#5E3D7A] hover:text-[#1A1222] transition-colors cursor-pointer px-4 py-2 rounded-full bg-[#F7F3EE] border border-[#C8BEAF] shadow-xs hover:shadow-md"
+            className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] font-bold text-[#8E0E16] hover:text-[#1A1222] transition-colors cursor-pointer px-4 py-2 rounded-full bg-[#FFFDF9] border border-[#D4AF37]/50 shadow-xs hover:shadow-md"
           >
             <ArrowLeft className="w-4 h-4" />
             <span>Back to Celebration</span>
@@ -291,8 +291,7 @@ export const BlessingsPage: React.FC<BlessingsPageProps> = ({ onBackToHome }) =>
 
           <button
             onClick={() => setIsWriteOpen(!isWriteOpen)}
-            className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.15em] font-bold text-white px-4 py-2 rounded-full transition-all cursor-pointer shadow-md hover:shadow-lg hover:scale-105 active:scale-95"
-            style={{ background: 'linear-gradient(135deg, #5E3D7A, #B0542C)' }}
+            className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.15em] font-bold text-white px-5 py-2.5 rounded-full transition-all cursor-pointer shadow-md hover:shadow-lg hover:scale-105 active:scale-95 bg-linear-to-r from-[#8E0E16] to-[#C21D27] border border-[#D4AF37]/40"
           >
             {isWriteOpen ? <X className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
             <span>{isWriteOpen ? 'Close Form' : 'Write Blessing'}</span>
@@ -301,9 +300,9 @@ export const BlessingsPage: React.FC<BlessingsPageProps> = ({ onBackToHome }) =>
 
         {/* Hero Header */}
         <div className="text-center mb-10 sm:mb-14">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/80 border border-[#C58F64]/40 shadow-xs mb-3">
-            <Sparkles className="w-3.5 h-3.5 text-[#C58F64]" />
-            <span className="font-serif-custom text-[11px] uppercase tracking-[0.25em] font-bold text-[#5E3D7A]">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/90 border border-[#D4AF37]/50 shadow-xs mb-3">
+            <Sparkles className="w-3.5 h-3.5 text-[#D4AF37]" />
+            <span className="font-royal-custom text-[11px] uppercase tracking-[0.25em] font-bold text-[#8E0E16]">
               Royal Guestbook Gallery
             </span>
           </div>
@@ -311,17 +310,17 @@ export const BlessingsPage: React.FC<BlessingsPageProps> = ({ onBackToHome }) =>
           <h1 className="font-royal-custom text-3xl sm:text-5xl font-bold tracking-tight text-[#1A1222] mb-3">
             Blessings &amp; Heartfelt Wishes
           </h1>
-          <p className="font-serif-custom text-base sm:text-lg text-[#4A3F58] max-w-2xl mx-auto leading-relaxed">
+          <p className="font-serif-custom text-base sm:text-lg text-[#5A4F44] max-w-2xl mx-auto leading-relaxed">
             Every prayer, loving memory, and celebration wish for Anushka &amp; Yash. Double-click any wish to shower it with hearts!
           </p>
 
           {/* Stats Badges */}
           <div className="flex flex-wrap items-center justify-center gap-3 mt-5">
-            <div className="px-4 py-1.5 rounded-full bg-white/80 border border-[#C8BEAF]/50 text-xs font-semibold text-[#5E3D7A] shadow-2xs">
+            <div className="px-4 py-1.5 rounded-full bg-white/90 border border-[#D4AF37]/40 text-xs font-semibold text-[#8E0E16] shadow-2xs">
               <span className="font-bold text-[#1A1222]">{blessings.length}</span> Wishes Shared
             </div>
-            <div className="px-4 py-1.5 rounded-full bg-white/80 border border-[#C8BEAF]/50 text-xs font-semibold text-[#B0542C] shadow-2xs flex items-center gap-1.5">
-              <Heart className="w-3.5 h-3.5 fill-[#B0542C] text-[#B0542C]" />
+            <div className="px-4 py-1.5 rounded-full bg-white/90 border border-[#D4AF37]/40 text-xs font-semibold text-[#9A6C20] shadow-2xs flex items-center gap-1.5">
+              <Heart className="w-3.5 h-3.5 fill-[#8E0E16] text-[#8E0E16]" />
               <span>
                 <strong className="text-[#1A1222]">{totalLikes}</strong> Hearts Given
               </span>
@@ -358,7 +357,7 @@ export const BlessingsPage: React.FC<BlessingsPageProps> = ({ onBackToHome }) =>
                 <form onSubmit={handleAddBlessing} className="space-y-4">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
-                      <label className="block text-xs font-bold uppercase tracking-wider text-[#5E3D7A] mb-1 font-serif-custom">
+                      <label className="block text-xs font-bold uppercase tracking-wider text-[#8E0E16] mb-1 font-serif-custom">
                         Your Name *
                       </label>
                       <input
@@ -367,12 +366,12 @@ export const BlessingsPage: React.FC<BlessingsPageProps> = ({ onBackToHome }) =>
                         value={newName}
                         onChange={(e) => setNewName(e.target.value)}
                         placeholder="e.g. Jaswinder & Priya"
-                        className="w-full px-3.5 py-2.5 rounded-xl border border-[#C8BEAF]/70 bg-white/90 text-sm text-[#1A1222] focus:outline-none focus:border-[#B0542C] focus:ring-1 focus:ring-[#B0542C]"
+                        className="w-full px-3.5 py-2.5 rounded-xl border border-[#D4AF37]/50 bg-white/90 text-sm text-[#1A1222] focus:outline-none focus:border-[#8E0E16] focus:ring-1 focus:ring-[#8E0E16]"
                       />
                     </div>
 
                     <div>
-                      <label className="block text-xs font-bold uppercase tracking-wider text-[#5E3D7A] mb-1 font-serif-custom">
+                      <label className="block text-xs font-bold uppercase tracking-wider text-[#8E0E16] mb-1 font-serif-custom">
                         Your Relation
                       </label>
                       <input
@@ -380,13 +379,13 @@ export const BlessingsPage: React.FC<BlessingsPageProps> = ({ onBackToHome }) =>
                         value={newRelation}
                         onChange={(e) => setNewRelation(e.target.value)}
                         placeholder="e.g. College Friend, Cousin"
-                        className="w-full px-3.5 py-2.5 rounded-xl border border-[#C8BEAF]/70 bg-white/90 text-sm text-[#1A1222] focus:outline-none focus:border-[#B0542C] focus:ring-1 focus:ring-[#B0542C]"
+                        className="w-full px-3.5 py-2.5 rounded-xl border border-[#D4AF37]/50 bg-white/90 text-sm text-[#1A1222] focus:outline-none focus:border-[#8E0E16] focus:ring-1 focus:ring-[#8E0E16]"
                       />
                     </div>
                   </div>
 
                   <div>
-                    <label className="block text-xs font-bold uppercase tracking-wider text-[#5E3D7A] mb-1 font-serif-custom">
+                    <label className="block text-xs font-bold uppercase tracking-wider text-[#8E0E16] mb-1 font-serif-custom">
                       Which Side?
                     </label>
                     <div className="grid grid-cols-3 gap-2">
@@ -412,7 +411,7 @@ export const BlessingsPage: React.FC<BlessingsPageProps> = ({ onBackToHome }) =>
                   </div>
 
                   <div>
-                    <label className="block text-xs font-bold uppercase tracking-wider text-[#5E3D7A] mb-1 font-serif-custom">
+                    <label className="block text-xs font-bold uppercase tracking-wider text-[#8E0E16] mb-1 font-serif-custom">
                       Your Message *
                     </label>
                     <textarea
@@ -421,14 +420,13 @@ export const BlessingsPage: React.FC<BlessingsPageProps> = ({ onBackToHome }) =>
                       value={newMessage}
                       onChange={(e) => setNewMessage(e.target.value)}
                       placeholder="Write your prayers, wishes, or memories for Anushka & Yash..."
-                      className="w-full px-3.5 py-2.5 rounded-xl border border-[#C8BEAF]/70 bg-white/90 text-sm text-[#1A1222] focus:outline-none focus:border-[#B0542C] focus:ring-1 focus:ring-[#B0542C] resize-none"
+                      className="w-full px-3.5 py-2.5 rounded-xl border border-[#D4AF37]/50 bg-white/90 text-sm text-[#1A1222] focus:outline-none focus:border-[#8E0E16] focus:ring-1 focus:ring-[#8E0E16] resize-none"
                     />
                   </div>
 
                   <button
                     type="submit"
-                    className="w-full py-3 rounded-full text-white text-xs uppercase tracking-[0.15em] font-bold flex items-center justify-center gap-2 shadow-md hover:shadow-lg transition-all cursor-pointer"
-                    style={{ background: 'linear-gradient(135deg, #5E3D7A, #B0542C)' }}
+                    className="w-full py-3 rounded-full text-white text-xs uppercase tracking-[0.15em] font-bold flex items-center justify-center gap-2 shadow-md hover:shadow-lg transition-all cursor-pointer bg-linear-to-r from-[#8E0E16] to-[#C21D27] border border-[#D4AF37]/40"
                   >
                     <Send className="w-3.5 h-3.5" />
                     <span>Post Blessing on Wall</span>
@@ -463,12 +461,12 @@ export const BlessingsPage: React.FC<BlessingsPageProps> = ({ onBackToHome }) =>
                   onClick={() => setSelectedSide(tab.id)}
                   className={`px-3 py-1.5 rounded-full text-xs font-bold transition-all cursor-pointer ${
                     isSelected
-                      ? 'bg-[#1A1222] text-white shadow-xs'
-                      : 'bg-white/70 text-[#5E3D7A] hover:bg-white border border-[#C8BEAF]/40'
+                      ? 'bg-[#8E0E16] text-white shadow-xs'
+                      : 'bg-white/80 text-[#8E0E16] hover:bg-white border border-[#D4AF37]/40'
                   }`}
                 >
                   <span>{tab.label}</span>
-                  <span className={`ml-1.5 text-[10px] ${isSelected ? 'opacity-70' : 'text-[#8E7E9F]'}`}>
+                  <span className={`ml-1.5 text-[10px] ${isSelected ? 'opacity-70' : 'text-[#9A6C20]'}`}>
                     ({count})
                   </span>
                 </button>
@@ -480,18 +478,18 @@ export const BlessingsPage: React.FC<BlessingsPageProps> = ({ onBackToHome }) =>
           <div className="flex items-center gap-2 w-full md:w-auto">
             {/* Search Input */}
             <div className="relative flex-1 md:w-56">
-              <Search className="w-3.5 h-3.5 text-[#8E7E9F] absolute left-3 top-1/2 -translate-y-1/2" />
+              <Search className="w-3.5 h-3.5 text-[#9A6C20] absolute left-3 top-1/2 -translate-y-1/2" />
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search wishes..."
-                className="w-full pl-8 pr-3 py-1.5 rounded-full bg-white/90 border border-[#C8BEAF]/50 text-xs text-[#1A1222] focus:outline-none focus:border-[#B0542C]"
+                className="w-full pl-8 pr-3 py-1.5 rounded-full bg-white/90 border border-[#D4AF37]/40 text-xs text-[#1A1222] focus:outline-none focus:border-[#8E0E16]"
               />
               {searchQuery && (
                 <button
                   onClick={() => setSearchQuery('')}
-                  className="absolute right-2.5 top-1/2 -translate-y-1/2 text-[#8E7E9F] hover:text-[#1A1222] cursor-pointer"
+                  className="absolute right-2.5 top-1/2 -translate-y-1/2 text-[#9A6C20] hover:text-[#1A1222] cursor-pointer"
                 >
                   <X className="w-3 h-3" />
                 </button>
@@ -499,11 +497,11 @@ export const BlessingsPage: React.FC<BlessingsPageProps> = ({ onBackToHome }) =>
             </div>
 
             {/* Sort Toggle */}
-            <div className="flex items-center bg-white/90 border border-[#C8BEAF]/50 rounded-full p-0.5">
+            <div className="flex items-center bg-white/90 border border-[#D4AF37]/40 rounded-full p-0.5">
               <button
                 onClick={() => setSortBy('newest')}
                 className={`p-1.5 rounded-full text-xs font-semibold cursor-pointer transition-all ${
-                  sortBy === 'newest' ? 'bg-[#5E3D7A] text-white' : 'text-[#6D5F80] hover:text-[#1A1222]'
+                  sortBy === 'newest' ? 'bg-[#8E0E16] text-white' : 'text-[#7A6C58] hover:text-[#1A1222]'
                 }`}
                 title="Sort by Newest"
               >
@@ -512,7 +510,7 @@ export const BlessingsPage: React.FC<BlessingsPageProps> = ({ onBackToHome }) =>
               <button
                 onClick={() => setSortBy('likes')}
                 className={`p-1.5 rounded-full text-xs font-semibold cursor-pointer transition-all ${
-                  sortBy === 'likes' ? 'bg-[#B0542C] text-white' : 'text-[#6D5F80] hover:text-[#1A1222]'
+                  sortBy === 'likes' ? 'bg-[#D4AF37] text-white' : 'text-[#7A6C58] hover:text-[#1A1222]'
                 }`}
                 title="Sort by Most Loved"
               >
@@ -524,16 +522,16 @@ export const BlessingsPage: React.FC<BlessingsPageProps> = ({ onBackToHome }) =>
 
         {/* Gallery Grid */}
         {filteredBlessings.length === 0 ? (
-          <div className="card-sheen bg-[#F7F3EE] rounded-3xl p-10 sm:p-14 text-center border border-[#C8BEAF]/50 shadow-xs max-w-xl mx-auto my-8">
-            <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-[#B0542C]/10 border border-[#B0542C]/30 flex items-center justify-center">
-              <Heart className="w-8 h-8 text-[#B0542C] fill-[#B0542C]/20" />
+          <div className="card-sheen bg-[#FFFDF9] rounded-3xl p-10 sm:p-14 text-center border border-[#D4AF37]/40 shadow-xs max-w-xl mx-auto my-8">
+            <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-[#8E0E16]/10 border border-[#8E0E16]/30 flex items-center justify-center">
+              <Heart className="w-8 h-8 text-[#8E0E16] fill-[#8E0E16]/20" />
             </div>
             <h3 className="font-royal-custom text-xl sm:text-2xl font-bold text-[#1A1222] mb-2">
               {blessings.length === 0
                 ? 'Be the First to Send Blessings'
                 : 'No Matching Blessings Found'}
             </h3>
-            <p className="font-serif-custom text-sm sm:text-base text-[#5E3D7A] leading-relaxed max-w-md mx-auto mb-6">
+            <p className="font-serif-custom text-sm sm:text-base text-[#8E0E16] leading-relaxed max-w-md mx-auto mb-6">
               {blessings.length === 0
                 ? 'The guestbook is waiting for your warm thoughts. Tap below to write the very first blessing for Anushka & Yash!'
                 : `No wishes matched "${searchQuery}". Try selecting "All Wishes" or clear the search filter.`}
@@ -541,7 +539,7 @@ export const BlessingsPage: React.FC<BlessingsPageProps> = ({ onBackToHome }) =>
             {blessings.length === 0 ? (
               <button
                 onClick={() => setIsWriteOpen(true)}
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#B0542C] text-white text-xs font-bold uppercase tracking-wider hover:bg-[#8E4A28] transition-all shadow-md cursor-pointer"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-linear-to-r from-[#8E0E16] to-[#C21D27] text-white text-xs font-bold uppercase tracking-wider hover:opacity-90 transition-all shadow-md cursor-pointer border border-[#D4AF37]/40"
               >
                 <Send className="w-3.5 h-3.5" />
                 <span>Write a Blessing</span>
@@ -552,7 +550,7 @@ export const BlessingsPage: React.FC<BlessingsPageProps> = ({ onBackToHome }) =>
                   setSelectedSide('all');
                   setSearchQuery('');
                 }}
-                className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white border border-[#C8BEAF] text-xs font-bold text-[#5E3D7A] hover:bg-[#F0EBE3] transition-all cursor-pointer"
+                className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white border border-[#D4AF37]/50 text-xs font-bold text-[#8E0E16] hover:bg-[#FAF6F0] transition-all cursor-pointer"
               >
                 <span>Clear Filters</span>
               </button>
@@ -713,11 +711,11 @@ export const BlessingsPage: React.FC<BlessingsPageProps> = ({ onBackToHome }) =>
                         <span className="block font-royal-custom font-bold text-[#1A1222] text-sm">
                           {b.name}
                         </span>
-                        <span className="block text-[10px] text-[#5E3D7A] font-medium tracking-wide">
+                        <span className="block text-[10px] text-[#8E0E16] font-medium tracking-wide">
                           {b.relation}
                         </span>
                       </div>
-                      <span className="text-[10px] text-[#B0542C] font-semibold">{b.date}</span>
+                      <span className="text-[10px] text-[#9A6C20] font-semibold">{b.date}</span>
                     </div>
                   </motion.div>
                 );
@@ -730,7 +728,7 @@ export const BlessingsPage: React.FC<BlessingsPageProps> = ({ onBackToHome }) =>
         <div className="mt-16 text-center">
           <button
             onClick={onBackToHome}
-            className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] font-bold text-[#5E3D7A] hover:text-[#1A1222] transition-colors cursor-pointer px-6 py-2.5 rounded-full bg-[#F7F3EE] border border-[#C8BEAF] shadow-xs hover:shadow-md"
+            className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] font-bold text-[#8E0E16] hover:text-[#1A1222] transition-colors cursor-pointer px-6 py-2.5 rounded-full bg-[#FFFDF9] border border-[#D4AF37]/50 shadow-xs hover:shadow-md"
           >
             <ArrowLeft className="w-4 h-4" />
             <span>Return to Celebration</span>
